@@ -1,0 +1,120 @@
+@use "variable";
+.container {
+  transition: ease-in 0.5s;
+  max-width: 1200px;
+  margin: auto;
+  .content {
+    margin: 1rem 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+
+    ul {
+      min-width: 40%;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+    }
+    ul li {
+      align-items: center;
+      color: variable.$Dark-Grayish-Violet;
+      cursor: pointer;
+      padding: 0.6rem 0.76rem;
+      &:hover {
+        color: variable.$Very-Dark-Violet;
+      }
+    }
+    ul li:last-child {
+      padding: 0.5rem 1.6rem;
+      border: 1.5px solid #000;
+      color: variable.$Very-Dark-Violet;
+      &:hover {
+        color: #fff;
+        background-color: #000;
+      }
+    }
+  }
+
+  $images: (
+    1: "../images/icon-snappy-process.svg",
+    2: "../images/icon-affordable-prices.svg",
+    3: "../images/icon-people-first.svg",
+  );
+  .Benefit-wrapper {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+
+    @each $i, $img in $images {
+      .benefit-#{$i} {
+        position: relative;
+        margin: 4rem 0.2rem;
+        width: 34ch;
+        h3 {
+          margin: 0.75rem 0;
+        }
+        p {
+          color: variable.$Dark-Grayish-Violet;
+          margin: 0.5rem 0;
+        }
+      }
+      .img-#{$i} {
+        display: inline-block;
+        z-index: 1;
+        width: 80px;
+        height: 80px;
+        margin: 2rem 0;
+        background-image: url($img);
+        background-size: cover;
+      }
+    }
+  }
+}
+
+.btn {
+  background-image: url("../images/icon-hamburger.svg");
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: variable.$Very-Dark-Violet;
+  width: 100%;
+  margin: auto;
+  height: 90vh;
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-image: url("../images/bg-pattern-mobile-nav.svg");
+    background-size: cover;
+    height: 150px;
+    width: 100%;
+  }
+  ul {
+    color: #fff;
+    text-transform: uppercase;
+    margin-top: 3.5rem;
+    text-align: center;
+    li {
+      margin: 2rem 0;
+      a:last-child {
+        padding: 0.5rem 1.5rem;
+        text-decoration: none;
+        color: #fff;
+        border: 1px solid #fff;
+        &:hover {
+          background-color: #fff;
+          color: variable.$Very-Dark-Violet;
+        }
+      }
+    }
+  }
+}

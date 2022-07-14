@@ -1,0 +1,63 @@
+@use "variable";
+@use "mixin";
+
+.footer {
+  position: relative;
+  z-index: 1;
+}
+
+.footer-head,
+.footer-main {
+  text-transform: uppercase;
+  margin: 1rem 0 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  cursor: pointer;
+  ul {
+    margin: 1rem 0;
+    list-style: none;
+    justify-content: space-between;
+
+    li {
+      padding: 0.2rem 0;
+      &:hover {
+        transition: ease-in 1s;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  h4 {
+    font-weight: 400;
+    color: variable.$Grayish-Blue;
+  }
+}
+
+.footer-main {
+  width: 70%;
+}
+
+.footer-head {
+  padding: 1rem 0;
+  align-items: center;
+
+  ul {
+    width: 12rem;
+    display: flex;
+    li path:hover {
+      fill: variable.$Very-Dark-Violet;
+    }
+  }
+}
+
+.footer-wrapper {
+  overflow: hidden;
+  margin-top: 4rem;
+  background-color: variable.$Very-Light-Gray;
+  &::before {
+    @include mixin.backgroundImg($width: 30rem, $height: 20rem, $gap: none);
+    background-image: url(variable.$img-footer);
+    left: 0;
+  }
+}

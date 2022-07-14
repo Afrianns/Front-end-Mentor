@@ -1,0 +1,167 @@
+@use "variable";
+@use "mixin";
+@use "head";
+@use "footer";
+@use "body";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Karla", sans-serif;
+}
+h1,
+h3,
+h2 {
+  margin: 2rem 0 0;
+  font-size: 4.5rem;
+  font-family: "DM  Serif Display", serif;
+}
+
+.decor {
+  border-top: 1px solid;
+  width: 10rem;
+  border-bottom: 0;
+}
+
+h3 {
+  margin: 1rem 0;
+  font-size: 2rem;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+  a {
+    color: hsl(228, 45%, 44%);
+  }
+}
+
+@media screen and (max-width: 1220px) {
+  .container {
+    max-width: none;
+    margin: 0 2rem;
+  }
+
+  .bg-content {
+    height: 41rem;
+    &::after {
+      height: 75%;
+      width: 8rem;
+    }
+    &::before {
+      width: 15rem;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .bg-content {
+    height: 35rem;
+    margin-bottom: 2.5rem;
+  }
+  h1,
+  h2 {
+    font-size: 3.7rem;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .img-mobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .img-info {
+    display: none;
+  }
+  .img-mobile {
+    width: 100%;
+    height: 40rem;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .container {
+    text-align: center;
+  }
+  .container .Benefit-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .decor {
+    margin: auto;
+  }
+  .working-wrapper {
+    flex-direction: column;
+    padding: 2rem 0;
+    &::after {
+      background-image: url(variable.$img-footer-m);
+    }
+
+    h1 {
+      z-index: 1;
+      font-size: 2rem;
+    }
+  }
+  .footer-main {
+    width: 100%;
+    text-align: left;
+  }
+  .bg-content {
+    &::before {
+      background-image: url(variable.$img-left-m);
+      left: 0;
+    }
+    &::after {
+      background-image: url(variable.$img-right-m);
+      right: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .content ul li {
+    display: none;
+  }
+  .nav {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 630px) {
+  .footer .decor {
+    width: 100%;
+  }
+  .content #dropdown {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container.cta {
+    margin: 0;
+  }
+  h1,
+  h2 {
+    font-size: 2rem;
+  }
+  .bg-content .wrapper .left-content p {
+    font-size: 1rem;
+  }
+  @for $i from 1 to 4 {
+    .container .Benefit-wrapper .benefit-#{$i} {
+      width: 29ch;
+      margin: 5rem 0 4rem;
+    }
+  }
+  .footer-head,
+  .footer-main {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
