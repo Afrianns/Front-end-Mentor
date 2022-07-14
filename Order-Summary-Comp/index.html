@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- displays site properly based on user's device -->
+
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./images/favicon-32x32.png"
+		/>
+
+		<title>Frontend Mentor | Order summary card</title>
+
+		<!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+		<link rel="stylesheet" href="css/styles.css" />
+	</head>
+	<body>
+		<div
+			class="
+				bg-greyBlue
+				h-screen
+				flex flex-col
+				place-content-center
+				font-RedHat
+			"
+		>
+			<img
+				src="./images/pattern-background-desktop.svg"
+				class="absolute top-0 z-0 w-full hidden md:block"
+				alt=""
+			/>
+			<img
+				src="./images/pattern-background-mobile.svg"
+				class="absolute top-0 z-0 block md:hidden"
+				alt=""
+			/>
+			<main class="container max-w-xs m-auto z-10">
+				<div class="bg-white overflow-hidden rounded-2xl shadow-xl mx-1">
+					<img class="w-full" src="./images/illustration-hero.svg" alt="" />
+					<div class="p-4 md:p-6 pt-5">
+						<div class="text-center text-lightBlue">
+							<h1 class="font-black text-darkBlue text-xl pb-3">
+								Order Summary
+							</h1>
+							<p class="text-lightBlue font-medium text-sm">
+								You can now listen to millions of songs, audiobooks, and
+								podcasts on any device anywhere you like!
+							</p>
+							<div
+								class="
+									text-left
+									flex
+									justify-evenly
+									items-center
+									my-5
+									p-2
+									bg-paleBlue
+									rounded-lg
+								"
+							>
+								<img class="" src="./images/icon-music.svg" alt="" />
+
+								<h2
+									class="
+										inline-block
+										mx-4
+										text-darkBlue text-sm
+										md:text-base
+										font-bold
+									"
+								>
+									Annual Plan
+									<span class="block text-lightBlue text-sm md:font-medium"
+										>$59.99/year</span
+									>
+								</h2>
+								<h3
+									class="
+										text-blue-800
+										font-bold
+										pl-4
+										underline
+										text-sm
+										cursor-pointer
+										hover:no-underline
+									"
+								>
+									Change
+								</h3>
+							</div>
+						</div>
+						<div class="text-center">
+							<h3
+								class="
+									bg-blue
+									cursor-pointer
+									text-white
+									font-bold
+									py-3
+									mb-4
+									rounded-xl
+									shadow-lg
+									hover:opacity-80
+								"
+							>
+								Proceed to Payment
+							</h3>
+							<p
+								class="
+									text-lightBlue
+									font-extrabold
+									text-sm
+									cursor-pointer
+									hover:text-gray-500
+								"
+							>
+								Cancel Order
+							</p>
+						</div>
+					</div>
+				</div>
+			</main>
+			<footer class="text-center text-sm">
+				Challenge by
+				<a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+					>Frontend Mentor</a
+				>. Coded by <a href="#">HanifNA</a>.
+			</footer>
+		</div>
+	</body>
+</html>

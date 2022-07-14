@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* main {
+	color: #e0e8ff;
+	color: #3829e0;
+
+	color: #f5f7ff;
+	color: #7280a7;
+	color: #1f2f56;
+} */
