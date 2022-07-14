@@ -1,0 +1,283 @@
+.content {
+  grid-template-rows: 1fr;
+  align-items: center;
+  display: grid;
+  margin: 2rem 0;
+}
+.content .card-1 {
+  color: #494c5f;
+  width: 25rem;
+  border-radius: 0.5rem;
+  background: #fff;
+  box-shadow: 0 20px 50px rgba(179, 181, 198, 0.316);
+  text-align: center;
+}
+.content .card-1 h1 {
+  font-size: 4.5rem;
+}
+.content .card-1 h1 .logos {
+  vertical-align: middle;
+}
+.content .card-1 ul li {
+  border-top: 1px solid rgba(179, 181, 198, 0.316);
+  border-bottom: 1px solid rgba(179, 181, 198, 0.316);
+  padding: 1.5rem 0;
+  list-style: none;
+}
+.content .card-1 .more-info {
+  border-radius: 0.6rem;
+  background: linear-gradient(to right, #a3a8f0, #696fdd);
+  width: 100%;
+  text-transform: uppercase;
+  padding: 0.75rem 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+.content .card-1 .more-info:hover {
+  color: #696fdd;
+  background: transparent;
+  border: 1px solid #696fdd;
+}
+.content .card-2 {
+  color: #494c5f;
+  width: 25rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(to right, #a3a8f0, #696fdd);
+  box-shadow: 0 20px 50px rgba(179, 181, 198, 0.316);
+  text-align: center;
+}
+.content .card-2 h1 {
+  font-size: 4.5rem;
+}
+.content .card-2 h1 .logos {
+  vertical-align: middle;
+}
+.content .card-2 ul li {
+  border-top: 1px solid rgba(179, 181, 198, 0.316);
+  border-bottom: 1px solid rgba(179, 181, 198, 0.316);
+  padding: 1.5rem 0;
+  list-style: none;
+}
+.content .card-2 .more-info {
+  border-radius: 0.6rem;
+  background: linear-gradient(to right, #a3a8f0, #696fdd);
+  width: 100%;
+  text-transform: uppercase;
+  padding: 0.75rem 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+.content .card-2 .more-info:hover {
+  color: #696fdd;
+  background: transparent;
+  border: 1px solid #696fdd;
+}
+.content .card-3 {
+  color: #494c5f;
+  width: 25rem;
+  border-radius: 0.5rem;
+  background: #fff;
+  box-shadow: 0 20px 50px rgba(179, 181, 198, 0.316);
+  text-align: center;
+}
+.content .card-3 h1 {
+  font-size: 4.5rem;
+}
+.content .card-3 h1 .logos {
+  vertical-align: middle;
+}
+.content .card-3 ul li {
+  border-top: 1px solid rgba(179, 181, 198, 0.316);
+  border-bottom: 1px solid rgba(179, 181, 198, 0.316);
+  padding: 1.5rem 0;
+  list-style: none;
+}
+.content .card-3 .more-info {
+  border-radius: 0.6rem;
+  background: linear-gradient(to right, #a3a8f0, #696fdd);
+  width: 100%;
+  text-transform: uppercase;
+  padding: 0.75rem 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+.content .card-3 .more-info:hover {
+  color: #696fdd;
+  background: transparent;
+  border: 1px solid #696fdd;
+}
+.content .card-2 {
+  color: #fff;
+}
+.content .card-2 .more-info {
+  color: #696fdd;
+  background: #fff;
+}
+.content .card-2 .more-info:hover {
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+@media screen and (min-width: 600px) {
+  .toggle {
+    margin: 2rem 1.5rem;
+  }
+
+  .content {
+    justify-content: space-evenly;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .content .card {
+    height: 33rem;
+    padding: 3.7rem 3rem;
+  }
+  .content .card .more-info {
+    margin: 1rem 0;
+  }
+  .content .card .logos {
+    font-size: 2.7rem;
+  }
+  .content .card h1 {
+    margin: 1.5rem 0;
+  }
+  .content .card-2 {
+    height: 35rem;
+  }
+  .content .card-2 .more-info {
+    margin: 2rem 0;
+    font-size: 1.2rem;
+    padding: 1rem 0;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .content {
+    justify-items: center;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .content .card {
+    margin: 1rem 0;
+  }
+}
+@media screen and (max-width: 600px) {
+  
+  h3 {
+    margin: 0.5rem 0;
+  }
+
+  .toggle {
+    margin: 0.75rem;
+  }
+
+  .card {
+    max-width: 250px;
+    height: max-content;
+    padding: 1rem;
+  }
+  .card .more-info {
+    font-size: 0.75rem;
+    margin: 0;
+  }
+  .card .logos {
+    font-size: 2rem;
+  }
+  .card .price {
+    vertical-align: middle;
+    font-size: 3rem;
+  }
+}
+* {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+html body {
+  min-height: 100%;
+  background: #f6f6fe;
+  position: relative;
+}
+html body::after {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  z-index: 1;
+  background-size: 45%;
+  background-position: 100% 0;
+  background-image: url("../images/bg-top.svg");
+  background-repeat: no-repeat;
+  right: 0;
+  top: 0;
+}
+html body::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  z-index: 1;
+  background-size: 45%;
+  background-position: 0 100%;
+  background-image: url("../images/bg-bottom.svg");
+  background-repeat: no-repeat;
+  left: 0;
+  bottom: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  margin: auto;
+  max-width: 1080px;
+}
+.container .title {
+  color: #6d708d;
+  text-align: center;
+  padding-top: 1rem;
+  margin: 0 0 3rem;
+}
+.container .title h2 {
+  font-size: 1.5rem;
+}
+.container .title .toggle {
+  position: relative;
+  border-radius: 20px;
+  vertical-align: middle;
+  display: inline-block;
+  width: 65px;
+  height: 30px;
+  background: #696fdd;
+  cursor: pointer;
+}
+.container .title .toggle:hover {
+  background: #a3a8f0;
+}
+.container .title .toggle .button {
+  transition: ease-in-out 0.3s;
+  top: 2.5px;
+  left: 2px;
+  border-radius: 20px;
+  position: absolute;
+  background: #fff;
+  width: 25px;
+  height: 25px;
+}
+.container .title .toggle .btn-slide {
+  left: 38px;
+}
+
+.attribution {
+  position: relative;
+  z-index: 2;
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: #3e52a3;
+}
+
+/*# sourceMappingURL=styles.css.map */

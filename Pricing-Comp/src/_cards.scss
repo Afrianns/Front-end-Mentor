@@ -1,0 +1,63 @@
+@use "variable";
+
+$list: (
+  1: #fff,
+  2: variable.$Linear-Gradient,
+  3: #fff,
+);
+
+.content {
+  grid-template-rows: 1fr;
+  align-items: center;
+  display: grid;
+  margin: 2rem 0;
+
+  @each $num, $col in $list {
+    .card-#{$num} {
+      color: variable.$Dark-Grayish-Blue;
+      width: 25rem;
+      border-radius: 0.5rem;
+      background: $col;
+      box-shadow: 0 20px 50px variable.$Light-Grayish-Blue;
+      text-align: center;
+
+      h1 {
+        font-size: 4.5rem;
+        .logos {
+          vertical-align: middle;
+        }
+      }
+      ul li {
+        border-top: 1px solid variable.$Light-Grayish-Blue;
+        border-bottom: 1px solid variable.$Light-Grayish-Blue;
+        padding: 1.5rem 0;
+        list-style: none;
+      }
+      .more-info {
+        border-radius: 0.6rem;
+        background: variable.$Linear-Gradient;
+        width: 100%;
+        text-transform: uppercase;
+        padding: 0.75rem 2rem;
+        color: #fff;
+        cursor: pointer;
+        &:hover {
+          color: hsl(237, 63%, 64%);
+          background: transparent;
+          border: 1px solid hsl(237, 63%, 64%);
+        }
+      }
+    }
+  }
+  .card-2 {
+    color: #fff;
+    .more-info {
+      color: variable.$Blue;
+      background: #fff;
+      &:hover {
+        color: #fff;
+        border: 1px solid #fff;
+      }
+    }
+  }
+}

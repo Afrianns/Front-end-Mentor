@@ -1,0 +1,86 @@
+@use "variable";
+@use "cards";
+@use "responsive";
+* {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  body {
+    min-height: 100%;
+    background: variable.$Very-Light-Grayish-Blue;
+    position: relative;
+    &::after {
+      @include variable.backgroundIMG;
+      right: 0;
+      top: 0;
+    }
+    &::before {
+      @include variable.backgroundIMG("../images/bg-bottom.svg", 0 100%);
+      left: 0;
+      bottom: 0;
+    }
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  margin: auto;
+  max-width: 1080px;
+
+  .title {
+    color: variable.$Grayish-Blue;
+    text-align: center;
+    padding-top: 1rem;
+    margin: 0 0 3rem;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    .toggle {
+      position: relative;
+      border-radius: 20px;
+      vertical-align: middle;
+      display: inline-block;
+      width: 65px;
+      height: 30px;
+      background: variable.$Blue;
+      cursor: pointer;
+
+      &:hover {
+        background: variable.$Light-blue;
+      }
+      .button {
+        transition: ease-in-out 0.3s;
+        top: 2.5px;
+        left: 2px;
+        border-radius: 20px;
+        position: absolute;
+        background: #fff;
+        width: 25px;
+        height: 25px;
+      }
+
+      .btn-slide {
+        left: 38px;
+      }
+    }
+  }
+}
+
+.attribution {
+  position: relative;
+  z-index: 2;
+  font-size: 11px;
+  text-align: center;
+  a {
+    color: hsl(228, 45%, 44%);
+  }
+}

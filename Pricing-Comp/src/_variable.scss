@@ -1,0 +1,23 @@
+$Linear-Gradient: linear-gradient(
+  to right,
+  hsl(236, 72%, 79%),
+  hsl(237, 63%, 64%)
+);
+$Light-blue: hsl(236, 72%, 79%);
+$Blue: hsl(237, 63%, 64%);
+$Very-Light-Grayish-Blue: hsl(240, 78%, 98%);
+$Light-Grayish-Blue: hsla(234, 14%, 74%, 0.316);
+$Grayish-Blue: hsl(233, 13%, 49%);
+$Dark-Grayish-Blue: hsl(232, 13%, 33%);
+
+@mixin backgroundIMG($img: "../images/bg-top.svg", $pos: 100% 0) {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  z-index: 1;
+  background-size: 45%;
+  background-position: $pos;
+  background-image: url($img);
+  background-repeat: no-repeat;
+}
