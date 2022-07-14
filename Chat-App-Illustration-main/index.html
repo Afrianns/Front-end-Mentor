@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- displays site properly based on user's device -->
+
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./images/favicon-32x32.png"
+		/>
+
+		<title>Frontend Mentor | [Challenge Name Here]</title>
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+			integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+			crossorigin="anonymous"
+		/>
+
+		<!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+		<link rel="stylesheet" href="./public/style.css" />
+	</head>
+	<body class="bg-greyWhite relative w-full min-h-screen overflow-x-hidden">
+		<span
+			class="
+				bg-gradient-to-bl
+				from-magenta
+				to-violet
+				md:-left-20
+				left-0
+				md:w-96
+				w-44
+				h-3/6
+				md:h-5/6
+				rounded-br-full
+				md:rounded-b-full
+				absolute
+			"
+		></span>
+		<span
+			class="
+				bg-greyDark
+				right-0
+				w-48
+				h-3/6
+				-z-1
+				md:h-5/6
+				rounded-tl-full
+				absolute
+				bottom-0
+			"
+		></span>
+		<main
+			class="
+				flex flex-col
+				md:flex-row
+				self-center
+				font-rubik
+				w-10/12
+				container
+				mx-auto
+				min-h-screen
+			"
+		>
+			<div
+				class="
+					mt-10
+					md:mt-auto
+					my-auto
+					shadow-lg
+					p-2
+					w-64
+					h-xxl
+					bg-white
+					rounded-3xl
+					mx-auto
+					z-10
+				"
+			>
+				<div class="bg-lightGrey h-full rounded-2xl overflow-hidden relative">
+					<span class="absolute left-16 bg-white w-32 h-5 rounded-b-xl"></span>
+					<div class="bg-gradient-to-r from-violet to-magenta h-16">
+						<div class="head flex items-center justify-around p-2">
+							<i class="fas fa-chevron-left py-6 text-white"></i>
+							<img
+								src="./images/avatar.jpg"
+								class="w-7 h-7 rounded-full border-2"
+								alt=""
+							/>
+							<div class="text-white font-rubik">
+								<h2 class="text-xs">Samuel Green</h2>
+								<p class="text-ss font-light text-greyPink">
+									Available to Walk
+								</p>
+							</div>
+
+							<i class="fas fa-ellipsis-v py-6 pl-14 text-gray-100"></i>
+						</div>
+					</div>
+
+					<div class="font-medium text-ss p-2 relative">
+						<p class="message-left">
+							That sounds great. I’d be happy to discuss more.
+						</p>
+
+						<p class="message-left mt-2">
+							Could you send over some pictures of your dog, please?
+						</p>
+						<div class="absolute right-0 w-9/12 p-3">
+							<div class="flex pb-2.5 justify-between">
+								<img
+									src="./images/dog-image-1.jpg"
+									class="w-9 rounded-md"
+									alt=""
+								/>
+								<img
+									src="./images/dog-image-2.jpg"
+									class="w-9 rounded-md"
+									alt=""
+								/>
+								<img
+									src="./images/dog-image-3.jpg"
+									class="w-9 rounded-md"
+									alt=""
+								/>
+							</div>
+							<p class="message-right">
+								Here are a few pictures. She’s a happy girl!
+							</p>
+							<p class="message-right mt-2 ml-12">Can you make it?</p>
+						</div>
+
+						<p class="message-left mt-36">
+							She looks so happy! The time we discussed works. How long shall I
+							take her out for?
+						</p>
+						<div class="offers">
+							<span
+								class="
+									w-4
+									h-4
+									border-2 border-magentaGrey
+									rounded-full
+									font-normal
+								"
+							></span>
+							<p class="text-white opacity-80">30 minute walk</p>
+							<h3 class="font-bold ml-6 text-sm">$29</h3>
+						</div>
+						<div class="offers">
+							<span
+								class="
+									w-4
+									h-4
+									border-2 border-magentaGrey
+									rounded-full
+									font-normal
+								"
+							>
+							</span>
+							<p class="text-white opacity-80">1 hour walk</p>
+							<h3 class="font-bold ml-10 text-sm">$49</h3>
+						</div>
+
+						<div
+							class="bg-white mt-2 h-8 w-full rounded-full relative font-rubik"
+						>
+							<p class="py-2 pl-4 text-darkGreyBlue">Type a message…</p>
+							<i
+								class="
+									fas
+									fa-chevron-circle-right
+									text-2xl
+									absolute
+									right-1
+									top-0
+									text-darkViolet
+								"
+							></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div
+				class="md:my-auto w-full text-center md:w-6/12 z-10 md:text-left my-20"
+			>
+				<h1 class="font-bold text-2xl text-veryDisaturate py-5">
+					Simple booking
+				</h1>
+
+				<p class="w-full md:w-8/12 text-darkGreyBlue">
+					Stay in touch with our dog walkers through the chat interface. This
+					makes it easy to discuss arrangements and make bookings. Once the walk
+					has been completed you can rate your walker and book again all through
+					the chat.
+				</p>
+			</div>
+		</main>
+		<div class="z-10">
+			Challenge by
+			<a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+				>Frontend Mentor</a
+			>. Coded by <a href="https://github.com/HanzN77">HanifNA</a>.
+		</div>
+	</body>
+</html>
