@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- displays site properly based on user's device -->
+
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./images/favicon-32x32.png"
+		/>
+
+		<title>Frontend Mentor | [Blogr]</title>
+		<link rel="stylesheet" href="./css/tailwind.css" />
+		<!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+	</head>
+	<body>
+		<div class="min-w-min min-h-screen overflow-x-hidden overflow-y-visible">
+			<div
+				class="
+					overflow-x-hidden
+					w-full
+					h-98
+					relative
+					rounded-bl-Lleft
+					bg-gradient-to-r
+					from-lowred
+					to-veryred
+					z-10
+				"
+			>
+				<div class="absolute overflow-hidden w-full h-98 z-2">
+					<span class="absolute z-2 w-100 -right-98 md:-right-96 -top-98">
+						<img src="./images/bg-pattern-intro.svg" alt="" />
+					</span>
+				</div>
+				<header
+					class="
+						container
+						z-10
+						relative
+						mx-auto
+						md:w-3/4
+						flex
+						justify-between
+						p-5
+						cursor-pointer
+					"
+				>
+					<div
+						x-data="{ open : false }"
+						class="flex w-full justify-between text-white items-center relative"
+					>
+						<div class="flex justify-between w-full">
+							<img class="w-13" src="./images/logo.svg" alt="" />
+							<button type="button" @click="open = !open">
+								<img
+									x-show="!open"
+									class="md:hidden my-auto w-6 h-6"
+									src="/images/icon-hamburger.svg"
+									alt=""
+								/>
+								<img
+									x-show="open"
+									class="md:hidden my-auto w-6 h-6"
+									src="/images/icon-close.svg"
+									alt=""
+								/>
+							</button>
+						</div>
+
+						<div
+							:class="{'flex': open, 'hidden': !open}"
+							class="
+								hidden
+								md:flex md:justify-between md:items-center
+								w-full
+								top-20
+								md:top-0
+								flex-col
+								md:flex-row
+								absolute
+								bg-white
+								md:bg-transparent
+								text-center text-black
+								md:text-white
+								shadow-xl
+								py-5
+								md:shadow-none md:py-0
+							"
+						>
+							<div
+								class="
+									z-10
+									flex
+									w-10/12
+									md:w-6/12 md:justify-around
+									flex-col
+									md:flex-row
+									mx-auto
+								"
+							>
+								<section
+									@click.away="open = false"
+									class="relative my-2"
+									x-data="{ open: false }"
+								>
+									<button
+										type="button"
+										@click="open = !open"
+										class="nav-button"
+									>
+										<p>Product</p>
+										<img
+											class="
+												nav-arrow-light
+												transform
+												transition-transform
+												duration-200
+											"
+											:class="{'rotate-180': open, 'rotate-0': !open}"
+											src="./images/icon-arrow-light.svg"
+											alt=""
+										/>
+
+										<img
+											class="
+												nav-arrow-dark
+												transform
+												transition-transform
+												duration-200
+											"
+											:class="{'rotate-180': open, 'rotate-0': !open}"
+											src="./images/icon-arrow-dark.svg"
+											alt=""
+										/>
+									</button>
+									<div x-show="open" class="nav-wrapper">
+										<ul>
+											<li class="nav-list">Overview</li>
+											<li class="nav-list">Pricing</li>
+											<li class="nav-list">Marketplace</li>
+											<li class="nav-list">Features</li>
+											<li class="nav-list">Integrations</li>
+										</ul>
+									</div>
+								</section>
+
+								<section
+									@click.away="open = false"
+									class="relative my-2"
+									x-data="{ open: false }"
+								>
+									<button
+										type="button"
+										@click="open = !open"
+										class="nav-button"
+									>
+										<p>Company</p>
+										<img
+											class="
+												nav-arrow-light
+												transition-transform
+												duration-200
+												transform
+											"
+											:class="{'rotate-180': open, 'rotate-0': !open}"
+											src="./images/icon-arrow-light.svg"
+											alt=""
+										/>
+										<img
+											class="
+												nav-arrow-dark
+												transition-transform
+												duration-200
+												transform
+											"
+											:class="{'rotate-180': open, 'rotate-0': !open}"
+											src="./images/icon-arrow-dark.svg"
+											alt=""
+										/>
+									</button>
+									<div x-show="open" class="nav-wrapper">
+										<ul>
+											<li class="nav-list">About</li>
+											<li class="nav-list">Team</li>
+											<li class="nav-list">Blog</li>
+											<li class="nav-list">Careers</li>
+										</ul>
+									</div>
+								</section>
+
+								<section
+									@click.away="open = false"
+									class="relative my-2"
+									x-data="{ open: false }"
+								>
+									<button
+										type="button"
+										@click="open = !open"
+										class="nav-button"
+									>
+										<p>Connect</p>
+										<img
+											class="
+												nav-arrow-light
+												transition-transform
+												duration-200
+												transform
+											"
+											:class="{'rotate-180': open, 'rotate-0': !open}"
+											src="./images/icon-arrow-light.svg"
+											alt=""
+										/>
+
+										<img
+											class="
+												nav-arrow-dark
+												transition-transform
+												duration-200
+												transform
+											"
+											:class="{'rotate-180': open, 'rotate-0': !open}"
+											src="./images/icon-arrow-dark.svg"
+											alt=""
+										/>
+									</button>
+									<div x-show="open" class="nav-wrapper">
+										<ul>
+											<li class="nav-list">Contact</li>
+											<li class="nav-list">Newsletter</li>
+											<li class="nav-list">LinkedIn</li>
+										</ul>
+									</div>
+								</section>
+							</div>
+							<hr class="bg-grey-300 w-10/12 mx-auto md:hidden" />
+							<section
+								class="flex md:w-48 justify-around relative md:text-white my-2"
+							>
+								<div
+									class="
+										md:flex md:justify-around md:w-full
+										font-Overpass font-Overpass-xl
+									"
+								>
+									<p class="m-2 hover:underline">Login</p>
+									<p
+										class="
+											md:bg-none md:bg-white md:text-red-600
+											py-2
+											px-4
+											hover:bg-veryLightRed
+											text-white
+											hover:text-white
+											rounded-3xl
+											font-ubuntu
+											bg-gradient-to-r
+											from-lowred
+											to-veryred
+											hover:underline
+										"
+									>
+										Sign Up
+									</p>
+								</div>
+							</section>
+						</div>
+					</div>
+				</header>
+				<div class="z-1 relative text-center text-white">
+					<div class="mt-20">
+						<h1 class="text-5xl my-5 font-Overpass font-Overpass-xl">
+							A modern publishing platform
+						</h1>
+						<p class="my-4 font-Overpass-sm font-Overpass">
+							Grow your audience and build your online brand
+						</p>
+					</div>
+					<div
+						class="flex mt-12 justify-center items-center font-ubuntu text-sm"
+					>
+						<p
+							class="
+								mx-5
+								bg-white
+								rounded-3xl
+								text-red-500
+								px-4
+								py-2
+								cursor-pointer
+								hover:bg-veryLightRed hover:text-white
+							"
+						>
+							Start for Free
+						</p>
+						<p
+							class="
+								mx-5
+								border-2 border-white
+								px-3
+								py-1
+								rounded-3xl
+								hover:bg-white hover:text-red-500
+								cursor-pointer
+							"
+						>
+							Learn More
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="container mx-auto mb-48 md:mb-0">
+				<h2
+					class="
+						text-center
+						mt-24
+						font-Overpass-xl
+						text-2xl text-disatureteBlue
+						font-Overpass
+					"
+				>
+					Designed for the future
+				</h2>
+
+				<div class="grid md:grid-cols-2 items-center">
+					<div
+						class="
+							md:text-left md:w-98 md:h-96 md:ml-36
+							mx-20
+							text-center
+							order-2
+							md:order-1
+						"
+					>
+						<h3 class="my-5 font-Overpass-md">
+							Introducing an extensible editor
+						</h3>
+						<p class="my-5 font-Overpass-sm text-greydark">
+							Blogr features an exceedingly intuitive interface which lets you
+							focus on one thing: creating content. The editor supports
+							management of multiple blogs and allows easy manipulation of
+							embeds such as images, videos, and Markdown. Extensibility with
+							plugins and themes provide easy ways to add functionality or
+							change the looks of a blog.
+						</p>
+
+						<h3 class="mt-10 font-Overpass-md">Robust content management</h3>
+						<p class="my-5 font-Overpass-sm text-greydark">
+							Flexible content management enables users to easily move through
+							posts. Increase the usability of your blog by adding customized
+							categories, sections, format, or flow. With this functionality,
+							you’re in full control.
+						</p>
+					</div>
+					<div class="order-1 md:order-2">
+						<img
+							class="relative hidden md:block -right-56"
+							src="./images/illustration-editor-desktop.svg"
+							alt=""
+						/>
+						<img
+							class="relative block md:hidden mx-auto"
+							src="./images/illustration-editor-mobile.svg"
+							alt=""
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div
+				class="
+					bg-gray-800
+					w-full
+					md:h-80
+					rounded-tr-Lleft rounded-bl-Lleft
+					flex
+					md:mx-auto
+					relative
+					z-2
+				"
+			>
+				<div
+					class="
+						absolute
+						overflow-x-hidden
+						z-1
+						w-full
+						h-full
+						md:w-98 md:h-96
+						rounded-tr-Lleft
+					"
+				>
+					<img
+						class="absolute w-full md:w-98 -top-60 mx-auto md:-top-40"
+						src="./images/bg-pattern-circles.svg"
+						alt=""
+					/>
+				</div>
+				<div
+					class="
+						my-20
+						md:h-40
+						flex flex-col
+						md:flex-row
+						mx-auto
+						md:items-center
+						text-center
+						md:text-left
+					"
+				>
+					<img
+						class="mx-auto -mt-40 md:-mt-0 md:mr-10 w-6/12 md:w-4/12"
+						src="./images/illustration-phones.svg"
+						alt=""
+					/>
+					<div class="text-white md:ml-10 w-full md:w-99">
+						<h3 class="font-ubuntu font-Ubuntu-lg md:text-4xl md:my-5">
+							State of the Art Infrastructure
+						</h3>
+						<p
+							class="font-Overpass font-Overpass-md w-9/12 inline-block text-sm"
+						>
+							With reliability and speed in mind, worldwide data centers provide
+							the backbone for ultra-fast connectivity. This ensures your site
+							will load instantly, no matter where your readers are, keeping
+							your site competitive.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="container md:mx-auto">
+				<div class="grid md:grid-cols-2 md:items-center">
+					<div
+						class="
+							md:text-left md:w-98
+							h-3/6
+							md:h-96
+							mx-20
+							md:mr-32 md:ml-0
+							order-2
+							text-center
+						"
+					>
+						<h3 class="my-5 font-Overpass-md">Free, open, simple</h3>
+						<p class="my-5 font-Overpass-sm text-greydark">
+							Blogr is a free and open source application backed by a large
+							community of helpful developers. It supports features such as code
+							syntax highlighting, RSS feeds, social media integration,
+							third-party commenting tools, and works seamlessly with Google
+							Analytics. The architecture is clean and is relatively easy to
+							learn.
+						</p>
+
+						<h3 class="mt-10 font-Overpass-md">Powerful tooling</h3>
+						<p class="my-5 font-Overpass-sm text-greydark">
+							Batteries included. We built a simple and straightforward CLI tool
+							that makes customization and deployment a breeze, but capable of
+							producing even the most complicated sites.
+						</p>
+					</div>
+					<div class="order-1">
+						<img
+							class="relative hidden md:block -left-60"
+							src="./images/illustration-laptop-desktop.svg"
+							alt=""
+						/>
+						<img
+							class="relative block md:hidden mx-auto"
+							src="./images/illustration-laptop-mobile.svg"
+							alt=""
+						/>
+					</div>
+				</div>
+			</div>
+			<div class="bg-gray-800 rounded-tr-Lleft">
+				<div
+					class="
+						container
+						mx-auto
+						flex
+						text-center
+						md:text-left md:flex-row
+						flex-col
+						text-white
+						justify-around
+					"
+				>
+					<img
+						class="w-14 h-7 mt-12 md:m-10 mx-auto"
+						src="./images/logo.svg"
+						alt=""
+					/>
+					<div class="m-10 font-ubuntu">
+						<h3 class="text-white font-Ubuntu-lg">Product</h3>
+						<ul class="text-gray-300 mt-5">
+							<li class="hover:underline">
+								<a href=""> Overview </a>
+							</li>
+							<li class="hover:underline">
+								<a href=""> Pricing </a>
+							</li>
+							<li class="hover:underline">
+								<a href=""> Marketplace </a>
+							</li>
+							<li class="hover:underline">
+								<a href=""> Features </a>
+							</li>
+							<li class="hover:underline">
+								<a href=""> Integrations </a>
+							</li>
+						</ul>
+					</div>
+					<div class="m-10">
+						<h3 class="font-Ubuntu-lg">Company</h3>
+						<ul class="text-gray-300 mt-5">
+							<li class="hover:underline">
+								<a href=""> About </a>
+							</li>
+							<li class="hover:underline">
+								<a href=""> Team </a>
+							</li>
+							<li class="hover:underline">
+								<a href=""> Blog </a>
+							</li>
+							<li class="hover:underline">
+								<a href=""> Careers </a>
+							</li>
+						</ul>
+					</div>
+					<div class="m-10">
+						<h3 class="font-Ubuntu-lg">Connect</h3>
+						<ul class="text-gray-300 mt-5">
+							<li class="hover:underline">
+								<a href=""> Contact </a>
+							</li>
+							<li class="hover:underline">
+								<a href=""> Newsletter </a>
+							</li>
+							<li class="hover:underline">
+								<a href=""> LinkedIn </a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="text-white">
+					Challenge by
+					<a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+						>Frontend Mentor</a
+					>. Coded by <a href="https://www.instagram.com/hanifxp/">HanifNA</a>.
+				</div>
+			</div>
+		</div>
+		<script
+			defer
+			src="https://unpkg.com/alpinejs@3.2.1/dist/cdn.min.js"
+		></script>
+	</body>
+</html>
