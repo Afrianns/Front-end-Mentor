@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script defer src="./src/main.js"></script>
+    <title>Frontend Mentor | Intro section with dropdown navigation</title>
+  </head>
+  <body>
+    <body class="bg-alWhite text-alBlack font-epi transition-all max-h-screen">
+      <header
+        class="max-w-7xl mx-auto flex justify-between md:justify-start items-center px-4 text-medGrey"
+      >
+         <img src="./images/logo.svg" alt="" class="mr-10 md:mr-0 w-1/12" />
+        <div
+          class="menu md:flex flex-col md:flex-row text-lg align-top p-5 md:justify-between -top-5 md:top-0 absolute md:relative bg-white md:bg-transparent h-full w-3/4 md:w-full right-0"
+        >
+          <div class="md:hidden my-5 grid justify-end cursor-pointer btn">
+            <img src="./images/icon-close-menu.svg" alt="" />
+          </div>
+          <!-- <ul class="flex flex-col items-center"> -->
+          <ul class="flex flex-col md:flex-row">
+            <li
+              class="group mr-10 z-20 relative cursor-pointer dropdown"
+              onclick="drop(0)"
+            >
+              <p class="group-hover:text-alBlack drops py-2">
+                Features
+                <img
+                  class="img-drop inline-block transition-transform"
+                  src="./images/icon-arrow-down.svg"
+                  alt="icon feature"
+                />
+              </p>
+              <div
+                class="show shadow-2xl w-max hidden bg-white py-2 px-6 -right-1 absolute rounded-xl"
+              >
+                <ul>
+                  <li class="my-3 hover:text-alBlack">
+                    <img
+                      src="./images/icon-todo.svg"
+                      class="inline-block p-1 mr-1"
+                      alt="icon todo"
+                    />
+                    Todo List
+                  </li>
+                  <li class="my-3 hover:text-alBlack">
+                    <img
+                      src="./images/icon-calendar.svg"
+                      class="inline-block p-1 mr-2"
+                      alt="icon calender"
+                    />Calender
+                  </li>
+                  <li class="my-3 hover:text-alBlack">
+                    <img
+                      src="./images/icon-reminders.svg"
+                      class="inline-block p-1 mr-3"
+                      alt="icon reminder"
+                    />Reminder
+                  </li>
+                  <li class="my-3 hover:text-alBlack">
+                    <img
+                      src="./images/icon-planning.svg"
+                      class="inline-block p-1 mr-2"
+                      alt="icon plan"
+                    />Planing
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <li
+              class="group mr-10 cursor-pointer relative dropdown"
+              onclick="drop(1)"
+            >
+              <p class="group-hover:text-alBlack drops py-2">
+                Company
+                <img
+                  class="inline-block transition-transform img-drop"
+                  src="./images/icon-arrow-down.svg"
+                  alt="arrow up-down"
+                />
+              </p>
+              <div
+                class="show shadow-lg w-max hidden bg-white py-1 px-5 z-10 absolute rounded-xl"
+              >
+                <ul>
+                  <li class="my-3 hover:text-alBlack py-2 md:py-0">History</li>
+                  <li class="my-3 hover:text-alBlack py-2 md:py-0">Our Team</li>
+                  <li class="my-3 hover:text-alBlack py-2 md:py-0">Blog</li>
+                </ul>
+              </div>
+            </li>
+            <li class="mr-10 cursor-pointer hover:text-alBlack py-2">Career</li>
+            <li class="cursor-pointer hover:text-alBlack py-2">About</li>
+          </ul>
+          <!-- <ul class="flex flex-col items-left"> -->
+          <ul class="flex flex-col md:flex-row items-center text-center">
+            <li class="md:mr-10 cursor-pointer w-full hover:text-alBlack py-2">
+              Login
+            </li>
+            <li
+              class="cursor-pointer border-2 w-full border-medGrey py-1 px-3 rounded-2xl hover:border-alBlack hover:text-alBlack"
+            >
+              Register
+            </li>
+          </ul>
+        </div>
+        <div class="md:hidden my-5 grid justify-end cursor-pointer btn">
+          <img src="./images/icon-menu.svg" alt="" />
+        </div>
+      </header>
+
+      <main
+        class="flex flex-col-reverse md:flex-row justify-between max-w-5xl my-10 items-stretch w mx-auto md:px-4"
+      >
+        <div
+          class="flex flex-col items-center md:items-start justify-end text-center md:text-left mt-10"
+        >
+          <h1 class="font-bold text-6xl mb-5">
+            Make <br />
+            remote work
+          </h1>
+          <p class="font-medium text-lg w-5/6 my-5">
+            Get your team in sync, no matter your location. Streamline
+            processes, create team rituals, and watch productivity soar.
+          </p>
+          <p
+            class="my-5 py-3 px-5 hover:text-alBlack transition-colors duration-200 hover:bg-alWhite border-2 border-alBlack bg-alBlack cursor-pointer text-alWhite inline-block rounded-lg"
+          >
+            Learn More
+          </p>
+
+          <ul class="flex justify-between w-5/6 mt-10 items-center">
+            <li>
+              <img src="./images/client-databiz.svg" alt="" />
+            </li>
+            <li>
+              <img src="./images/client-audiophile.svg" alt="" />
+            </li>
+            <li>
+              <img src="./images/client-meet.svg" alt="" />
+            </li>
+            <li>
+              <img src="./images/client-maker.svg" alt="" />
+            </li>
+          </ul>
+        </div>
+        <img
+          src="./images/image-hero-desktop.png"
+          class="w-2/5 hidden md:block"
+          alt="hero image"
+        />
+        <img
+          src="./images/image-hero-mobile.png"
+          class="md:hidden m-0"
+          alt="hero image"
+        />
+      </main>
+    </body>
+
+    <div class="text-alBlack text-center">
+      Challenge by
+      <a
+        href="https://www.frontendmentor.io?ref=challenge"
+        class="underline text-gray-500"
+        target="_blank"
+        >Frontend Mentor</a
+      >. Coded by
+      <a href="https://github.com/HanzN77" class="underline text-gray-500"
+        >HanifNA</a
+      >.
+    </div>
+  </body>
+</html>
