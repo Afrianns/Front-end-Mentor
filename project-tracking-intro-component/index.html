@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- displays site properly based on user's device -->
+
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./images/favicon-32x32.png"
+		/>
+		<link rel="stylesheet" href="./public/styles.css" />
+		<title>Frontend Mentor | Project tracking intro component</title>
+		<!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+	</head>
+	<body>
+		<div class="w-full overflow-x-hidden max-h-screen">
+			<div class="container mx-auto w-11/12 font-barlowCon">
+				<header>
+					<nav
+						x-data="{ open : false}"
+						class="
+							flex flex-row
+							justify-between
+							my-10
+							items-center
+							w-11/12
+							lg:w-full
+							mx-auto
+						"
+					>
+						<h3>
+							<img src="./images/logo.svg" alt="" />
+						</h3>
+						<div
+							@click="open = !open"
+							class="relative pb-4 w-10 navbar-burger lg:hidden"
+						>
+							<button x-show="!open">
+								<img src="./images/icon-hamburger.svg" alt="" />
+							</button>
+
+							<button x-show="open">
+								<img src="./images/icon-close.svg" alt="" />
+							</button>
+						</div>
+						<div
+							:class=" open ? 'show' : 'hidden'"
+							class="
+								navbar-menu
+								text-center
+								p-5
+								w-4/5
+								lg:mr-0
+								bg-white
+								lg:bg-transparent
+								absolute
+								lg:block lg:static
+								top-20
+								lg:w-max lg:top-0
+								shadow-2xl
+								lg:shadow-none
+							"
+						>
+							<ul
+								class="
+									items-center
+									flex flex-col
+									lg:flex-row
+									justify-between
+									font-barlowCon
+									text-lg
+									w-full
+									lg:w-96
+									uppercase
+									font-bold
+								"
+							>
+								<li class="hover:underline py-2"><a href="#"> Product </a></li>
+								<li class="hover:underline py-2"><a href="#"> Features </a></li>
+								<li class="hover:underline py-2"><a href="#"> Pricing </a></li>
+								<span
+									class="
+										bg-gray-300
+										lg:bg-gray-500 lg:w-1.5
+										w-1/2
+										h-0.5
+										lg:h-1.5
+										rounded-full
+										my-auto
+									"
+								></span>
+								<hr class="pb-2 lg:hidden" />
+								<li class="hover:underline text-grayishBlue">
+									<a href="#"> Login </a>
+								</li>
+							</ul>
+						</div>
+						<span
+							class="
+								absolute
+								left-2/4
+								lg:top-0
+								-top-20
+								w-1/2
+								h-96
+								z-2
+								rounded-bl-xxl
+								bg-lightGrayBlue
+							"
+						></span>
+					</nav>
+				</header>
+				<main
+					class="
+						flex
+						justify-between
+						flex-col
+						lg:flex-row
+						sm:my-16
+						mb-10
+						items-cente
+					"
+				>
+					<div
+						class="
+							w-11/12
+							lg:w-3/6
+							order-2
+							lg:order-1
+							font-barlow
+							sm:my-16
+							mt-10
+						"
+					>
+						<h2
+							class="
+								uppercase
+								text-xs
+								sm:text-lg
+								mb-5
+								text-grayish
+								tracking-widest
+							"
+						>
+							<span
+								class="
+									bg-gray-800
+									py-1
+									px-2
+									rounded-full
+									inline-block
+									mr-2
+									font-bold
+									text-white
+								"
+							>
+								new
+							</span>
+							Monograph Dashboard
+						</h2>
+						<h1
+							class="
+								font-barlowCon
+								text-darkGrayBlue
+								font-bold
+								text-4xl
+								sm:text-6xl
+								lg:text-7xl
+								sm:my-5
+								my-2
+							"
+						>
+							Powerful insights into your team
+						</h1>
+						<p
+							class="
+								w-full
+								lg:w-1/2
+								font-normal
+								text-grayishBlue
+								py-1
+								md:py-2
+								text-md
+								sm:text-xl
+								lg:text-base
+							"
+						>
+							Project planning and time tracking for agile teams
+						</p>
+						<div class="mt-5 uppercase font-barlowCon">
+							<a
+								href="#"
+								class="
+									inline-block
+									uppercase
+									bg-OrangeRed
+									text-white
+									sm:py-2
+									p-1.5
+									sm:px-5
+									lg:px-5
+									tracking-tight
+									sm:tracking-wide
+									rounded-lg
+									font-normal
+									sm:mr-2
+									mr-1
+									hover:underline
+								"
+							>
+								<p>Schedule a demo</p>
+							</a>
+							<p
+								class="
+									inline-block
+									text-grayish
+									tracking-tight
+									sm:tracking-widest
+								"
+							>
+								to see a live preview
+							</p>
+						</div>
+					</div>
+					<div
+						class="
+							overflow-x-hidden
+							order-1
+							lg:order-2 lg:w-9/12
+							-mr-32
+							lg:-mr-56
+							max-w-max
+						"
+					>
+						<img
+							class=""
+							src="./images/illustration-devices.svg"
+							alt="mobile-and-desktop"
+						/>
+					</div>
+				</main>
+			</div>
+			<footer>
+				<p class="text-xs">
+					Challenge by
+					<a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+						>Frontend Mentor</a
+					>. Coded by <a href="#">HanifNA</a>.
+				</p>
+			</footer>
+		</div>
+		<script
+			defer
+			src="https://unpkg.com/alpinejs@3.2.2/dist/cdn.min.js"
+		></script>
+	</body>
+</html>
