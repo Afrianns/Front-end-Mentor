@@ -1,0 +1,138 @@
+* {
+	font-size: 20px;
+	font-family: "Libre Franklin", sans-serif;
+	text-align: center;
+	margin: 0;
+}
+
+h2 {
+	font-size: 1.5rem;
+	font-weight: 300;
+	color: hsl(0, 0%, 59%);
+	margin: 1rem;
+}
+
+.soon {
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: #000;
+}
+
+h3 {
+	font-size: 0.7rem;
+	font-weight: 300;
+}
+
+.email-con {
+	justify-content: center;
+	display: flex;
+}
+
+.btn {
+	cursor: pointer;
+	height: 36px;
+	background: hsl(223, 87%, 63%);
+	color: #fff;
+	border: 0;
+	margin-left: 1rem;
+	padding: 0 1.4rem;
+	border-radius: 40px;
+	font-size: 0.6rem;
+	box-shadow: 2px 2px 10px hsl(223, 100%, 88%);
+	font-weight: 600;
+}
+
+.btn:hover {
+	opacity: 0.7;
+}
+
+.head {
+	margin: 2rem;
+}
+
+input {
+	font-weight: 300;
+	font-size: 0.6rem;
+	text-align: left;
+	padding: 0 1rem;
+	width: 13rem;
+	height: 35px;
+	border-radius: 40px;
+	border: 1px solid hsl(223, 100%, 88%);
+}
+
+.ill-dash {
+	margin: 2rem auto;
+	display: block;
+	width: 450px;
+	height: 300px;
+}
+
+footer {
+	padding: 1rem;
+}
+
+footer p,
+a {
+	text-align: center;
+	font-size: 10px;
+}
+
+.val {
+	display: block;
+	border-color: hsl(354, 100%, 66%);
+}
+.warn {
+	font-size: 10px;
+	font-weight: 300;
+	display: block;
+	text-align: left;
+	margin: 5px 25px;
+	font-style: italic;
+	color: hsl(354, 100%, 66%);
+}
+
+.sos-med {
+	margin: 15px;
+}
+
+.sos-med i {
+	cursor: pointer;
+	padding: 5px;
+	color: hsl(223, 87%, 63%);
+	margin: 0 10px;
+	font-size: 0.7rem;
+}
+
+.sos-med i:hover {
+	border-radius: 100%;
+	padding: 5px;
+	color: #fff;
+	background: hsl(223, 87%, 63%);
+}
+
+.attribution {
+	margin: 15px 0;
+	font-size: 11px;
+	text-align: center;
+}
+
+.attribution a {
+	color: hsl(228, 45%, 44%);
+}
+
+@media (max-width: 600px) {
+	.email-con {
+		display: inline-block;
+	}
+
+	.btn {
+		margin: 0;
+		width: 100%;
+	}
+
+	.warn {
+		text-align: center;
+		margin: 10px;
+	}
+}
