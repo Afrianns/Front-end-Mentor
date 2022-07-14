@@ -1,0 +1,370 @@
+:root {
+  /* colors */
+  --Very-Dark-Blue: hsl(243, 87%, 12%);
+  --Desaturated-Blue: hsl(238, 22%, 44%);
+  --Bright-Blue: hsl(224, 93%, 58%);
+  --Moderate-Cyan: hsl(170, 45%, 43%);
+  --Light-Grayish-Blue: hsl(240, 75%, 98%);
+  --Light-Gray: hsl(0, 0%, 75%);
+  /* fonts */
+  --open-sans: "Open Sans", sans-serif;
+  --raleway: "Raleway", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+#container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.navs {
+  padding: 1rem 0;
+  display: flex;
+  place-items: center;
+  justify-content: space-between;
+}
+
+.navs .logo img {
+  width: 50%;
+}
+
+.nav__link ul {
+  font-family: var(--raleway);
+  list-style: none;
+  justify-content: space-between;
+  display: flex;
+}
+.nav__link ul li {
+  padding: 0 0.75rem;
+  cursor: pointer;
+}
+
+.wrapper {
+  margin: 1rem 0;
+  display: flex;
+  place-items: center;
+  justify-content: space-between;
+}
+
+.wrapper .content {
+  max-width: 50%;
+  font-family: var(--raleway);
+}
+
+.wrapper .content .green-arrow {
+  vertical-align: middle;
+}
+
+.wrapper .content > * {
+  margin: 1.5rem 0;
+}
+
+.wrapper .content h1 {
+  font-family: var(--raleway);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.wrapper .content .description {
+  font-family: var(--raleway);
+  max-width: 350px;
+  font-size: 1rem;
+}
+#input-email {
+  padding: 0.65rem 0.5rem;
+  margin-right: 1rem;
+  width: 55%;
+  border: 1px solid var(--Desaturated-Blue);
+}
+
+.wrapper .content .fylo-work {
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+.wrapper .content .btn {
+  padding: 0.75rem 1.5rem;
+  color: #fff;
+  border: 0;
+  background-color: var(--Bright-Blue);
+}
+
+.wrapper .illustrate-img {
+  max-width: 50%;
+}
+
+.wrapper .illustrate-img img {
+  width: 100%;
+}
+
+.testimoni {
+  font-family: var(--open-sans);
+  max-width: 300px;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 1px 1px 10px var(--Light-Gray);
+}
+
+.founder-testi {
+  display: flex;
+  align-items: center;
+}
+
+.founder-name h3 {
+  font-weight: 700;
+}
+.founder-name p {
+  font-size: 10px;
+}
+
+.profile-pict {
+  margin: 0 10px;
+  width: 50px;
+  height: 50px;
+}
+
+.profile-pict img {
+  border-radius: 50%;
+  width: 100%;
+}
+
+.testimoni > * {
+  margin: 0.5rem 0;
+}
+
+.bg-curve {
+  background-color: #f8f8fe;
+  margin-top: 5rem;
+  position: relative;
+}
+
+.bg-curve::before {
+  content: "";
+  z-index: -1;
+  bottom: 3rem;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-image: url("../images/bg-curve-desktop.svg");
+}
+
+.back-color {
+  background-color: var(--Desaturated-Blue);
+}
+
+.back-color .about-us .info {
+  width: 50%;
+}
+.back-color .about-us .info > * {
+  max-width: 500px;
+}
+
+.back-color .about-us {
+  font-family: var(--open-sans);
+  padding: 2rem 0;
+  margin: auto;
+  display: flex;
+  color: #fff;
+  justify-content: space-between;
+  place-items: center;
+}
+
+.footer-information {
+  padding: 1.5rem 0;
+  width: 100%;
+  background-color: var(--Very-Dark-Blue);
+}
+
+.email-input {
+  width: 35%;
+}
+
+#email {
+  outline: none;
+  border: none;
+  box-shadow: 1px 1px 10px rgb(61, 61, 61);
+  display: block;
+  width: 100%;
+  padding: 0.75rem 0.5rem;
+}
+
+.sign-up {
+  border: none;
+  color: #fff;
+  margin: 0.75rem 0;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--Bright-Blue);
+  box-shadow: 1px 1px 10px rgba(61, 61, 61, 0.7);
+}
+
+.sign-up:hover {
+  background-color: hsla(224, 90%, 68%, 0.753);
+}
+
+.footer-information .logo {
+  margin: 1rem 0;
+  width: 10%;
+}
+
+.icon {
+  display: inline;
+  width: 35px;
+  vertical-align: middle;
+  padding-right: 0.75rem;
+}
+
+.information-link {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--raleway);
+}
+.sos-med {
+  display: flex;
+}
+
+.sos-med svg {
+  margin: 0 0.5rem;
+  border: 1px solid #fff;
+  border-radius: 100%;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.sos-med svg:hover {
+  border: 1px solid var(--Moderate-Cyan);
+  fill: var(--Moderate-Cyan);
+}
+
+.information-link a {
+  text-decoration: none;
+  margin: 0.5rem 0;
+  display: block;
+  color: #fff;
+}
+.information-link a:hover {
+  color: var(--Desaturated-Blue);
+}
+
+.attribution,
+.attribution a {
+  color: #000;
+  font-size: 11px;
+  text-align: center;
+}
+
+.alert {
+  display: none;
+  margin-top: 0.5rem;
+  font-size: 12px;
+  color: #ff0000aa;
+}
+.alert-second {
+  display: none;
+  padding: 0.5rem 0;
+  font-size: 12px;
+  color: #f0dcdcaa;
+}
+
+.btn,
+.sign-up {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+  .wrapper {
+    flex-direction: column;
+  }
+  .navs .nav__link {
+    font-size: 0.7rem;
+  }
+
+  .navs .logo img {
+    width: 50px;
+    vertical-align: middle;
+  }
+
+  .wrapper .content {
+    max-width: 100%;
+  }
+
+  .wrapper .illustrate-img {
+    max-width: 90%;
+    margin: 2rem 0;
+  }
+
+  .wrapper .content .card {
+    width: 100%;
+    margin: auto;
+  }
+
+  .footer-information .logo {
+    width: 40%;
+  }
+  .back-color .about-us {
+    flex-direction: column;
+  }
+  .back-color .about-us .info,
+  .back-color .about-us .email-input {
+    width: 100%;
+  }
+  .information-link {
+    flex-direction: column;
+  }
+  .information-link > * {
+    margin: 1rem 0;
+  }
+
+  .sos-med {
+    justify-content: center;
+  }
+  .wrapper .content h2 {
+    text-align: center;
+  }
+
+  .wrapper .content .fylo-work {
+    font-size: 0.75rem;
+    vertical-align: middle;
+  }
+
+  .bg-curve::before {
+    bottom: 2rem;
+    background-image: url("../images/bg-curve-mobile.svg");
+  }
+}
+
+@media screen and (max-width: 414px) {
+  #input-email {
+    width: 100%;
+    margin: 0.75rem 0;
+    padding: 0.5rem;
+  }
+
+  .sign-up {
+    width: 100%;
+  }
+  .back-color .about-us .info {
+    text-align: center;
+  }
+
+  .card .testimoni {
+    margin: auto;
+  }
+  .alert-second,
+  .alert {
+    text-align: center;
+  }
+}
