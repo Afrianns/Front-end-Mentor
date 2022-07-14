@@ -1,0 +1,139 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "Inter", sans-serif;
+	font-weight: 400;
+	box-sizing: border-box;
+	color: #fff;
+}
+html {
+	position: relative;
+	min-height: 100vh;
+	background-color: hsl(233, 47%, 7%);
+}
+
+.content {
+	display: flex;
+	margin: 10% auto;
+	background-color: hsl(244, 38%, 16%);
+	border-radius: 10px;
+	width: 60rem;
+	height: 30rem;
+	overflow: hidden;
+}
+.wrapper-header {
+	width: 60%;
+	padding: 5%;
+}
+.wrapper-header span {
+	font-weight: 700;
+	display: inline-block;
+	color: hsl(277, 64%, 61%);
+}
+
+h1 {
+	font-size: 2.5rem;
+	font-family: "Lexend Deca", sans-serif;
+}
+p {
+	margin: 5% 0 5%;
+	line-height: 2;
+	font-size: 1rem;
+	color: hsla(0, 0%, 100%, 0.75);
+}
+
+.wrapper-text {
+	justify-content: space-between;
+	display: flex;
+}
+
+.wrapper-text h2 {
+	font-size: 2rem;
+	margin: 2rem 0 0;
+	font-weight: 700;
+}
+.wrapper-text span {
+	text-transform: uppercase;
+	font-size: 1rem;
+	font-weight: 400;
+	color: hsla(0, 0%, 100%, 0.75);
+}
+
+.img-desktop {
+	position: relative;
+	filter: brightness(130%);
+}
+.img-head {
+	width: 100%;
+	height: 100%;
+}
+
+.img-head-mobile {
+	display: none;
+}
+.img-desktop .filter {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: hsl(277, 51%, 43%);
+	opacity: 0.8;
+	mix-blend-mode: multiply;
+}
+
+.attribution {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	font-size: 11px;
+	text-align: center;
+}
+.attribution a {
+	color: hsl(228, 45%, 44%);
+}
+
+@media (max-width: 1440px) {
+	.content {
+		position: relative;
+		width: 30rem;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		min-height: 60rem;
+		color: hsla(0, 0%, 100%, 0.75);
+	}
+
+	.img-head {
+		display: none;
+	}
+	.img-head-mobile {
+		display: block;
+		width: 100%;
+	}
+
+	.wrapper-header {
+		padding: 1rem;
+		letter-spacing: 0.2px;
+		width: 100%;
+		position: absolute;
+		top: 40%;
+	}
+
+	.wrapper-text {
+		margin: auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+	.wrapper-text span {
+		display: block;
+	}
+
+	.wrapper-text h2 {
+		font-size: 2rem;
+		margin: 1rem;
+		font-weight: 700;
+	}
+}
