@@ -1,0 +1,43 @@
+@use "variable";
+@use "body";
+@use "responsive";
+
+@mixin back($img, $lay: -1, $Hght: 45%) {
+  content: "";
+  top: 0;
+  width: 100%;
+  height: $Hght;
+  background-repeat: no-repeat;
+  background-image: url($img);
+  position: absolute;
+  background-size: cover;
+  z-index: $lay;
+}
+
+body {
+  background-color: variable.$Very-Pale-Blue;
+}
+
+body::after {
+  @include back("../images/bg-pattern.svg", -2, 40%);
+  border-radius: 0 0 0 6rem;
+}
+
+body::before {
+  @include back("../images/pattern-circles.svg");
+  background-size: 10%;
+  background-position: 50% 22%;
+  @media screen and(max-width: 800px) {
+    background-size: 20%;
+  }
+}
+
+.attribution {
+  // position: a;
+  // bottom: 0;
+  font-size: 11px;
+  text-align: center;
+  a {
+    color: hsl(228, 45%, 44%);
+  }
+}

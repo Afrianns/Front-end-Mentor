@@ -1,0 +1,89 @@
+@use "variable";
+
+@media screen and(min-width: 800px) {
+  .slider::-webkit-slider-thumb:hover {
+    background: #7ae9e08f;
+  }
+  .discount-billing > * {
+    padding: 0 0.5rem;
+  }
+
+  .slide-wrapper {
+    grid-template-areas:
+      "views  annual"
+      "interactive interactive";
+    grid-template-columns: repeat(2, 1fr);
+
+    h3 {
+      grid-area: views;
+    }
+    .price {
+      grid-area: annual;
+    }
+    .slider-button {
+      grid-area: interactive;
+    }
+  }
+}
+
+@media screen and(max-width: 800px) {
+  .title {
+    font-size: 70%;
+  }
+  .slide-wrapper {
+    grid-template-areas:
+      "views "
+      "interactive"
+      "annual";
+    h3 {
+      margin: 1rem 0;
+      grid-area: views;
+    }
+    .price {
+      grid-area: annual;
+    }
+    .slider-button {
+      grid-area: interactive;
+    }
+  }
+
+  .benefit-wrapper {
+    text-align: center;
+    flex-direction: column;
+  }
+  .discount-billing > * {
+    padding: 0 0.2rem;
+  }
+
+  .content {
+    margin: 4rem 0;
+    max-width: 700px;
+
+    .slide-wrapper {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media screen and(max-width: 600px) {
+  .slider::-webkit-slider-thumb {
+    right: -4px;
+    &:hover {
+      background-color: none;
+    }
+  }
+
+  .container {
+    margin-bottom: 4rem;
+  }
+  .content {
+    margin: 0 1.5rem;
+    max-width: 315px;
+  }
+}
+
+@media screen and(max-width: 300px) {
+  .content {
+    max-width: 260px;
+  }
+}

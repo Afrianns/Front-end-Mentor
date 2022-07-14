@@ -1,0 +1,191 @@
+@use "variable";
+
+* {
+  font-family: "Manrope", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1080px;
+  margin: auto;
+  height: 100%;
+
+  .title {
+    margin: 4.7rem 0;
+    text-align: center;
+    font-size: 80%;
+  }
+
+  .content {
+    color: variable.$Grayish-Blue;
+    border-radius: 10px;
+    box-shadow: 0 20px 20px rgba(133, 143, 173, 0.127);
+    margin: 3rem auto;
+    padding-top: 0.75rem;
+    background: variable.$White;
+    width: 33rem;
+    min-height: 26rem;
+
+    .slide-wrapper {
+      // margin: 1rem 0;
+      padding: 1rem;
+      text-align: center;
+      display: grid;
+      align-items: center;
+
+      .price {
+        color: variable.$Dark-Desaturated-Blue;
+        padding: 1rem 0;
+        margin: 1rem 0;
+        h2,
+        p {
+          display: inline-block;
+        }
+        p {
+          color: variable.$Grayish-Blue;
+        }
+      }
+    }
+
+    .slider-button {
+      width: 80%;
+      margin: auto;
+      position: relative;
+
+      .slider {
+        width: 100%;
+        appearance: none;
+        border-radius: 6px;
+        height: 6px;
+        background: variable.$Light-Grayish-Blue;
+        cursor: pointer;
+        position: relative;
+
+        &::-webkit-slider-thumb {
+          appearance: none;
+          width: 30px;
+          height: 30px;
+          position: relative;
+          z-index: 3;
+          border-radius: 30px;
+        }
+      }
+
+      .progressBG {
+        position: absolute;
+        top: 11px;
+        left: 0;
+        height: 6px;
+        width: 0;
+        z-index: 1;
+        border-radius: 6px;
+        background: variable.$Soft-Cyan;
+      }
+
+      .slide {
+        cursor: pointer;
+        border-radius: 50%;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background: variable.$Strong-Cyan;
+        box-shadow: 0 10px 10px 5px hsla(174, 76%, 80%, 0.519);
+
+        .image {
+          z-index: 3;
+          top: 8.5px;
+          left: 4px;
+          width: 30px;
+          height: 30px;
+          background-image: url("../images/icon-slider.svg");
+          background-repeat: no-repeat;
+          position: absolute;
+        }
+      }
+    }
+
+    .discount-billing {
+      padding: 1rem;
+      text-align: center;
+      margin: 1rem 0;
+      & > * {
+        font-size: 0.75rem;
+        display: inline-block;
+      }
+
+      p:nth-child(4) {
+        vertical-align: middle;
+        color: variable.$White;
+        border-radius: 10px;
+        background: variable.$Light-Red;
+      }
+      .switch {
+        position: relative;
+        border-radius: 30px;
+        vertical-align: middle;
+        background: variable.$Light-Grayish-Blue;
+        width: 50px;
+        height: 30px;
+        cursor: pointer;
+
+        &:hover {
+          background: variable.$Strong-Cyan;
+        }
+        .switch-button {
+          position: absolute;
+          border-radius: 20px;
+          top: 5px;
+          left: 5px;
+          width: 20px;
+          height: 20px;
+          background: variable.$White;
+          transition: ease-in-out 0.3s;
+        }
+
+        .sw-toggle-button {
+          left: 24px;
+        }
+      }
+    }
+
+    hr {
+      border: 0.5px solid rgba(133, 143, 173, 0.127);
+    }
+
+    .benefit-wrapper {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0.75rem;
+
+      ul {
+        list-style: none;
+        padding: 1rem 0;
+        li {
+          padding: 0.5rem 0;
+
+          img {
+            padding-right: 10px;
+          }
+        }
+      }
+
+      .btn {
+        cursor: pointer;
+        background: variable.$Dark-Desaturated-Blue;
+        color: variable.$Pale-Blue;
+        border: none;
+        border-radius: 2rem;
+        padding: 0.6rem 2.5rem;
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
