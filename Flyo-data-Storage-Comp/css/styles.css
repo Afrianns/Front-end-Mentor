@@ -1,0 +1,191 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Raleway", sans-serif;
+}
+
+.container {
+	color: white;
+	background-color: hsl(229, 57%, 11%);
+	background-image: url("../images/bg-desktop.png");
+	background-position: bottom;
+	min-height: 100vh;
+	background-size: 100% 60%;
+	max-width: 100%;
+	margin: auto;
+	background-repeat: no-repeat;
+}
+
+.main {
+	margin: 0 auto;
+	min-height: 100vh;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
+
+.head {
+	margin-bottom: 3rem;
+	height: 13rem;
+	width: 20rem;
+	padding: 2rem;
+	border-radius: 10px 70px 10px 10px;
+	background-color: hsl(228, 56%, 26%);
+}
+
+.inform {
+	margin-left: 2rem;
+	height: 10rem;
+	width: 30rem;
+	background-color: hsl(228, 56%, 26%);
+	padding: 2rem;
+	position: relative;
+	border-radius: 10px;
+}
+
+.logo {
+	width: 70%;
+
+	margin: 15px 0;
+}
+
+.img img {
+	background-color: hsl(229, 57%, 11%);
+	padding: 10px;
+	margin: 20px 5px;
+	width: 40px;
+	height: 40px;
+	border-radius: 10px;
+}
+
+.inform h2 {
+	margin: 10px 0;
+	font-size: 0.8rem;
+	font-weight: 400;
+}
+
+.inform span {
+	font-weight: 700;
+}
+
+.progress {
+	margin: 1rem 0;
+	height: 1.2rem;
+	border-radius: 100px;
+	padding: 2px;
+	position: relative;
+	background-color: hsl(229, 57%, 11%);
+}
+.data {
+	width: 75%;
+	background: linear-gradient(to right, #ffa399, #ff4d97);
+	border-radius: 100px;
+	position: absolute;
+	height: 1rem;
+	padding: 2px;
+}
+.data::before {
+	content: "";
+	z-index: 10;
+	width: 13px;
+	height: 13px;
+	top: 1px;
+	right: 2px;
+	position: absolute;
+	border-radius: 100%;
+	background-color: white;
+}
+
+.inform .percent {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.inform .info-remain {
+	top: -3rem;
+	border-radius: 10px;
+	right: 35px;
+	position: absolute;
+	width: 10rem;
+	padding: 1rem;
+	color: black;
+	background-color: white;
+}
+
+.inform .info-remain::before {
+	content: "";
+	position: absolute;
+	bottom: -20px;
+	right: 0;
+	border-left: 30px solid transparent;
+	border-top: 30px solid white;
+}
+
+.inform .info-remain h3,
+h1 {
+	display: inline-block;
+}
+
+.inform .info-remain h3 {
+	vertical-align: super;
+	font-weight: 700;
+	color: gray;
+	text-transform: uppercase;
+	font-size: 0.8rem;
+}
+
+.attribution {
+	font-size: 11px;
+	text-align: center;
+}
+.attribution a {
+	color: hsl(228, 45%, 44%);
+}
+
+@media (max-width: 700px) {
+	.container {
+		background-image: url("../images/bg-mobile.png");
+		background-position: top;
+		min-height: 10vh;
+		background-size: 100%;
+		max-width: 100%;
+		margin: auto;
+		background-repeat: no-repeat;
+	}
+
+	.main {
+		flex-direction: column;
+	}
+
+	.logo {
+		width: 40%;
+	}
+
+	.head {
+		height: 10rem;
+		margin: 1rem;
+		width: 17rem;
+		padding: 1rem;
+		margin-bottom: 0;
+	}
+
+	.inform {
+		width: 17rem;
+		margin: 2rem;
+		height: 12rem;
+	}
+
+	.inform .info-remain {
+		top: 1rem;
+		text-align: center;
+		padding: 10px;
+		border-radius: 10px;
+		right: -2rem;
+		position: relative;
+	}
+	.inform .info-remain::before {
+		content: none;
+	}
+}
