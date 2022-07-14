@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- displays site properly based on user's device -->
+		<link rel="stylesheet" href="/css/style.css" />
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+			integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./images/favicon-32x32.png"
+		/>
+
+		<title>Frontend Mentor | Sunnyside agency landing page</title>
+
+		<!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+	</head>
+	<body>
+		<header>
+			<div class="head">
+				<div class="nav">
+					<img class="logo" src="/images/logo.svg" alt="" />
+					<img
+						class="hum"
+						onclick="show()"
+						src="/images/icon-hamburger.svg"
+						alt=""
+					/>
+					<div class="list navigation">
+						<ul>
+							<li>About</li>
+							<li>Services</li>
+							<li>Projects</li>
+							<li>Contact</li>
+						</ul>
+					</div>
+				</div>
+				<h1>We are creatives</h1>
+				<picture>
+					<source
+						media="(max-width: 730px)"
+						srcset="/images/mobile/image-header.jpg"
+					/>
+					<source
+						media="(min-width: 740px)"
+						srcset="/images/desktop/image-header.jpg"
+					/>
+					<img
+						class="orange"
+						src="/images/mobile/image-header.jpg"
+						alt="orange"
+					/>
+				</picture>
+			</div>
+		</header>
+
+		<div class="container">
+			<div class="part-1">
+				<div class="img">
+					<picture>
+						<source
+							media="(max-width: 730px)"
+							srcset="/images/mobile/image-transform.jpg"
+						/>
+						<source
+							media="(min-width: 740px)"
+							srcset="/images/desktop/image-transform.jpg"
+						/>
+						<img
+							class="egg"
+							src="/images/mobile/image-transform.jpg"
+							alt="egg"
+						/>
+					</picture>
+				</div>
+				<div class="content">
+					<h2>Transform your brand</h2>
+					<p>
+						We are a full-service creative agency specializing in helping brands
+						grow fast. Engage your clients through compelling visuals that do
+						most of the marketing for you.
+					</p>
+					<h3>Learn more</h3>
+				</div>
+			</div>
+
+			<div class="part-2">
+				<div class="img">
+					<picture>
+						<source
+							media="(max-width: 730px)"
+							srcset="/images/mobile/image-stand-out.jpg"
+						/>
+						<source
+							media="(min-width: 740px)"
+							srcset="/images/desktop/image-stand-out.jpg"
+						/>
+						<img
+							class="cup"
+							src="/images/mobile/image-stand-out.jpg"
+							alt="cup"
+						/>
+					</picture>
+				</div>
+				<div class="content">
+					<h2>Stand out to the right audience</h2>
+					<p>
+						Using a collaborative formula of designers, researchers,
+						photographers, videographers, and copywriters, we’ll build and
+						extend your brand in digital places.
+					</p>
+					<h3>Learn more</h3>
+				</div>
+			</div>
+
+			<div class="artwork">
+				<div class="art-1">
+					<picture>
+						<source
+							media="(max-width: 730px)"
+							srcset="/images/mobile/image-graphic-design.jpg"
+						/>
+						<source
+							media="(min-width: 740px)"
+							srcset="/images/desktop/image-graphic-design.jpg"
+						/>
+						<img
+							class="cherry"
+							src="/images/mobile/image-graphic-design.jpg"
+							alt="cherry"
+						/>
+					</picture>
+					<div class="inform">
+						<h2>Graphic design</h2>
+						<p>
+							Great design makes you memorable. We deliver artwork that
+							underscores your brand message and captures potential clients’
+							attention.
+						</p>
+					</div>
+				</div>
+
+				<div class="art-2">
+					<picture>
+						<source
+							media="(max-width: 730px)"
+							srcset="/images/mobile/image-photography.jpg"
+						/>
+						<source
+							media="(min-width: 740px)"
+							srcset="/images/desktop/image-photography.jpg"
+						/>
+						<img
+							class="blue-orange"
+							src="/images/mobile/image-photography.jpg"
+							alt="blue-orange"
+						/>
+					</picture>
+					<div class="inform">
+						<h2>Photography</h2>
+						<p>
+							Increase your credibility by getting the most stunning,
+							high-quality photos that improve your business image.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="testimonial">
+				<h2>Client testimonials</h2>
+				<div class="user">
+					<div class="test-1 testi">
+						<img src="/images/image-emily.jpg" alt="" />
+						<p>
+							We put our trust in Sunnyside and they delivered, making sure our
+							needs were met and deadlines were always hit.
+						</p>
+						<h3>Emily R.</h3>
+						<h4>Marketing Director</h4>
+					</div>
+
+					<div class="test-2 testi">
+						<img src="/images/image-thomas.jpg" alt="" />
+						<p>
+							Sunnyside’s enthusiasm coupled with their keen interest in our
+							brand’s success made it a satisfying and enjoyable experience.
+						</p>
+						<h3>Thomas S.</h3>
+						<h4>Chief Operating Officer</h4>
+					</div>
+
+					<div class="test-3 testi">
+						<img src="/images/image-jennie.jpg" alt="" />
+						<p>
+							Incredible end result! Our sales increased over 400% when we
+							worked with Sunnyside. Highly recommended!
+						</p>
+						<h3>Jennie F.</h3>
+						<h4>Business Owner</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer>
+			<div class="footer-img">
+				<img src="/images/mobile/image-gallery-milkbottles.jpg" alt="" />
+				<img src="/images/mobile/image-gallery-orange.jpg" alt="" />
+				<img src="/images/mobile/image-gallery-cone.jpg" alt="" />
+				<img src="/images/mobile/image-gallery-sugar-cubes.jpg" alt="" />
+			</div>
+			<div class="footer">
+				<img src="/images/cyan-logo.svg" alt="" />
+				<ul>
+					<li>About</li>
+					<li>Services</li>
+					<li>Projects</li>
+				</ul>
+
+				<div class="sosmed">
+					<i class="fab fa-facebook-square"></i>
+					<i class="fab fa-instagram"></i>
+					<i class="fab fa-twitter"></i>
+					<i class="fab fa-pinterest"></i>
+				</div>
+			</div>
+		</footer>
+
+		<div class="attribution">
+			Challenge by
+			<a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+				>Frontend Mentor</a
+			>. Coded by <a href="#">HanifNA</a>.
+		</div>
+		<script src="/js/main.js"></script>
+	</body>
+</html>
