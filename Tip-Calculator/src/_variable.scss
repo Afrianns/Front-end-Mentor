@@ -1,0 +1,69 @@
+//variable
+
+$Strong-cyan: hsl(172, 67%, 45%);
+$Strong-light-cyan: hsl(171, 53%, 69%);
+$light-cyan: hsl(171, 48%, 78%);
+$Very-dark-cyan: hsl(183, 100%, 15%);
+$Dark-grayish-cyan: hsl(186, 14%, 43%);
+$mid-grayish-cyan: hsl(184, 14%, 56%);
+$grayish-cyan: hsl(185, 41%, 84%);
+$grayish-opacity: hsla(186, 14%, 56%, 0.296);
+$Light-grayish-cyan: hsl(189, 41%, 97%);
+$White: hsl(0, 0%, 100%);
+
+//mixin component
+
+@mixin InputUser {
+  border-radius: 10px;
+  border: 0;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  height: 3rem;
+  font-size: 2rem;
+  text-align: end;
+  background-color: $Light-grayish-cyan;
+  &:focus {
+    outline: none;
+    border: 2px solid $Strong-cyan;
+  }
+}
+span {
+  position: relative;
+  margin: 2rem 0;
+  img {
+    color: $Dark-grayish-cyan;
+    padding: 0 1rem;
+    position: absolute;
+    text-align: start;
+    bottom: 5px;
+    width: 3rem;
+  }
+}
+
+@mixin tip-input {
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: $Light-grayish-cyan;
+  border: 0;
+  height: 3.2rem;
+  width: 102%;
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  text-align: center;
+  font-size: 1.5rem;
+  &::-webkit-input-placeholder {
+    color: $Very-dark-cyan;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+
+  &:focus {
+    outline: none;
+    border: 2px solid $Strong-cyan;
+  }
+  &:hover {
+    border: 2px solid $Strong-cyan;
+  }
+}

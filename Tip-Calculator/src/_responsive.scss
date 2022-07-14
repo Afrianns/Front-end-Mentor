@@ -1,0 +1,54 @@
+@media screen and (min-width: 1300px) {
+  .container {
+    height: 100vh;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  header {
+    margin: 5rem;
+    .logo {
+      margin: 0;
+    }
+  }
+  h1 {
+    margin: 2.5rem 0;
+  }
+
+  .content {
+    max-width: 850px;
+    display: flex;
+    height: 450px;
+    flex-direction: row;
+
+    .value-input,
+    .value-output {
+      width: 51%;
+      height: 400px;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .content {
+    border-radius: 10px;
+  }
+  .content .value-input .tip-percent {
+    gap: 5px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+  h3 br {
+    display: none;
+  }
+  .content .value-input,
+  .content .value-output {
+    margin: 0.5rem;
+  }
+
+  .content .value-output .Result {
+    font-size: 0.75rem;
+    margin: 1.5rem;
+    flex-direction: column;
+  }
+}

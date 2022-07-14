@@ -1,0 +1,134 @@
+@use "variable";
+
+header {
+  text-align: center;
+  .logo {
+    margin: 2.5rem 0;
+  }
+}
+.content {
+  box-shadow: 1px 9px 15px variable.$grayish-opacity;
+  border-radius: 20px;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  flex-direction: column;
+  background-color: variable.$White;
+  display: flex;
+
+  .value-input {
+    margin: 2.5rem;
+
+    .subtitle-bill {
+      margin-bottom: 0.5rem;
+    }
+    .subtitle-tip {
+      margin: 1rem 0;
+    }
+
+    .tip-percent {
+      display: grid;
+      gap: 15px;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 3rem);
+
+      .percent {
+        border: 0;
+        border-radius: 10px;
+        text-align: center;
+        color: variable.$White;
+        font-size: 2rem;
+        background-color: variable.$Very-dark-cyan;
+        cursor: pointer;
+        &:hover {
+          color: variable.$Very-dark-cyan;
+          background-color: variable.$Strong-light-cyan;
+        }
+      }
+
+      .percent-custom {
+        position: relative;
+      }
+
+      button {
+        border: 0;
+        border-radius: 10px;
+        background-color: none;
+      }
+
+      .active {
+        background-color: variable.$Strong-cyan;
+      }
+      .custom-tip {
+        @include variable.tip-input;
+      }
+    }
+    .bill-value {
+      @include variable.InputUser;
+    }
+
+    .subtitle-users {
+      margin: 1rem 0;
+    }
+
+    .warn-text {
+      display: none;
+      z-index: 1;
+      right: 0;
+      bottom: 45px;
+      position: absolute;
+      color: red;
+    }
+    .user-value {
+      @include variable.InputUser;
+    }
+  }
+  .value-output {
+    height: 20rem;
+    position: relative;
+    border-radius: 10px;
+    color: #fff;
+    margin: 1.6rem;
+    padding-top: 1rem;
+    background-color: variable.$Very-dark-cyan;
+
+    .Result {
+      margin: 3rem 2rem;
+      align-items: center;
+      justify-content: space-between;
+      display: flex;
+
+      h2 {
+        font-size: 2rem;
+        color: variable.$Strong-cyan;
+      }
+
+      span {
+        color: variable.$Dark-grayish-cyan;
+      }
+    }
+
+    .reset {
+      border: 0;
+      cursor: pointer;
+      margin: 0 7.5%;
+      border-radius: 12px;
+      text-align: center;
+      padding: 0.75rem 0;
+      position: absolute;
+      width: 85%;
+      bottom: 2rem;
+      background-color: variable.$Strong-cyan;
+      h2 {
+        color: variable.$Very-dark-cyan;
+      }
+      &:hover {
+        background-color: variable.$light-cyan;
+      }
+    }
+
+    .inactive {
+      cursor: not-allowed;
+      opacity: 0.3;
+    }
+  }
+}

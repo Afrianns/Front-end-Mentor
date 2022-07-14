@@ -1,0 +1,33 @@
+@use "variable";
+@use "body";
+@use "responsive";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Space Mono", monospace;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: variable.$grayish-cyan;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  max-width: 1440px;
+  margin: auto;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+
+  a {
+    color: hsl(228, 45%, 44%);
+  }
+}
