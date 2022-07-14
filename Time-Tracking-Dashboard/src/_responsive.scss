@@ -1,0 +1,92 @@
+@use "variable";
+
+/// responsive breakpoint ////
+@media screen and (min-width: 700px) {
+  .container {
+    max-width: 800px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0.75rem;
+    grid-template-areas:
+      "profile work play"
+      "profile study exercise"
+      ". social self-care";
+
+    .card {
+      width: 100%;
+      height: 100%;
+      @each $i, $s in variable.$cards-content {
+        .estimate_#{$s} {
+          padding: 1rem 0;
+        }
+      }
+    }
+
+    .profile__user {
+      margin: 0.5rem auto;
+      width: 100%;
+
+      .profile_pic {
+        place-items: start;
+        flex-direction: column;
+        height: 200px;
+
+        img {
+          width: 40%;
+        }
+      }
+
+      ul {
+        flex-direction: column;
+        li {
+          margin: 1rem 0.75rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .container {
+    max-width: 1000px;
+    align-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 15rem);
+    gap: 1rem;
+    grid-template-areas:
+      "profile work play study"
+      "profile exercise social self-care";
+
+    .profile__user .profile_pic {
+      height: 19.5rem;
+
+      .profile_identity {
+        p {
+          font-size: 1rem;
+        }
+        h2 {
+          font-weight: 300;
+          font-size: 2.5rem;
+        }
+      }
+    }
+
+    @each $i, $s in variable.$cards-content {
+      .content_#{$s} {
+        padding: 1rem;
+        .estimate_#{$s} {
+          padding: 0;
+          place-items: start;
+          flex-direction: column;
+          & > * {
+            margin: 0.5rem 0;
+          }
+          h1 {
+            font-weight: 300;
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,123 @@
+@use "variable";
+
+.container {
+  display: grid;
+  grid-template-areas:
+    "profile"
+    "work"
+    "play"
+    "study"
+    "exercise"
+    "social"
+    "self-care";
+  max-width: 400px;
+  margin: auto;
+
+  .profile__user {
+    grid-area: profile;
+    background: variable.$Dark-blue;
+    overflow: hidden;
+    width: 90%;
+    margin: 1rem auto;
+    border-radius: 10px;
+    color: variable.$Violet;
+    .profile_pic {
+      border-radius: 10px;
+      color: #fff;
+      padding: 20px 15px;
+      display: flex;
+      place-items: center;
+      justify-content: space-evenly;
+      background: variable.$Blue;
+      img {
+        border-radius: 100%;
+        border: 2px solid #fff;
+        width: 20%;
+      }
+
+      .profile_identity {
+        p {
+          color: variable.$Pale-Blue;
+          font-size: 0.75rem;
+          font-weight: 300;
+        }
+        h2 {
+          font-weight: 300;
+          font-size: 1.3rem;
+        }
+      }
+    }
+
+    ul {
+      display: flex;
+      justify-content: space-evenly;
+      list-style: none;
+      color: variable.$Desaturated-blue;
+      padding: 15px 10px;
+      cursor: pointer;
+
+      li:hover {
+        color: #f7f7f7;
+      }
+    }
+
+    .active {
+      color: #fff;
+    }
+  }
+
+  @each $i, $s in variable.$cards-content {
+    .#{$s} {
+      border-radius: 10px;
+      grid-area: $s;
+      color: #ffffff;
+      margin: 0.5rem auto;
+      width: 90%;
+      height: 25vh;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .img_#{$s} {
+      position: relative;
+      background: $i;
+      height: 30%;
+      overflow: hidden;
+      img {
+        right: 0;
+        position: absolute;
+      }
+    }
+    .content_#{$s} {
+      position: relative;
+      top: -10px;
+      height: 75%;
+      padding: 20px 15px;
+      background-color: variable.$Dark-blue;
+      border-radius: 10px;
+
+      &:hover {
+        background-color: rgb(61, 65, 119);
+      }
+
+      .subtitle_#{$s} {
+        place-items: center;
+        justify-content: space-between;
+        padding: 20px 0;
+        display: flex;
+
+        p {
+          font-weight: 700;
+        }
+      }
+      .estimate_#{$s} {
+        justify-content: space-between;
+        place-items: center;
+        display: flex;
+
+        p {
+          color: variable.$Desaturated-blue;
+        }
+      }
+    }
+  }
+}
