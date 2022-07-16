@@ -20,24 +20,23 @@
     <title>Frontend Mentor | Intro section with dropdown navigation</title>
   </head>
   <body>
-    <body class="bg-alWhite text-alBlack font-epi transition-all max-h-screen">
+    <body class="bg-alWhite text-alBlack font-epi transition-all h-auto">
       <header
-        class="max-w-7xl mx-auto flex justify-between md:justify-start items-center px-4 text-medGrey"
+        class="max-w-7xl my-2 mx-auto flex justify-between md:justify-between items-center px-4 text-medGrey"
       >
-         <img src="./images/logo.svg" alt="" class="mr-10 md:mr-0 w-1/12" />
+        <img src="./images/logo.svg" alt="logo img" class="md:mr-0 md:w-1/12" />
         <div
-          class="menu md:flex flex-col md:flex-row text-lg align-top p-5 md:justify-between -top-5 md:top-0 absolute md:relative bg-white md:bg-transparent h-full w-3/4 md:w-full right-0"
+          class="overflow-y-auto md:overflow-visible menu transition-transform ease-in translate-x-full md:translate-x-0 md:flex flex-col md:flex-row text-lg align-top p-5 md:justify-between md:top-0 bottom-0 fixed md:relative bg-white md:bg-transparent h-full w-4/5 md:w-head right-0 z-10"
         >
-          <div class="md:hidden my-5 grid justify-end cursor-pointer btn">
+          <div class="md:hidden mb-5 w-fit ml-auto cursor-pointer btn">
             <img src="./images/icon-close-menu.svg" alt="" />
           </div>
-          <!-- <ul class="flex flex-col items-center"> -->
           <ul class="flex flex-col md:flex-row">
             <li
               class="group mr-10 z-20 relative cursor-pointer dropdown"
               onclick="drop(0)"
             >
-              <p class="group-hover:text-alBlack drops py-2">
+              <p class="group-hover:text-alBlack drops py-2 click">
                 Features
                 <img
                   class="img-drop inline-block transition-transform"
@@ -46,7 +45,7 @@
                 />
               </p>
               <div
-                class="show shadow-2xl w-max hidden bg-white py-2 px-6 -right-1 absolute rounded-xl"
+                class="show md:shadow-2xl w-max hidden md:bg-white py-2 px-6 -right-1 md:absolute rounded-xl"
               >
                 <ul>
                   <li class="my-3 hover:text-alBlack">
@@ -86,7 +85,7 @@
               class="group mr-10 cursor-pointer relative dropdown"
               onclick="drop(1)"
             >
-              <p class="group-hover:text-alBlack drops py-2">
+              <p class="group-hover:text-alBlack drops py-2 click">
                 Company
                 <img
                   class="inline-block transition-transform img-drop"
@@ -95,12 +94,12 @@
                 />
               </p>
               <div
-                class="show shadow-lg w-max hidden bg-white py-1 px-5 z-10 absolute rounded-xl"
+                class="show md:shadow-lg w-max hidden bg-white md:py-1 px-5 z-10 md:absolute rounded-xl"
               >
                 <ul>
-                  <li class="my-3 hover:text-alBlack py-2 md:py-0">History</li>
-                  <li class="my-3 hover:text-alBlack py-2 md:py-0">Our Team</li>
-                  <li class="my-3 hover:text-alBlack py-2 md:py-0">Blog</li>
+                  <li class="my-3 hover:text-alBlack py-1 md:py-0">History</li>
+                  <li class="my-3 hover:text-alBlack py-1 md:py-0">Our Team</li>
+                  <li class="my-3 hover:text-alBlack py-1 md:py-0">Blog</li>
                 </ul>
               </div>
             </li>
@@ -123,7 +122,9 @@
           <img src="./images/icon-menu.svg" alt="" />
         </div>
       </header>
-
+      <div
+        class="bg-black w-screen h-screen fixed top-0 md:hidden menu transition duration-700 bg-opacity-80 hidden"
+      ></div>
       <main
         class="flex flex-col-reverse md:flex-row justify-between max-w-5xl my-10 items-stretch w mx-auto md:px-4"
       >
@@ -144,17 +145,17 @@
             Learn More
           </p>
 
-          <ul class="flex justify-between w-5/6 mt-10 items-center">
-            <li>
+          <ul class="flex justify-between md:w-5/6 mt-10 items-center">
+            <li class="mx-2">
               <img src="./images/client-databiz.svg" alt="" />
             </li>
-            <li>
+            <li class="mx-2">
               <img src="./images/client-audiophile.svg" alt="" />
             </li>
-            <li>
+            <li class="mx-2">
               <img src="./images/client-meet.svg" alt="" />
             </li>
-            <li>
+            <li class="mx-2">
               <img src="./images/client-maker.svg" alt="" />
             </li>
           </ul>
@@ -184,5 +185,6 @@
         >HanifNA</a
       >.
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
   </body>
 </html>

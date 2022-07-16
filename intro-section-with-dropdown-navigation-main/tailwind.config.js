@@ -12,6 +12,9 @@ module.exports = {
         "medGrey": "#696969"
 
       },
+      width: {
+        "head" : "90%"
+      },
       maxWidth: {
         "4.5xl": "58rem"
       },
