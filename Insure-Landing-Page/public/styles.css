@@ -1,3 +1,7 @@
+.nav-overflow {
+  overflow: hidden;
+}
+
 .container {
   transition: ease-in 0.5s;
   max-width: 1200px;
@@ -114,16 +118,16 @@
 
 .dropdown-menu {
   display: none;
-  position: absolute;
+  position: fixed;
   background-color: #2b272f;
   width: 100%;
   margin: auto;
-  height: 90vh;
+  height: 100vh;
 }
 .dropdown-menu::before {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: 2rem;
   background-repeat: no-repeat;
   background-image: url("../images/bg-pattern-mobile-nav.svg");
   background-size: cover;
@@ -137,7 +141,11 @@
   text-align: center;
 }
 .dropdown-menu ul li {
-  margin: 2rem 0;
+  cursor: pointer;
+  margin: 2.5em 0;
+}
+.dropdown-menu ul li:hover {
+  text-decoration: underline;
 }
 .dropdown-menu ul li a:last-child {
   padding: 0.5rem 1.5rem;
@@ -191,6 +199,7 @@
 
 .footer-head {
   padding: 1rem 0;
+  row-gap: 1.5rem;
   align-items: center;
 }
 .footer-head ul {
@@ -216,6 +225,19 @@
   background-size: contain;
   background-image: url("../images/bg-pattern-footer-desktop.svg");
   left: 0;
+}
+@media screen and (max-width: 450px) {
+  .footer-wrapper::before {
+    content: "";
+    position: absolute;
+    bottom: none;
+    background-repeat: no-repeat;
+    height: 20rem;
+    width: 100%;
+    background-size: contain;
+    background-image: url("../images/bg-pattern-footer-desktop.svg");
+    left: 0;
+  }
 }
 
 .working-wrapper {
@@ -253,6 +275,11 @@
   transition: ease-in-out 0.3s;
   border: 1px solid #fff;
   z-index: 1;
+}
+@media screen and (max-width: 550px) {
+  .working-wrapper a {
+    margin: 2rem 0 0;
+  }
 }
 .working-wrapper a:hover {
   color: #000;
@@ -318,6 +345,11 @@
   font-size: 1rem;
   transition: ease-in-out 0.3s;
   border: 1px solid #fff;
+}
+@media screen and (max-width: 550px) {
+  .bg-content .wrapper .left-content a {
+    margin: 2rem 0 0;
+  }
 }
 .bg-content .wrapper .left-content a:hover {
   color: #000;
@@ -455,16 +487,17 @@ h2 {
     right: 0;
   }
 }
-@media screen and (max-width: 630px) {
+@media screen and (max-width: 650px) {
   .content ul li {
     display: none;
   }
 
   .nav {
+    z-index: 2;
     display: block;
   }
 }
-@media screen and (min-width: 630px) {
+@media screen and (min-width: 650px) {
   .footer .decor {
     width: 100%;
   }

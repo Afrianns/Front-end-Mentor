@@ -40,6 +40,7 @@
 
 .footer-head {
   padding: 1rem 0;
+  row-gap: 1.5rem;
   align-items: center;
 
   ul {
@@ -59,5 +60,12 @@
     @include mixin.backgroundImg($width: 30rem, $height: 20rem, $gap: none);
     background-image: url(variable.$img-footer);
     left: 0;
+  }
+  @media screen and (max-width: 450px) {
+    &::before {
+      @include mixin.backgroundImg($width: 100%, $height: 20rem, $gap: none);
+      background-image: url(variable.$img-footer);
+      left: 0;
+    } 
   }
 }
