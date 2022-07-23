@@ -1,0 +1,40 @@
+@use "variable";
+
+.accordion-wrapper{
+    margin: 0 4rem;
+
+    p{
+        color: variable.$Dark-grayish-blue;
+        font-size: 1rem;
+    }
+
+    h1{
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+    }
+
+    .list-wrapper{
+        margin: 1rem 0;
+        padding: 0 0 1.2rem;
+        border-bottom: 1px solid variable.$Light-grayish-blue;
+        
+        .subtitle{
+            width:20rem;
+            // background-color: aquamarine;
+            position: relative;
+            
+            &::after{
+                position: absolute;
+                content: url("/images/icon-arrow-down.svg");
+                right: -19rem;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
+
+.content{
+    display: none;
+}
