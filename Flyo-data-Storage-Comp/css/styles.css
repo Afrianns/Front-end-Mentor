@@ -149,7 +149,7 @@ h1 {
 		background-image: url("../images/bg-mobile.png");
 		background-position: top;
 		min-height: 10vh;
-		background-size: 100%;
+		background-size: cover;
 		max-width: 100%;
 		margin: auto;
 		background-repeat: no-repeat;
