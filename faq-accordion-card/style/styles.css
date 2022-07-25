@@ -14,7 +14,6 @@
   margin: 1rem 0;
   padding: 0 0 1.2rem;
   border-bottom: 1px solid #e7e7e9;
-  transition: all 0.5s ease-in-out;
   width: 21rem;
 }
 .accordion-wrapper .list-wrapper .subtitle {
@@ -29,10 +28,12 @@
 }
 .accordion-wrapper .list-wrapper .subtitle span {
   background-image: url("/images/icon-arrow-down.svg");
+  background-size: 50rem;
+  background-position: 0;
   background-repeat: no-repeat;
+  background-size: contain;
   width: 10px;
   height: 10px;
-  background-size: contain;
   transition: all 150ms ease-in-out;
   margin-left: 1rem;
 }
