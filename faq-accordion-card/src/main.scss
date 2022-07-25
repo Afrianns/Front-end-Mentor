@@ -1,60 +1,86 @@
 @use "variable";
 @use "accordion";
+@use "body";
 
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: variable.$kumbh;
-}
 
-.wrapper{
-    display: flex;
-    justify-content: space-evenly;
-    height: 100%;
-    min-height: 100vh;
-    background: linear-gradient(0, variable.$Soft-blue, variable.$Soft-violet);
-    background-repeat: no-repeat;
+@media screen and (max-width: 800px) {
     
-    .card-wrapper{
-        overflow: hidden;
-        position: relative;
-        border-radius: .75rem;
-        padding:1em;
-        display: flex;
-        align-items: center;
-        margin: auto;
-        background-color: #fff;
-        width: 55rem;
-        height: 30rem;
-        
-        &::before{
-            position: absolute;
-            content: "";
-            width: 55rem;
-            height: 55rem;
-            left: -29rem;
-            top:-16rem;
-            background-image: variable.$img-back;
-            background-size:contain;
-            background-repeat: no-repeat;
+    .wrapper{
+        .card-wrapper{
+            position: relative;
+            margin:10rem auto 2rem;
+            padding: 1rem;
+            border-radius: 20px;
+            max-width: 23rem;
+            height: fit-content;
+            flex-direction: column;
+            
+            &::before{
+                position: absolute;
+                @include variable.background(variable.$img-back-m, $pos: inherit);
+                max-width: 90%;
+                height: 200px;
+                right: 0;
+                margin: 0 auto;
+                background-size: 100%;
+            }
+            h1{
+                text-align: center;
+            }
+            
 
+            .img-desktop-box{
+                display: none;
+            }
+
+            .img-desktop-woman{
+                display: none;
+            }
+
+            .img-wrapper{
+                position: absolute;
+                width: 95%;
+                height: 30rem;
+                
+                    
+                .img-mobile-woman{
+                    position: absolute;
+                    max-width: 100%;
+                    height: 60%;
+                    left: 0;
+                    top: -10%;
+                    right: 0;
+                    margin: -8rem auto;
+                    display: block;
+                }
+            }
         }
-        .img-desktop{
-            z-index: 1;
-            margin-top: -2rem;
-            margin-left: -5rem;
+
+
+            .accordion-wrapper{
+                z-index: 1;
+                margin: 50% 0 0 0;
+                width: 90%;
+
+                .list-wrapper{
+                    width: 100%;
+                }
+                p{
+                    font-size: 12px;
+                }
+                
+            }
         }
-    
     }
 
-}
 
+@media screen and(max-width: 500px) {
 
-.attribution {
-    font-size: 12px;
-    text-align: center;
-   a {
-    color: hsl(228, 45%, 44%);
-  }
+    .wrapper .card-wrapper{
+        width: 90%;
+    }
+    
+    .accordion-wrapper .list-wrapper .subtitle::after{
+        right: 0;
+    }
 }

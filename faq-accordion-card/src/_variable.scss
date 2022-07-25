@@ -4,30 +4,32 @@
 $dark-desaturated-blue: hsl(238, 29%, 16%);
 $Soft-red: hsl(14, 88%, 65%);
 
-// Gradient
-
 // Background gradient:
-
 $Soft-violet: hsl(273, 75%, 66%);
 $Soft-blue: hsl(240, 73%, 65%);
 
 // Neutral
 
 // Text
-
 $dark-grayish-blue: hsl(237, 12%, 33%);
 $Dark-grayish-blue: hsl(240, 6%, 50%);
 
 // Dividers
-
 $Light-grayish-blue: hsl(240, 5%, 91%);
 
 
 // Font
-
 $kumbh: 'Kumbh Sans', sans-serif;
 
 
 // img
+$img-back-d: url("/images/bg-pattern-desktop.svg");
+$img-back-m: url("/images/bg-pattern-mobile.svg");
 
-$img-back: url("/images/bg-pattern-desktop.svg");
+
+@mixin background($bg: $img-back-d, $pos: 0) {
+    background-image: $bg;
+    background-size:50rem;
+    background-position:$pos;
+    background-repeat: no-repeat;
+}
