@@ -25,8 +25,9 @@ $kumbh: 'Kumbh Sans', sans-serif;
 // img
 $img-back-d: url("/images/bg-pattern-desktop.svg");
 $img-back-m: url("/images/bg-pattern-mobile.svg");
+$img-icon:url("/images/icon-arrow-down.svg");
 
-
+// mixin
 @mixin background($bg: $img-back-d, $pos: 0) {
     background-image: $bg;
     background-size:50rem;
