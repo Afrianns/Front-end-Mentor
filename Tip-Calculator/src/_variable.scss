@@ -28,18 +28,7 @@ $White: hsl(0, 0%, 100%);
     border: 2px solid $Strong-cyan;
   }
 }
-span {
-  position: relative;
-  margin: 2rem 0;
-  img {
-    color: $Dark-grayish-cyan;
-    padding: 0 1rem;
-    position: absolute;
-    text-align: start;
-    bottom: 5px;
-    width: 3rem;
-  }
-}
+
 
 @mixin tip-input {
   cursor: pointer;

@@ -4,6 +4,7 @@
   }
 }
 
+
 @media screen and (min-width: 800px) {
   header {
     margin: 5rem;
@@ -24,7 +25,7 @@
     .value-input,
     .value-output {
       width: 51%;
-      height: 400px;
+      height: auto;
     }
   }
 }

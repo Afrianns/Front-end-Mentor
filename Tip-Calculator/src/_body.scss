@@ -6,6 +6,7 @@ header {
     margin: 2.5rem 0;
   }
 }
+
 .content {
   box-shadow: 1px 9px 15px variable.$grayish-opacity;
   border-radius: 20px;
@@ -70,11 +71,28 @@ header {
       margin: 1rem 0;
     }
 
+    // .users{
+    //   position: relative;
+    // }
+
+    .users {
+      position: relative;
+      img {
+        color: variable.$Dark-grayish-cyan;
+        padding: 0 1rem;
+        position: absolute;
+        text-align: start;
+        bottom: 1.7rem;
+        width: 3rem;
+      }
+    }
+    
+
     .warn-text {
       display: none;
       z-index: 1;
       right: 0;
-      bottom: 45px;
+      top: -2rem;
       position: absolute;
       color: red;
     }

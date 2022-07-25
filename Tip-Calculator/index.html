@@ -32,10 +32,10 @@
         <div class="content">
           <section class="value-input">
             <p class="subtitle-bill">Bill</p>
-            <span>
+            <div class="users">
               <img src="./images/icon-dollar.svg" alt="dollar" />
               <input class="bill-value" type="number" min="0" placeholder="0" />
-            </span>
+            </div class="users">
 
             <p class="subtitle-tip">Select Tip %</p>
             <div class="tip-percent">
@@ -44,22 +44,22 @@
               <button value="15" class="percent">15%</button>
               <button value="25" class="percent">25%</button>
               <button value="50" class="percent">50%</button>
-              <button class="percent percent-custom" disable>
+              <div class="percent percent-custom">
                 <input
                   class="custom-tip"
                   type="number"
                   min="0"
                   placeholder="Custom"
                 />
-              </button>
+              </div>
             </div>
 
-            <p class="subtitle-users">Number of People</p>
-            <span>
+            <div class="users">
+              <p class="subtitle-users">Number of People</p>
               <p class="warn-text">can't be zero!</p>
               <img src="./images/icon-person.svg" alt="" />
               <input class="user-value" type="number" min="0" placeholder="0" />
-            </span>
+            </div>
           </section>
           <section class="value-output">
             <div class="Result">
@@ -77,7 +77,7 @@
               <h2 class="total-value">$0.00</h2>
             </div>
             <button class="reset inactive">
-              <h2>RESET</h2>
+              <p>RESET</p>
             </button>
           </section>
         </div>
