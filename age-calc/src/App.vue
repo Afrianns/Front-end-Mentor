@@ -157,7 +157,7 @@ function warn(ind) {
       </section>
       <section class="btn">
         <span class="line" />
-        <button class="submit" v-on:click="birthData" type="submit">
+        <button id="button" class="submit" v-on:click="birthData" type="submit">
           <img src="../public/images/icon-arrow.svg" class="icon" alt="" />
         </button>
       </section>
