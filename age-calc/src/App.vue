@@ -47,13 +47,6 @@ const birthData = (e) => {
       errors[b] = "This Field is Required!";
       status = false;
     }
-    // console.log(
-    //   a > datesNow[b],
-    //   dates[1] >= datesNow[1],
-    //   dates[2] >= datesNow[2],
-    //   dates[1],
-    //   datesNow[1]
-    // );
   });
 
   // check if day, months, years more than this day
@@ -165,7 +158,7 @@ function warn(ind) {
       <section class="btn">
         <span class="line" />
         <button class="submit" v-on:click="birthData" type="submit">
-          <img src="images/icon-arrow.svg" class="icon" alt="" />
+          <img src="./images/icon-arrow.svg" class="icon" alt="" />
         </button>
       </section>
       <Calc :date="dateOfBirth" />
