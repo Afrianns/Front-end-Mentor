@@ -257,6 +257,7 @@ button {
     display: flex;
     justify-content: space-around;
   }
+
   .msgError {
     font-size: 0.5rem;
   }
@@ -268,6 +269,30 @@ button {
   }
   .btn {
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .input-user input {
+    width: 5.4rem;
+    height: 3rem;
+    font-size: 2ch;
+  }
+  .submit {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .submit .icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .input-user {
+    gap: 0.5rem;
+  }
+  .msgError {
+    font-size: 0.4rem;
   }
 }
 </style>

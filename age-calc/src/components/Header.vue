@@ -83,4 +83,18 @@ h1 {
 .values {
   color: var(--purple);
 }
+
+@media screen and (max-width: 450px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  .mode {
+    cursor: pointer;
+    position: relative;
+    background: var(--secondary);
+    width: 70px;
+    height: 35px;
+    border-radius: 20px;
+  }
+}
 </style>

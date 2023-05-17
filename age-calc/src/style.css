@@ -58,30 +58,29 @@ body {
 
 #app{
   display: flex;
-  margin: auto;
+  height: 100vh;
   justify-content: center;
-  height: 98vh;
   align-items: center;
 }
 
 #container, #header{
   max-width: 43rem;
   margin: auto;
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 #container{
   background-color: var(--bg-card);
   color: var(--secondary-font);
-  border-radius: 25px 25px 40% 25px;
+  border-radius: 20px 20px 40% 20px;
 }
 #header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 2rem;
-  border-radius: 20px;
-  padding: 1rem 2rem;
+  border-radius: 15px;
+  padding: 1rem 1.5rem;
   background-color: var(--header);
 }
 
@@ -132,6 +131,7 @@ button, .placeholder {
 }
 
 .attribution{
+  text-align: center;
   position: relative;
   bottom: 0;
   color: var(--secondary-font);
@@ -141,14 +141,23 @@ button, .placeholder {
 @media screen and (max-width: 600px) {
 
   #container, #header{
-    margin-left:.5rem;
-    margin-right:.5rem;
+    margin-left:.1rem;
+    margin-right:.1rem;
   }
+
   #header > *{
     margin: 1rem 0;
   }
 }
-@media screen and (max-width: 432px) {
+
+@media screen and (max-width:450px) {
+  #header{
+    padding: 0.2rem 1.2rem;
+  }
+}
+
+
+@media screen and (max-width: 350px) {
   .content{
     width: auto;
   }

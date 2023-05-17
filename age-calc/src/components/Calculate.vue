@@ -25,7 +25,7 @@ function calcAge(indx) {
   const years = val.date.years - date.getFullYear();
   const months = val.date.months - (date.getMonth() + 1);
   const days = val.date.days - date.getDate();
-  
+
   const age = years * 365 + months * 30 + days || 1;
 
   const ageInYears = (age / 365).toString().split(".");
@@ -79,9 +79,20 @@ function calcAge(indx) {
   font-size: 5.8rem;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 610px) {
   .placeholder {
     font-size: 4.5rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .placeholder {
+    font-size: 4rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .placeholder {
+    font-size: 3rem;
   }
 }
 </style>
