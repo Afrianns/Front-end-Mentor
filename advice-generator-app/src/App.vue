@@ -4,10 +4,10 @@ import Advice from "./components/Advice.vue";
 
 let Aid = ref();
 let getAdvice = ref();
-let isFinished = ref(true);
+let loaded = ref(true);
 let width = ref(window.innerWidth);
 
-// reset when button is clicked
+// reset when all finished
 function reset(props = "", finished) {
   getAdvice.value = false;
   console.log(Aid.value);
@@ -17,14 +17,14 @@ function reset(props = "", finished) {
   } else {
     Aid.value = "";
   }
-  isFinished.value = finished;
+  loaded.value = finished;
 }
 
 // called function generate & passing to advice comps
 let generateAdvice = () => {
   Aid.value = "";
-  if (isFinished.value != true) {
-    isFinished.value = true;
+  if (loaded.value != true) {
+    loaded.value = true;
     getAdvice.value = true;
   }
 };
@@ -40,7 +40,7 @@ onMounted(() => {
 <template>
   <div class="container">
     <h1>ADVICE {{ Aid }}</h1>
-    <Advice :clicked="getAdvice" @passing="reset" />
+    <Advice :clicked="getAdvice" @reset="reset" />
     <img
       v-if="width >= 550"
       class="border"
@@ -55,12 +55,12 @@ onMounted(() => {
     />
     <div
       class="dice-wrapper"
-      :class="{ loading: isFinished }"
+      :class="{ loading: loaded }"
       v-on:click="generateAdvice()"
     >
       <img
         class="dice"
-        :class="{ diceAnim: isFinished }"
+        :class="{ diceAnim: loaded }"
         src="./assets/icon-dice.svg"
         alt=""
       />

@@ -2,16 +2,16 @@
 import { ref, watch } from "vue";
 import axios from "axios";
 
-let isClicked = defineProps(["clicked"]);
-let getEmit = defineEmits(["passing", "finished"]);
+let isClick = defineProps(["clicked"]);
+let getEmit = defineEmits(["reset", "finished"]);
 let advice = ref();
 let adviceText = ref("");
-let errHand = ref();
+let errors = ref();
 let isLoaded = ref(false);
 
 // watch clicked props from parent when state change or button get clicked
 watch(
-  () => isClicked.clicked,
+  () => isClick.clicked,
   (e) => {
     if (e) {
       generateAdvice();
@@ -19,13 +19,13 @@ watch(
   }
 );
 
-// Animate Advice text per Letters
+// Animate Advice text per max 3 Letters
 
 let animText = (txt) => {
   txt.forEach((e, i) => {
     setTimeout(() => {
       if (i >= txt.length - 1) {
-        getEmit("passing", advice?.value["slip"]?.id, false);
+        getEmit("reset", advice?.value["slip"]?.id, false);
       }
       adviceText.value += e;
     }, 120 * i);
@@ -35,7 +35,7 @@ let animText = (txt) => {
 // function generate advice from  advices API
 let generateAdvice = () => {
   advice.value = "";
-  errHand.value = "";
+  errors.value = "";
   adviceText.value = "";
   isLoaded.value = false;
 
@@ -45,9 +45,8 @@ let generateAdvice = () => {
       advice.value = e.data;
     })
     .catch((err) => {
-      console.log(err);
-      errHand.value = err.message;
-      getEmit("passing", "", false);
+      errors.value = err.message;
+      getEmit("reset", "", false);
       isLoaded.value = true;
     })
     .finally((e) => {
@@ -64,11 +63,11 @@ generateAdvice();
 <template>
   <div class="generate" :class="{ loaded: isLoaded }">
     <p v-if="advice" class="advice">
-      <span class="quote"> "</span>
+      <span class="quote">"</span>
       <span class="letters" v-html="adviceText"></span>
-      <span class="quote"> "</span>
+      <span class="quote">"</span>
     </p>
-    <p v-if="errHand" class="err">{{ errHand }}</p>
+    <p v-if="errors" class="err">{{ errors }}</p>
     <div v-if="!isLoaded" class="loading-wrapper">
       <div class="spinner">
         <div class="dot dot-1"></div>
