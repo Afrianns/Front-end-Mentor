@@ -63,9 +63,9 @@ generateAdvice();
 <template>
   <div class="generate" :class="{ loaded: isLoaded }">
     <p v-if="advice" class="advice">
-      <span class="quote">"</span>
+      <span class="quote">" </span>
       <span class="letters" v-html="adviceText"></span>
-      <span class="quote">"</span>
+      <span class="quote"> "</span>
     </p>
     <p v-if="errors" class="err">{{ errors }}</p>
     <div v-if="!isLoaded" class="loading-wrapper">
@@ -87,9 +87,6 @@ generateAdvice();
 .err {
   font-style: italic;
   color: rgb(255, 126, 126);
-}
-.advice {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
 
 .loading-wrapper {

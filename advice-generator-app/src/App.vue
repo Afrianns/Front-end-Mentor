@@ -78,18 +78,19 @@ onMounted(() => {
 <style scoped>
 .container {
   position: relative;
-  transition: all 2s ease-in-out;
-  padding: 1rem 1.5rem 1.6rem;
+  transition: all 0.5s ease-in-out;
+  padding: 1rem 2rem 1.6rem;
+  margin: 0 1rem;
   border-radius: 10px;
   background: var(--Dark-Grayish-Blue);
 }
 .border {
-  margin: 1rem 0 1.2rem;
+  margin: 0.5rem 0 1.5rem;
 }
 .container h1 {
-  margin: 1rem 0;
+  margin: 1.6rem 0;
   color: var(--Neon-Green);
-  font-size: 1rem;
+  font-size: 0.95rem;
   letter-spacing: 4px;
 }
 
@@ -149,7 +150,7 @@ onMounted(() => {
 
 @media screen and (max-width: 500px) {
   .container {
-    padding: 1rem 0.5rem 1.6rem;
+    padding: 1rem 1rem 1.6rem;
     margin-left: 1rem;
     margin-right: 1rem;
   }
