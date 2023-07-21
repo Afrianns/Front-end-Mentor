@@ -8,8 +8,6 @@ let advice = ref();
 let adviceText = ref("");
 let errHand = ref();
 let isLoaded = ref(false);
-let animated = ref(false);
-let tid = ref();
 
 // watch clicked props from parent when state change or button get clicked
 watch(
@@ -17,47 +15,31 @@ watch(
   (e) => {
     if (e) {
       generateAdvice();
-      console.log(animated.value);
     }
   }
 );
 
-// Animate Advice text per Letters(hardest part😫😖)
+// Animate Advice text per Letters
 
-function animLetters(txt) {
-  let i = 0;
-  console.log(txt, tid.value, animated.value);
-
-  function perLetter() {
-    if (isClicked.clicked && animated.value) {
-      clearTimeout(tid.value);
-      // console.log("force done", isClicked.clicked, animated.value);
-      animated.value = false;
-      adviceText.value = "";
-      return;
-    }
-
-    animated.value = true;
-    adviceText.value += txt[i];
-    i++;
-
-    if (i < txt.length) {
-      tid.value = setTimeout(perLetter, 150);
-    } else if (i >= txt.length) {
-      animated.value = false;
-    }
-  }
-  perLetter();
-}
+let animText = (txt) => {
+  txt.forEach((e, i) => {
+    setTimeout(() => {
+      if (i >= txt.length - 1) {
+        getEmit("passing", advice?.value["slip"]?.id, false);
+      }
+      adviceText.value += e;
+    }, 120 * i);
+  });
+};
 
 // function generate advice from  advices API
-let generateAdvice = async () => {
+let generateAdvice = () => {
   advice.value = "";
   errHand.value = "";
-  isLoaded.value = false;
   adviceText.value = "";
+  isLoaded.value = false;
 
-  await axios
+  axios
     .get("https://api.adviceslip.com/advice")
     .then((e) => {
       advice.value = e.data;
@@ -71,8 +53,7 @@ let generateAdvice = async () => {
     .finally((e) => {
       isLoaded.value = true;
       let txt = advice.value?.["slip"]?.advice.match(/.{1,3}/g);
-      getEmit("passing", advice?.value["slip"]?.id, false);
-      animLetters(txt);
+      animText(txt);
     });
 };
 
@@ -81,7 +62,6 @@ generateAdvice();
 </script>
 
 <template>
-  {{ animated }} {{ isClicked.clicked }}
   <div class="generate" :class="{ loaded: isLoaded }">
     <p v-if="advice" class="advice">
       <span class="quote"> "</span>

@@ -23,7 +23,6 @@ function reset(props = "", finished) {
 // called function generate & passing to advice comps
 let generateAdvice = () => {
   Aid.value = "";
-
   if (isFinished.value != true) {
     isFinished.value = true;
     getAdvice.value = true;
