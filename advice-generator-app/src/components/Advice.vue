@@ -5,39 +5,57 @@ import axios from "axios";
 let isClicked = defineProps(["clicked"]);
 let getEmit = defineEmits(["passing", "finished"]);
 let advice = ref();
-let htmls = ref("");
+let adviceText = ref("");
 let errHand = ref();
 let isLoaded = ref(false);
+let animated = ref(false);
+let tid = ref();
 
-// watch from parent when button get clicked
+// watch clicked props from parent when state change or button get clicked
 watch(
   () => isClicked.clicked,
   (e) => {
-    console.log(isClicked.clicked);
     if (e) {
       generateAdvice();
+      console.log(animated.value);
     }
   }
 );
 
-// Animate Advice text per Letters
+// Animate Advice text per Letters(hardest part😫😖)
 
-let lettersAnim = () => {
-  let txt = advice.value?.["slip"]?.advice.match(/.{1,3}/g);
+function animLetters(txt) {
+  let i = 0;
+  console.log(txt, tid.value, animated.value);
 
-  txt.forEach((e, i) => {
-    setTimeout(() => {
-      htmls.value += e;
-    }, 150 * i);
-  });
-};
+  function perLetter() {
+    if (isClicked.clicked && animated.value) {
+      clearTimeout(tid.value);
+      // console.log("force done", isClicked.clicked, animated.value);
+      animated.value = false;
+      adviceText.value = "";
+      return;
+    }
+
+    animated.value = true;
+    adviceText.value += txt[i];
+    i++;
+
+    if (i < txt.length) {
+      tid.value = setTimeout(perLetter, 150);
+    } else if (i >= txt.length) {
+      animated.value = false;
+    }
+  }
+  perLetter();
+}
 
 // function generate advice from  advices API
 let generateAdvice = async () => {
   advice.value = "";
   errHand.value = "";
   isLoaded.value = false;
-  htmls.value = "";
+  adviceText.value = "";
 
   await axios
     .get("https://api.adviceslip.com/advice")
@@ -52,8 +70,9 @@ let generateAdvice = async () => {
     })
     .finally((e) => {
       isLoaded.value = true;
+      let txt = advice.value?.["slip"]?.advice.match(/.{1,3}/g);
       getEmit("passing", advice?.value["slip"]?.id, false);
-      lettersAnim();
+      animLetters(txt);
     });
 };
 
@@ -62,9 +81,11 @@ generateAdvice();
 </script>
 
 <template>
+  {{ animated }} {{ isClicked.clicked }}
   <div class="generate" :class="{ loaded: isLoaded }">
     <p v-if="advice" class="advice">
-      <span class="quote"> "</span> <span class="letters" v-html="htmls"></span>
+      <span class="quote"> "</span>
+      <span class="letters" v-html="adviceText"></span>
       <span class="quote"> "</span>
     </p>
     <p v-if="errHand" class="err">{{ errHand }}</p>
