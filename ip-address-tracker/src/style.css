@@ -50,3 +50,9 @@ a:hover {
 .attribution{
   text-align: center;
 }
+
+@media screen and (max-width: 820px) {
+  #content-wrapper {
+    padding: 0 1rem;
+  }
+}

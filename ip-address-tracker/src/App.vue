@@ -1,76 +1,99 @@
-<script setup lang="ts">
+<script lang="ts" setup>
+import Input from "./components/Input.vue";
+import Info from "./components/Info.vue";
+import Map from "./components/Map.vue";
+import { resultType } from "./components/types";
+import axios from "axios";
+import Swal from "sweetalert2";
+
 import "boxicons";
+
+import { onMounted, ref } from "vue";
+const api_key = import.meta.env.VITE_API_KEY;
+let ip_address = ref("");
+let val = ref();
+
+let information_data = ref();
+let coords = ref();
+const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${api_key}`;
+
+function getData(params: resultType) {
+  val.value = params;
+
+  let option_param = "";
+  // console.log("result", val.value["type"], val.value["value"]);
+  if (val.value["type"] == "domain") {
+    option_param = `&domain=${val.value["value"]}`;
+  } else {
+    option_param = `&ipAddress=${val.value["value"]}`;
+  }
+  getLocation(option_param);
+}
+
+function setStatus(params: string) {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
+  Toast.fire({
+    icon: "error",
+    title: params,
+  });
+}
+
+onMounted(() => {
+  getLocation();
+});
+
+async function getLocation(params: string = "") {
+  axios
+    .get(url + params)
+    .then(function (response) {
+      console.log(response);
+      information_data.value = {
+        ip: response.data.ip,
+        isp: response.data.isp,
+        timezone: response.data.location.timezone,
+        location: `${response.data.location.region}, ${response.data.location.country}`,
+      };
+      coords.value = [response.data.location.lat, response.data.location.lng];
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
 </script>
 
 <template>
   <div class="header">
     <h1>IP Address Tracker</h1>
-    <form class="form-wrapper" action="post">
-      <input
-        placeholder="Search for any IP address or domain IP Address"
-        type="text"
-        name="city"
-      />
-      <button>
-        <box-icon size="md" color="white" name="chevron-right"></box-icon>
-      </button>
-    </form>
-
-    <div class="content-wrapper">
-      <div class="address-wrapper"></div>
-      <div class="location-wrapper"></div>
-      <div class="timezone-wrapper"></div>
-      <div class="isp-wrapper"></div>
-    </div>
+    <Input @data="getData" @warn="setStatus" />
+    <Info :data="information_data" />
   </div>
-
-  <!--  
-     Location
-    Timezone UTC
-    ISP
-     -->
-  <!-- add offset value dynamically using the API -->
+  <Map :pos="{ val, coords }" />
 </template>
 
 <style scoped>
 .header {
-  padding: 1rem 0 3rem;
+  text-align: center;
+  margin: auto;
+  padding: 0.5rem 0;
   width: 100%;
   color: #fff;
+  height: 13.5rem;
+  background-repeat: no-repeat;
   background-image: url("/images/pattern-bg-desktop.png");
 }
 .header h1 {
   font-size: 2rem;
-  margin: 1rem 0 2rem;
-}
-
-.form-wrapper {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.form-wrapper input,
-.form-wrapper button {
-  border: 0;
-  height: 3.5rem;
-  padding: 0.5rem 0.5rem;
-}
-
-.form-wrapper button {
-  background-color: var(--Very-Dark-Gray);
-  width: 100%;
-  max-width: 5rem;
-  border-radius: 0 25px 25px 0;
-}
-
-.form-wrapper input {
-  background-color: #fff;
-  max-width: 30rem;
-  border-radius: 25px 0 0 25px;
-  padding: 0 1rem;
-  font-size: 1rem;
-  width: 50%;
+  margin: 0;
 }
 </style>
