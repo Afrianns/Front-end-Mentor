@@ -2,15 +2,15 @@
 <script setup lang="ts">
 import "leaflet/dist/leaflet.css";
 import Leaf from "leaflet";
-let coords = ref();
 
-import { computed, onMounted, onUpdated, ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 
 let props = defineProps(["pos"]);
-let lat = ref(-7.75);
-let lng = ref(110.49417);
+let lat = ref(0);
+let lng = ref(0);
 let map = ref();
 
+// create map with leaflet
 let setMap = () => {
   map.value = Leaf.map("map").setView([lat.value, lng.value], 12);
   Leaf.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -22,6 +22,7 @@ let setMap = () => {
   console.log(lat.value, lng.value);
 };
 
+// load map when dom create & watch for an update from input
 onMounted(() => {
   watch(
     () => props.pos["coords"],
@@ -35,13 +36,6 @@ onMounted(() => {
   );
   setMap();
 });
-
-function getCoords(params: any) {
-  console.log(params.target[0].value, params.target[1].value);
-  lat.value = params.target[0].value;
-  lng.value = params.target[1].value;
-}
-
 </script>
 
 <template>

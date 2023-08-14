@@ -62,10 +62,18 @@ let props = defineProps(["data"]);
   font-size: 1.2rem;
 }
 
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 970px) {
   .wrapper {
     margin-left: 1rem;
     margin-right: 1rem;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .content-wrapper {
+    text-align: center;
+    row-gap: 2rem;
+    grid-template-columns: 1fr;
   }
 }
 </style>

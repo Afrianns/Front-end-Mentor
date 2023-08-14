@@ -5,11 +5,9 @@ import { resultType } from "./types";
 let emit = defineEmits(["data", "warn"]);
 let user_in = ref("");
 
-
+// get user submit data and check if input is domain or ip address
 function formSubmit(params: any) {
   user_in.value = params.target[0].value;
-
-  // console.log(typeof user_in.value, user_in.value);
   user_in.value = validateInput(user_in.value);
 
   const regex = new RegExp(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/, "g");
@@ -23,6 +21,7 @@ function formSubmit(params: any) {
   user_in.value = "";
 }
 
+// validate and fixed user input
 function validateInput(input_val: string) {
   const regexComma = new RegExp(/[,]/, "gi");
   const regexSlash = new RegExp(/\/(.)*/, "gi");
@@ -35,6 +34,7 @@ function validateInput(input_val: string) {
   return result;
 }
 
+// validate if it IP address or not
 function validateIP(input_val: string) {
   let len = false;
 
@@ -56,6 +56,7 @@ function validateIP(input_val: string) {
   }
 }
 
+// validate if it Domain is valid
 function validateDomain(input_val: string) {
   const splitted = input_val.split(".");
   if (splitted.length <= 1) {

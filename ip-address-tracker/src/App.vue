@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import "boxicons";
 
 import { onMounted, ref } from "vue";
+
 const api_key = import.meta.env.VITE_API_KEY;
 let ip_address = ref("");
 let val = ref();
@@ -17,11 +18,11 @@ let information_data = ref();
 let coords = ref();
 const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${api_key}`;
 
+// catch all emit data from input component
 function getData(params: resultType) {
   val.value = params;
 
   let option_param = "";
-  // console.log("result", val.value["type"], val.value["value"]);
   if (val.value["type"] == "domain") {
     option_param = `&domain=${val.value["value"]}`;
   } else {
@@ -30,6 +31,31 @@ function getData(params: resultType) {
   getLocation(option_param);
 }
 
+onMounted(() => {
+  getLocation();
+});
+
+// gets data from geo api (limited)
+async function getLocation(params: string = "") {
+  axios
+    .get(url + params)
+    .then(function (response) {
+      console.log(response);
+      information_data.value = {
+        ip: response.data.ip,
+        isp: response.data.isp,
+        timezone: response.data.location.timezone,
+        location: `${response.data.location.region}, ${response.data.location.country}`,
+      };
+      coords.value = [response.data.location.lat, response.data.location.lng];
+    })
+    .catch(function (error) {
+      console.log(error);
+      setStatus(`${error.message}<br> <small> Please Try Again!</small>`);
+    });
+}
+
+// alert if there is an errors occur
 function setStatus(params: string) {
   const Toast = Swal.mixin({
     toast: true,
@@ -47,28 +73,6 @@ function setStatus(params: string) {
     icon: "error",
     title: params,
   });
-}
-
-onMounted(() => {
-  getLocation();
-});
-
-async function getLocation(params: string = "") {
-  axios
-    .get(url + params)
-    .then(function (response) {
-      console.log(response);
-      information_data.value = {
-        ip: response.data.ip,
-        isp: response.data.isp,
-        timezone: response.data.location.timezone,
-        location: `${response.data.location.region}, ${response.data.location.country}`,
-      };
-      coords.value = [response.data.location.lat, response.data.location.lng];
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
 }
 </script>
 
