@@ -132,4 +132,9 @@ function validateDomain(input_val: string) {
   font-size: 1.2rem;
   width: 100%;
 }
+@media screen and (max-width: 720px) {
+  .form-wrapper {
+    margin: 1.5rem 0;
+  }
+}
 </style>

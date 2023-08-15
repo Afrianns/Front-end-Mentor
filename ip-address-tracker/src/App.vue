@@ -90,14 +90,24 @@ function setStatus(params: string) {
   text-align: center;
   margin: auto;
   padding: 0.5rem 0;
-  width: 100%;
+  /* width: 100; */
   color: #fff;
   height: 13.5rem;
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   background-image: url("/images/pattern-bg-desktop.png");
 }
 .header h1 {
   font-size: 2rem;
   margin: 0;
+}
+
+
+@media screen and (max-width: 510px) {
+  .header h1 {
+    font-size: 1.5rem;
+    margin: .5rem 0 0;
+  }
 }
 </style>

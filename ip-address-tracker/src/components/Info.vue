@@ -75,5 +75,9 @@ let props = defineProps(["data"]);
     row-gap: 2rem;
     grid-template-columns: 1fr;
   }
+
+  .wrapper {
+    margin-top: 0;
+  }
 }
 </style>

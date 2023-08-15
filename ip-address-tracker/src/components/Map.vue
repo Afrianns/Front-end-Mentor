@@ -17,13 +17,14 @@ let setMap = () => {
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map.value);
-  Leaf.marker([lat.value, lng.value]).addTo(map.value);
-
-  console.log(lat.value, lng.value);
 };
 
 // load map when dom create & watch for an update from input
 onMounted(() => {
+  let icon = Leaf.icon({
+    iconUrl: "./images/icon-location.svg",
+  });
+
   watch(
     () => props.pos["coords"],
     (a) => {
@@ -31,7 +32,7 @@ onMounted(() => {
       lng.value = a[1];
       console.log(a);
       map.value.setView([lat.value, lng.value], 12);
-      Leaf.marker([lat.value, lng.value]).addTo(map.value);
+      Leaf.marker([lat.value, lng.value], { icon: icon }).addTo(map.value);
     }
   );
   setMap();
