@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, defineEmits } from "vue";
+import { ref } from "vue";
 import { resultType } from "./types";
 
 let emit = defineEmits(["data", "warn"]);
+
 let user_in = ref("");
 
 // get user submit data and check if input is domain or ip address

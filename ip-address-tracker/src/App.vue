@@ -100,11 +100,10 @@ function setStatus(params: string) {
   margin: 0;
 }
 
-
 @media screen and (max-width: 510px) {
   .header h1 {
     font-size: 1.5rem;
-    margin: .5rem 0 0;
+    margin: 0.5rem 0 0;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 
 <script setup lang="ts">
 import "leaflet/dist/leaflet.css";
-import Leaf from "leaflet";
+import * as Leaf from "leaflet";
 
 import { onMounted, ref, watch } from "vue";
 
