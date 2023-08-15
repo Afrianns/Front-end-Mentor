@@ -11,7 +11,6 @@ import "boxicons";
 import { onMounted, ref } from "vue";
 
 const api_key = import.meta.env.VITE_API_KEY;
-let ip_address = ref("");
 let val = ref();
 
 let information_data = ref();
@@ -40,7 +39,6 @@ async function getLocation(params: string = "") {
   axios
     .get(url + params)
     .then(function (response) {
-      console.log(response);
       information_data.value = {
         ip: response.data.ip,
         isp: response.data.isp,
@@ -50,7 +48,6 @@ async function getLocation(params: string = "") {
       coords.value = [response.data.location.lat, response.data.location.lng];
     })
     .catch(function (error) {
-      console.log(error);
       setStatus(`${error.message}<br> <small> Please Try Again!</small>`);
     });
 }
