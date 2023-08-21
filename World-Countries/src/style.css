@@ -1,28 +1,67 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: 'Bricolage Grotesque', sans-serif; */
   line-height: 1.5;
   font-weight: 400;
 
-  color: rgba(32, 32, 32, 0.87);
-  background-color: #fcf4f4;
+
+  --font-Bricolage: 'Bricolage Grotesque', sans-serif;
+  --font-Barriec: 'Barriecito', cursive;
+
+  /* (Light Mode Text) */
+  --text: hsl(200, 15%, 8%);
+
+  /* (Light Mode Input) */
+  --tertiery-bg: hsl(0, 0%, 40%);
+  
+  --secondary-bg: hsl(0, 0%, 100%);
+  
+
+  /* (Light Mode Background) */
+  --bg: hsl(0deg 0% 99%);
+/* hover */
+  ---color-hover: #ff0404;
+  
+  color: var(--text);
+  /* background-color: #fcf4f4; */
+  background-color: var(--bg);
+  
+}
+
+*{
+  font-family: var(--font-Bricolage);
+}
+
+:root.dark-mode{
+  /* (Dark Mode Text & Light Mode Elements) */
+  --tertiery-bg: hsl(0, 0%, 0%);
+  --text: hsl(0, 0%, 100%);
+
+  /* (Dark Mode Elements) */
+  --secondary-bg: hsl(209, 23%, 22%);
+
+  /* (Dark Mode Background) */
+  --bg : hsl(207, 26%, 17%);
+
+  /* hover */
+  ---color-hover: #ffffff;
 }
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-/* body {
-  margin: 0;
+
+
+.container{
+  margin: auto;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  align-items: center;
+  max-width: 60rem;
+  justify-content: space-between;
 }
 
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-} */
+@media screen and (max-width: 980px) {
+  .container{
+    margin: 0 1rem;
+  }
+}
