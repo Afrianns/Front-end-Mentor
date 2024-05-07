@@ -15,16 +15,18 @@
   --secondary-bg: hsl(0, 0%, 100%);
 
   /* (Light Mode Background) */
-  --bg: hsl(0deg 0% 99%);
+  --bg: hsl(220, 16%, 96%);
   /* hover */
   ---color-hover: #ff0404;
   color: var(--text);
   /* background-color: #fcf4f4; */
   background-color: var(--bg);
+  /* color: #bfbfbf; */
 }
 
 * {
   font-family: var(--font-Bricolage);
+  scroll-behavior: smooth;
 }
 
 :root.dark-mode {

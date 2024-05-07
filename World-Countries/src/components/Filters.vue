@@ -1,12 +1,18 @@
 <script setup lang="ts">
-import { ref, watch, onUpdated, computed, reactive } from "vue";
-const emit = defineEmits(["filterRegions"]);
+import { ref, onUpdated, watch } from "vue";
+const emit = defineEmits(["filterRegions", "search"]);
 
 let selected = ref('All');
-let regions = ref(["All","Europe", "Asia", "America", "Africa", "Oceania"]);
+let regions = ref(["All", "Europe", "Asia", "America", "Africa", "Oceania"]);
+
+let search = ref('');
 
 onUpdated(() => {
-    emit('filterRegions', selected.value);
+  emit("search", search.value);
+})
+
+watch(selected, () => {
+  emit('filterRegions', selected.value);
 })
 
 </script>
@@ -15,14 +21,14 @@ onUpdated(() => {
   <div class="container">
     <div class="search-bar-wrapper">
       <form action="#" method="post">
-        <input type="text" placeholder="e.g. Indonesia" class="search-bar" />
-        <button type="submit">Search</button>
+        <i class='bx bx-search bx-sm'></i>
+        <input type="text" placeholder="e.g. Indonesia" class="search-bar" v-model="search" />
       </form>
     </div>
     <div class="filter-bar-wrapper">
       <select name="filters" id="filters" v-model="selected">
         <option v-for="(region, key) in regions" :value="region" :key="key">
-        {{ region }}
+          {{ region }}
         </option>
       </select>
     </div>
@@ -42,15 +48,20 @@ onUpdated(() => {
 }
 
 .search-bar-wrapper {
-  box-shadow: 0 0 10px -7px var(--tertiery-bg);
-  /* border: 2px solid var(--bg); */
+  border: 1px solid var(--tertiery-bg);
+  /* box-shadow: 0 0 10px -7px var(--tertiery-bg); */
   width: 100%;
-  max-width: 35rem;
+  max-width: 25rem;
   padding: 2px;
+  border-bottom: 5px solid;
+  border-right: 5px solid;
+  border-color: black;
 }
+
 
 .search-bar-wrapper .search-bar {
   padding: 0 10px;
+  /* background-color: red; */
   font-size: clamp(1rem, 1.2rem, 2rem);
   color: var(--text);
   width: clamp(80%, 5vw, 80%);
@@ -60,6 +71,12 @@ onUpdated(() => {
 .search-bar-wrapper form {
   display: flex;
   align-items: center;
+}
+
+.bx {
+  padding: 8px;
+  padding-left: 1rem;
+  height: 100%;
 }
 
 .search-bar-wrapper button {
@@ -74,25 +91,30 @@ onUpdated(() => {
   background-color: #f75e49;
   cursor: pointer;
 }
-.search-bar-wrapper form > * {
+
+.search-bar-wrapper form>* {
   border: 0;
   height: 2.5rem;
 }
 
 .filter-bar-wrapper {
-  box-shadow: 0 0 10px -7px var(--tertiery-bg);
-  /* border: 2px solid var(--bg); */
+  border: 1px solid var(--tertiery-bg);
   width: 25%;
   padding: 2px;
+  border-bottom: 5px solid;
+  border-right: 5px solid;
+  border-color: black;
 }
 
 .filters-bar,
 #filters {
   background-color: var(--secondary-bg);
 }
+
 .filters-bar {
   padding: 0 15px;
 }
+
 #filters {
   cursor: pointer;
   color: var(--text);
@@ -106,6 +128,7 @@ onUpdated(() => {
   .container {
     flex-direction: column;
   }
+
   .filter-bar-wrapper {
     width: clamp(100px, 100%, 200px);
     align-self: flex-end;
@@ -120,6 +143,7 @@ onUpdated(() => {
   .search-bar-wrapper {
     padding: 3px;
   }
+
   .search-bar-wrapper form {
     flex-direction: column;
     display: flex;
