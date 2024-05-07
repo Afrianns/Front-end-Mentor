@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import {ref} from 'vue';
 
 defineProps<{ msg: string }>()
 let darkedmode = ref(false);
@@ -32,7 +32,7 @@ let toggle = () => {
     <div class="container">
       <h1 class="brand">{{ msg }}</h1>
       <div class="toggle-wrapper" @click="toggle">
-        <span class="toggle" :class="{'dark-mode': darkedmode}"></span>
+        <span class="toggle" :class="{'dark-mode': darkedmode }"></span>
       </div>
     </div>
   </nav>
@@ -41,7 +41,7 @@ let toggle = () => {
 <style scoped>
 
 .brand{
-  font-family: var(--font-Barriec);
+  font-family: var(--title-font);
   font-size: clamp(1rem, 6vw, 2rem);
 }
 nav{
