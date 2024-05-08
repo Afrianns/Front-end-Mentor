@@ -6,7 +6,7 @@ import Details from "./components/Details.vue";
 import Masonry from "masonry-layout";
 import imagesLoaded from "imagesloaded";
 
-import { ref, onUpdated, onMounted } from "vue";
+import { ref, onUpdated } from "vue";
 
 let countries = ref();
 let searchedCountries = ref();

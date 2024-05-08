@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onUpdated, watch } from "vue";
+import { ref, watch } from "vue";
 const emit = defineEmits(["filterRegions", "search"]);
 const prop = defineProps(['region']);
 
@@ -155,7 +155,7 @@ if (prop.region) {
     width: 100%;
   }
 
-  .filter-bar-wrapper{
+  .filter-bar-wrapper {
     width: 100%;
   }
 }
