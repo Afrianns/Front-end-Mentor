@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { ref, onUpdated, watch } from "vue";
 const emit = defineEmits(["filterRegions", "search"]);
+const prop = defineProps(['region']);
 
 let selected = ref('All');
 let regions = ref(["All", "Europe", "Asia", "America", "Africa", "Oceania"]);
 
 let search = ref('');
 
-onUpdated(() => {
+watch(search, () => {
   emit("search", search.value);
 })
 
@@ -15,6 +16,9 @@ watch(selected, () => {
   emit('filterRegions', selected.value);
 })
 
+if (prop.region) {
+  selected.value = prop.region;
+}
 </script>
 
 <template>
@@ -49,7 +53,6 @@ watch(selected, () => {
 
 .search-bar-wrapper {
   border: 1px solid var(--tertiery-bg);
-  /* box-shadow: 0 0 10px -7px var(--tertiery-bg); */
   width: 100%;
   max-width: 25rem;
   padding: 2px;
@@ -61,7 +64,6 @@ watch(selected, () => {
 
 .search-bar-wrapper .search-bar {
   padding: 0 10px;
-  /* background-color: red; */
   font-size: clamp(1rem, 1.2rem, 2rem);
   color: var(--text);
   width: clamp(80%, 5vw, 80%);
@@ -145,12 +147,15 @@ watch(selected, () => {
   }
 
   .search-bar-wrapper form {
-    flex-direction: column;
     display: flex;
   }
 
   .search-bar-wrapper .search-bar,
   .search-bar-wrapper button {
+    width: 100%;
+  }
+
+  .filter-bar-wrapper{
     width: 100%;
   }
 }

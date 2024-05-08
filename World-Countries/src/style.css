@@ -19,9 +19,7 @@
   /* hover */
   ---color-hover: #ff0404;
   color: var(--text);
-  /* background-color: #fcf4f4; */
   background-color: var(--bg);
-  /* color: #bfbfbf; */
 }
 
 * {
@@ -55,6 +53,17 @@
   align-items: center;
   max-width: 63rem;
   justify-content: space-between;
+}
+
+.item-frame {
+  display: inline-block;
+  padding: 1px 7px;
+  margin-left: 5px;
+  color: white;
+  margin: 1px;
+  background-color: black;
+  height: fit-content;
+  width: fit-content;
 }
 
 @media screen and (max-width: 980px) {

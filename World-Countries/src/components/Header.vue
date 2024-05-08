@@ -24,7 +24,6 @@ let toggle = () => {
   }
 }
 
-// const count = ref(0)
 </script>
 
 <template>
@@ -50,8 +49,7 @@ nav {
   background-color: var(--secondary-bg);
   border-bottom: 1px solid var(--tertiery-bg);
   /* box-shadow: 2px 2px 35px -28px var(--tertiery-bg); */
-  border-bottom: 5px solid;
-  border-color: black;
+  border-bottom: 5px solid black;
 }
 
 
@@ -74,7 +72,6 @@ nav {
   left: 3px;
   position: absolute;
   background-color: var(--secondary-bg);
-  /* background-color: rgb(255, 238, 6); */
   border-radius: 50%;
   width: 19px;
   height: 19px;
