@@ -1,0 +1,38 @@
+/* color palette from <https://github.com/vuejs/theme> */
+:root {
+  --secondary: #181818;
+  --secondary-soft: #3d3d3d;
+  --secondary-mute: #434242;
+
+  --primary: #f6f6f6;
+  --primary-soft: rgba(237, 237, 237, 0.997);
+  --primary-mute: rgb(230, 230, 230);
+
+  --tertiery: #ffb81f;
+  --tertiery-soft: rgba(255, 184, 31, 0.776);
+
+  --bg: #fff;
+}
+
+/* semantic color variables for this project */
+:root.dark {
+  --secondary: #ffffff;
+  --secondary-soft: #f8f8f8;
+  --secondary-mute: #f2f2f2;
+  
+  --primary: rgb(34, 34, 34);
+  --primary-soft: rgb(42, 42, 42);
+  --primary-mute: rgb(52, 52, 52);
+  --bg: #1c1c1c;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  color: var(--secondary);
+  background-color: var(--primary);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.6;
+}
