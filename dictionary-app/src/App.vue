@@ -2,15 +2,26 @@
 import Header from './components/Header.vue';
 import Input from './components/Input.vue';
 import IconPlayer from './components/icons/IconPlayer.vue';
+import IconStop from './components/icons/IconStop.vue';
+import iconPause from './components/icons/IconPause.vue';
 
 
 import { ref } from "vue";
 
 let result = ref();
-
 let audioUS = ref('');
 let audiononUS = ref('');
+let resultNotFound = ref();
 
+let isPlay = ref(false);
+
+// audio section
+let isAudioEnded = false;
+let intervalID = 0;
+
+// Audio Setting
+
+// check audio for primary US
 function checkIfUS(audioUrl: string) {
   let audio = audioUrl.split('/');
   const regex = /-us./g;
@@ -20,6 +31,7 @@ function checkIfUS(audioUrl: string) {
   return (found) ? true : false;
 }
 
+// check every audio; select US ver else select secondary other lang
 function checkEveryAudio() {
   for (let item of result.value.phonetics) {
     if (checkIfUS(item.audio)) {
@@ -31,21 +43,44 @@ function checkEveryAudio() {
       audiononUS.value = item.audio;
     }
   }
-
-  audioPlay();
 }
 
+// play audio with selected lang 
+// ability to change ui frontend 
 function audioPlay() {
+  isPlay.value = true;
   let audio = new Audio(audioUS.value || audiononUS.value);
   audio.play();
+
+  intervalID = setInterval(() => {
+    isAudioEnded = audio.ended;
+    if (isAudioEnded) {
+      stopInterVal();
+    }
+  }, 100);
 }
 
-function showData(param: string[]) {
-  console.log("parent", param[0]);
+function stopInterVal() {
+  if (isAudioEnded) {
+    isPlay.value = false;
+    clearInterval(intervalID);
+  }
+}
+
+// get from child "input" & store data to result; reset data 
+
+function showData(param: any) {
+  resultNotFound.value = null;
   result.value = null;
+
+  if (param.title == 'No Definitions Found') {
+    resultNotFound.value = param;
+    return;
+  }
   audioUS.value = '';
   audiononUS.value = '';
   result.value = param[0];
+  checkEveryAudio();
 }
 
 </script>
@@ -55,14 +90,31 @@ function showData(param: string[]) {
     <Header />
     <Input @data="showData" />
 
+    <div v-if="resultNotFound">
+      <h1>{{ resultNotFound.title }}</h1>
+      <p>{{ resultNotFound.message }}</p>
+      <span>{{ resultNotFound.resolution }}</span>
+    </div>
+
     <div v-if="result" class="header-result-wrapper">
-      <div class="title-wrapper">
+      <section class="title-wrapper">
         <h1>{{ result.word }}</h1>
         <p>{{ result.phonetic }}</p>
-      </div>
-      <div>
-        <IconPlayer v-on:click="checkEveryAudio" />
-      </div>
+      </section>
+      <section>
+        <div v-if="audioUS || audiononUS">
+          <div v-if="isPlay">
+            <iconPause class="icon-pause" />
+          </div>
+          <div v-else>
+            <IconPlayer class="icon-play" v-on:click="audioPlay" />
+          </div>
+        </div>
+        <div class="icon-wrapper" v-else>
+          <IconStop class="icon-stop" />
+          <p class="info-stop">No Audio</p>
+        </div>
+      </section>
     </div>
     <div v-if="result" v-for="(item, index) in result.meanings" :key="index" class="meaning-wrapper">
       <div class="subtitle">
@@ -73,12 +125,11 @@ function showData(param: string[]) {
       <ul v-for="(define, id) in item.definitions" :key="id">
         <li>{{ define.definition }}</li>
       </ul>
-      <!-- </div> -->
     </div>
     <span class="border"></span>
 
     <ul v-if="result" class="sources" v-for="(item, index) in result.sourceUrls" :key="index">
-      <li>{{ item }}</li>
+      <li><a :href="item" target="_blank">{{ item }}</a></li>
     </ul>
   </main>
 </template>
@@ -89,7 +140,6 @@ main {
   display: flex;
   flex-direction: column;
   row-gap: 3rem;
-  /* width: 90%; */
 }
 
 h1 {
@@ -109,6 +159,33 @@ h1 {
   margin: 0;
   padding: 0;
 }
+
+/* icon stypes */
+
+.icon-play {
+  cursor: pointer;
+}
+
+.icon-wrapper {
+  cursor: not-allowed;
+  position: relative;
+}
+
+.info-stop {
+  display: none;
+  width: max-content;
+}
+
+.icon-stop:hover+.info-stop {
+  position: absolute;
+  display: block;
+  background-color: var(--primary-mute);
+  padding: 2px 10px;
+  border: 1px solid var(--primary-soft);
+  left: -7px;
+}
+
+/* end icon style */
 
 .subtitle {
   display: flex;
@@ -139,10 +216,14 @@ h1 {
   width: 90%;
   margin: auto;
   text-align: left;
+}
+
+.sources a {
+  text-decoration: none;
   color: var(--tertiery);
 }
 
-.sources:hover {
+.sources a:hover {
   text-decoration: underline;
   cursor: pointer;
 }
