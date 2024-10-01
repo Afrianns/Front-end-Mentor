@@ -6,10 +6,13 @@
 
   --primary: #f6f6f6;
   --primary-soft: rgba(237, 237, 237, 0.997);
-  --primary-mute: rgb(230, 230, 230);
+  --primary-mute: rgb(228, 228, 228);
 
   --tertiery: #ffb81f;
-  --tertiery-soft: rgba(255, 184, 31, 0.776);
+  --tertiery-soft: #ffb81f78;
+
+  /* --color-tertiery: #c31fff;
+  --color-tertiery-soft: #881fff78; */
 
   --bg: #fff;
 }
