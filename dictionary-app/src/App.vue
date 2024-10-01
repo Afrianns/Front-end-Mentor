@@ -72,7 +72,7 @@ function stopInterVal() {
 function showData(param: any) {
   resultNotFound.value = null;
   result.value = null;
-
+  console.log(param);
   if (param.title == 'No Definitions Found') {
     resultNotFound.value = param;
     return;
@@ -121,16 +121,22 @@ function showData(param: any) {
         <h2>{{ item.partOfSpeech }}</h2>
         <span class="border"></span>
       </div>
-      <p>Meaning</p>
+      <h3>Meaning</h3>
       <ul v-for="(define, id) in item.definitions" :key="id">
-        <li>{{ define.definition }}</li>
+        <li>
+          <p>{{ define.definition }}</p>
+          <span v-if="define.example">"{{ define.example }}"</span>
+        </li>
       </ul>
+      <h3 v-if="item.synonyms.length - 1 > 1">Synonyms <span class="synonyms">{{ item.synonyms.join(', ') }}</span></h3>
     </div>
     <span class="border"></span>
-
-    <ul v-if="result" class="sources" v-for="(item, index) in result.sourceUrls" :key="index">
-      <li><a :href="item" target="_blank">{{ item }}</a></li>
-    </ul>
+    <div class="sources-wrapper" v-if="result">
+      <h3>Source(s)</h3>
+      <ul class="sources" v-for="(item, index) in result.sourceUrls" :key="index">
+        <li><a :href="item" target="_blank">{{ item }}</a></li>
+      </ul>
+    </div>
   </main>
 </template>
 
@@ -144,6 +150,20 @@ main {
 
 h1 {
   font-size: 3rem;
+}
+
+h3 {
+  color: var(--secondary-mute);
+  font-weight: 500;
+}
+
+span {
+  color: var(--secondary-soft);
+}
+
+.synonyms {
+  margin-left: 8px;
+  color: rgb(242, 103, 38);
 }
 
 .header-result-wrapper {
@@ -209,13 +229,15 @@ h1 {
 .meaning-wrapper p {
   margin: auto;
   text-align: left;
-  color: var(--secondary-mute);
+  font-weight: 500;
+  color: var(--secondary);
 }
 
-.sources {
+.sources-wrapper{
   width: 90%;
-  margin: auto;
+  margin: 1px auto;
   text-align: left;
+  
 }
 
 .sources a {
