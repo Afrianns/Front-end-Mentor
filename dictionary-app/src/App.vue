@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import Header from './components/Header.vue';
 import Input from './components/Input.vue';
+
+import { ref } from "vue";
+
+// icons 
 import IconPlayer from './components/icons/IconPlayer.vue';
 import IconStop from './components/icons/IconStop.vue';
 import iconPause from './components/icons/IconPause.vue';
+import IconLoadingAnim from './components/icons/IconLoadingAnim.vue';
 
-
-import { ref } from "vue";
 
 let result = ref();
 let audioUS = ref('');
@@ -14,6 +17,21 @@ let audiononUS = ref('');
 let resultNotFound = ref();
 
 let isPlay = ref(false);
+let loadingData = ref(false);
+
+// local storage save current search definition
+
+if (!localStorage.getItem("definition")) {
+  if (result.value) {
+    localStorage.setItem("definition", JSON.stringify(result.value));
+  } else {
+    console.log('not exist');
+  }
+} else {
+  let data = JSON.parse(localStorage.getItem('definition') || '');
+  result.value = data;
+  checkEveryAudio();
+}
 
 // audio section
 let isAudioEnded = false;
@@ -79,8 +97,15 @@ function showData(param: any) {
   }
   audioUS.value = '';
   audiononUS.value = '';
+
   result.value = param[0];
+
   checkEveryAudio();
+  localStorage.setItem("definition", JSON.stringify(result.value));
+}
+
+function load(param: any) {
+  loadingData.value = param;
 }
 
 </script>
@@ -88,55 +113,58 @@ function showData(param: any) {
 <template>
   <main>
     <Header />
-    <Input @data="showData" />
-
-    <div v-if="resultNotFound">
-      <h1>{{ resultNotFound.title }}</h1>
-      <p>{{ resultNotFound.message }}</p>
-      <span>{{ resultNotFound.resolution }}</span>
-    </div>
-
-    <div v-if="result" class="header-result-wrapper">
-      <section class="title-wrapper">
-        <h1>{{ result.word }}</h1>
-        <p>{{ result.phonetic }}</p>
-      </section>
-      <section>
-        <div v-if="audioUS || audiononUS">
-          <div v-if="isPlay">
-            <iconPause class="icon-pause" />
-          </div>
-          <div v-else>
-            <IconPlayer class="icon-play" v-on:click="audioPlay" />
-          </div>
-        </div>
-        <div class="icon-wrapper" v-else>
-          <IconStop class="icon-stop" />
-          <p class="info-stop">No Audio</p>
-        </div>
-      </section>
-    </div>
-    <div v-if="result" v-for="(item, index) in result.meanings" :key="index" class="meaning-wrapper">
-      <div class="subtitle">
-        <h2>{{ item.partOfSpeech }}</h2>
-        <span class="border"></span>
+    <Input @data="showData" @loading-data="load" />
+    <IconLoadingAnim class="loadingAnim" v-if="loadingData && !result && !resultNotFound" />
+    <section :class="{ 'loading': loadingData }">
+      <div v-if="resultNotFound" class="not-found">
+        <h1>{{ resultNotFound.title }}</h1>
+        <p>{{ resultNotFound.message }}</p>
+        <span>{{ resultNotFound.resolution }}</span>
       </div>
-      <h3>Meaning</h3>
-      <ul v-for="(define, id) in item.definitions" :key="id">
-        <li>
-          <p>{{ define.definition }}</p>
-          <span v-if="define.example">"{{ define.example }}"</span>
-        </li>
-      </ul>
-      <h3 v-if="item.synonyms.length - 1 > 1">Synonyms <span class="synonyms">{{ item.synonyms.join(', ') }}</span></h3>
-    </div>
-    <span class="border"></span>
-    <div class="sources-wrapper" v-if="result">
-      <h3>Source(s)</h3>
-      <ul class="sources" v-for="(item, index) in result.sourceUrls" :key="index">
-        <li><a :href="item" target="_blank">{{ item }}</a></li>
-      </ul>
-    </div>
+
+      <div v-if="result" class="header-result-wrapper">
+        <section class="title-wrapper">
+          <h1>{{ result.word }}</h1>
+          <p>{{ result.phonetic }}</p>
+        </section>
+        <section>
+          <div v-if="audioUS || audiononUS">
+            <div v-if="isPlay">
+              <iconPause class="icon-pause" />
+            </div>
+            <div v-else>
+              <IconPlayer class="icon-play" v-on:click="audioPlay" />
+            </div>
+          </div>
+          <div class="icon-wrapper" v-else>
+            <IconStop class="icon-stop" />
+            <p class="info-stop">No Audio</p>
+          </div>
+        </section>
+      </div>
+      <div v-if="result" v-for="(item, index) in result.meanings" :key="index" class="meaning-wrapper">
+        <div class="subtitle">
+          <h2>{{ item.partOfSpeech }}</h2>
+          <span class="border"></span>
+        </div>
+        <h3>Meaning</h3>
+        <ul v-for="(define, id) in item.definitions" :key="id">
+          <li>
+            <p>{{ define.definition }}</p>
+            <span v-if="define.example">"{{ define.example }}"</span>
+          </li>
+        </ul>
+        <h3 v-if="item.synonyms.length - 1 > 1">Synonyms <span class="synonyms">{{ item.synonyms.join(', ') }}</span>
+        </h3>
+      </div>
+      <span class="border"></span>
+      <div class="sources-wrapper" v-if="result">
+        <h3>Source(s)</h3>
+        <ul class="sources" v-for="(item, index) in result.sourceUrls" :key="index">
+          <li><a :href="item" target="_blank">{{ item }}</a></li>
+        </ul>
+      </div>
+    </section>
   </main>
 </template>
 
@@ -148,8 +176,45 @@ main {
   row-gap: 3rem;
 }
 
+.loadingAnim {
+  margin: auto;
+}
+
+.loading {
+  position: relative;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  opacity: .5;
+  cursor: progress;
+  background-color: var(--primary);
+  animation: pulse 1s infinite ease;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: .6;
+  }
+
+  50% {
+    opacity: .4;
+  }
+
+  100% {
+    opacity: .6;
+  }
+}
+
+
 h1 {
   font-size: 3rem;
+  text-transform: capitalize;
 }
 
 h3 {
@@ -214,6 +279,7 @@ span {
 }
 
 .border {
+  display: block;
   width: 100%;
   height: 1px;
   background-color: var(--primary-mute);
@@ -222,7 +288,7 @@ span {
 
 .meaning-wrapper {
   width: 90%;
-  margin: auto;
+  margin: 0 auto 3rem;
   text-align: left;
 }
 
@@ -233,11 +299,15 @@ span {
   color: var(--secondary);
 }
 
-.sources-wrapper{
+.not-found {
+  padding: 1rem 0 5rem;
+}
+
+.sources-wrapper {
   width: 90%;
-  margin: 1px auto;
+  margin: 2rem auto;
   text-align: left;
-  
+
 }
 
 .sources a {

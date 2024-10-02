@@ -10,7 +10,7 @@
 
   --tertiery: #ffb81f;
   --tertiery-soft: #ffb81f55;
-  
+
   --bg: #fff;
 }
 
@@ -19,7 +19,7 @@
   --secondary: #ffffff;
   --secondary-soft: #cecece;
   --secondary-mute: #aaaaaa;
-  
+
   --primary: rgb(34, 34, 34);
   --primary-soft: rgb(42, 42, 42);
   --primary-mute: rgb(52, 52, 52);
@@ -31,8 +31,5 @@ body {
   min-height: 100vh;
   color: var(--secondary);
   background-color: var(--primary);
-  transition:
-    color 0.5s,
-    background-color 0.5s;
   line-height: 1.6;
 }

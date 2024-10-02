@@ -6,22 +6,30 @@ import { ref } from "vue";
 
 let open = ref(false);
 let types = ref('Sans-Serif');
-let changePos = ref('default-pos')
+let changePos = ref('light');
+
+let res = ref('');
+let dataStore = ref({ 'mode': changePos.value, "font": types.value });
+
+// dark mode toggle
+let toggle = () => {
+    document.documentElement.classList.toggle('dark');
+    if (changePos.value == 'light') {
+        changePos.value = 'dark';
+    } else {
+        changePos.value = 'light';
+    }
+
+    updateStorage();
+    localStorage.setItem('styles', JSON.stringify(dataStore.value));
+
+};
+
+// font selection toggle w/ dropdown
 
 function dropdown() {
     open.value = !open.value;
 }
-
-
-let toggle = () => {
-    document.documentElement.classList.toggle("dark");
-    if (changePos.value == 'default-pos') {
-        changePos.value = 'second-pos';
-    } else {
-        changePos.value = 'default-pos';
-    }
-
-};
 
 function fontToggle(this: any, val: string) {
     let res = document.querySelector("body");
@@ -32,7 +40,36 @@ function fontToggle(this: any, val: string) {
             res.style.fontFamily = 'Courier New';
         }
         types.value = val;
-        dropdown();
+
+        updateStorage();
+        localStorage.setItem('styles', JSON.stringify(dataStore.value));
+    }
+}
+
+// local storage
+updateStorage();
+
+// initial Local Storage
+if (localStorage.getItem('styles')) {
+    let localS = JSON.parse((localStorage.getItem("styles") || ''));
+    types.value = localS.font;
+    changePos.value = localS.mode;
+
+    let theme = document.documentElement.classList;
+    if (changePos.value == 'dark') {
+        theme.add('dark');
+    } else {
+        theme.remove('dark');
+    }
+    fontToggle(types.value);
+} else {
+    localStorage.setItem('styles', JSON.stringify(dataStore.value));
+}
+
+function updateStorage() {
+    dataStore.value = {
+        'mode': changePos.value,
+        'font': types.value
     }
 }
 
@@ -47,8 +84,8 @@ function fontToggle(this: any, val: string) {
                     <IconChevDown />
                 </div>
                 <div class="dropdown-result-wrapper" v-if="open">
-                    <p v-on:click="fontToggle('Serif')">Serif</p>
-                    <p v-on:click="fontToggle('Sans-Serif')">Sans-Serif</p>
+                    <p v-on:click="fontToggle('Serif'), dropdown()">Serif</p>
+                    <p v-on:click="fontToggle('Sans-Serif'), dropdown()">Sans-Serif</p>
                 </div>
             </div>
             <span class="border"></span>
@@ -142,14 +179,14 @@ function fontToggle(this: any, val: string) {
     border-radius: 10rem;
     width: 1.4rem;
     height: 1.4rem;
-    transition: position 1s ease-in-out;
+    /* transition: all 2s ease-in-out; */
 }
 
-.default-pos {
+.light {
     left: .3rem;
 }
 
-.second-pos {
+.dark {
     right: .3rem;
 }
 </style>

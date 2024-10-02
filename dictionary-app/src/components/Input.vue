@@ -2,17 +2,22 @@
 
 import { ref } from 'vue';
 
-const emit = defineEmits(['data'])
+const emit = defineEmits(['data', 'loadingData'])
 
 let input = ref('');
+let loadingData = ref(false);
 
 async function calldata() {
+    loadingData.value = true;
+    emit('loadingData', loadingData.value);
     await fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + input.value)
         .then((res) => {
             return res.json();
         }).then((res) => {
             emit('data', res);
             input.value = '';
+            loadingData.value = false;
+            emit('loadingData', loadingData.value);
         }).catch(err => {
             console.log(err);
         })
