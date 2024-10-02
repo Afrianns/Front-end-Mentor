@@ -68,8 +68,10 @@ async function calldata() {
 }
 
 .search-wrapper .icon {
+    position: absolute;
     background-color: transparent;
     border: none;
+    right: 0;
     cursor: pointer;
 }
 
