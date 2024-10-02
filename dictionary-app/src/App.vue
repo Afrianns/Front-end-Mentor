@@ -319,4 +319,13 @@ span {
   text-decoration: underline;
   cursor: pointer;
 }
+
+@media screen and (max-width: 650px) {
+
+  .header-result-wrapper,
+  .meaning-wrapper,
+  .sources-wrapper {
+    width: 100%;
+  }
+}
 </style>

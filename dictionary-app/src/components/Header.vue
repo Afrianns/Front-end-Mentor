@@ -88,7 +88,6 @@ function updateStorage() {
                     <p v-on:click="fontToggle('Sans-Serif'), dropdown()">Sans-Serif</p>
                 </div>
             </div>
-            <span class="border"></span>
             <div class="toggle-wrapper" v-on:click="toggle">
                 <span class="toggle" :class="changePos"></span>
             </div>
@@ -188,5 +187,11 @@ function updateStorage() {
 
 .dark {
     right: .3rem;
+}
+
+@media screen and (max-width: 650px) {
+    .right-wrapper {
+        gap: 1rem;
+    }
 }
 </style>
