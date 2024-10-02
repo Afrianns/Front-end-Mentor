@@ -93,6 +93,7 @@ function showData(param: any) {
   console.log(param);
   if (param.title == 'No Definitions Found') {
     resultNotFound.value = param;
+    localStorage.removeItem("definition");
     return;
   }
   audioUS.value = '';
@@ -115,6 +116,8 @@ function load(param: any) {
     <Header />
     <Input @data="showData" @loading-data="load" />
     <IconLoadingAnim class="loadingAnim" v-if="loadingData && !result && !resultNotFound" />
+    <p v-if="!result && !resultNotFound && !loadingData">Search for Definitions of Any Words in English; Start Write Any
+      Words from Form Above You Curious About.</p>
     <section :class="{ 'loading': loadingData }">
       <div v-if="resultNotFound" class="not-found">
         <h1>{{ resultNotFound.title }}</h1>

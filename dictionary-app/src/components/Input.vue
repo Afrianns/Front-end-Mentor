@@ -67,12 +67,6 @@ async function calldata() {
     font-family: inherit;
 }
 
-button {
-    background-color: red;
-    width: 10px;
-    height: 10px;
-}
-
 .search-wrapper .icon {
     background-color: transparent;
     border: none;
