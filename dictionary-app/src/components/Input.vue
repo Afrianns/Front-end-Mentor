@@ -71,23 +71,20 @@ async function calldata() {
     position: absolute;
     background-color: transparent;
     border: none;
-    right: 0;
+    top: 1.5rem;
+    right: 1.5rem;
     cursor: pointer;
+    z-index: 5;
 }
 
 .search-wrapper .icon svg {
-    position: absolute;
-    width: 2.5rem;
-    height: 2.5rem;
-    z-index: 2;
-    top: 1.2rem;
-    right: 1.2rem;
     fill: var(--tertiery);
 }
 
 @media screen and (max-width: 650px) {
     .search-wrapper {
         width: 100%;
+        border-radius: .5rem;
     }
 }
 </style>

@@ -77,7 +77,6 @@ function updateStorage() {
 <template>
     <div class="body">
         <IconCommunity />
-
         <div class="right-wrapper">
             <div class="dropdown">
                 <div class="dropdown-wrapper" v-on:click="dropdown()">
@@ -191,6 +190,9 @@ function updateStorage() {
 }
 
 @media screen and (max-width: 650px) {
+    .body{
+        border-radius: .5rem;
+    }
     .right-wrapper {
         gap: 1rem;
     }
