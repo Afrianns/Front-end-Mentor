@@ -1,39 +1,56 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-defineProps(['data']);
-const emit = defineEmits(['back']);
+import { ref, onMounted, watch } from 'vue';
+import { useRoute, useRouter } from "vue-router";
+const prop = defineProps(['allCountries', 'totalCountries', 'loading']);
+const API_KEY = ref(import.meta.env.VITE_GMAP_API_KEY);
 
-const goback = () => {
-    emit('back');
+
+let detailedCountry = ref();
+
+let route = useRoute();
+let router = useRouter();
+
+onMounted(() => {
+    if (!prop.loading) {
+        loadCountry();
+    }
+})
+
+watch(() => prop.loading, () => {
+    loadCountry();
+
+})
+
+const loadCountry = () => {
+    if (prop.totalCountries == prop.allCountries.length) {
+        detailedCountry.value = prop.allCountries.find((country: any) => country.id == route.params.id);
+    }
 }
-const API_KEY = ref(import.meta.env.VITE_API_KEY);
+
 </script>
 <template>
     <div class="wrapper">
-        <div class="back" @click="goback">
-            <i class='bx bx-left-arrow-alt bx-sm'></i>
-        </div>
-        <h1>{{ data.name.official }}</h1>
-
+        <h1>{{ detailedCountry?.name.official }}</h1>
         <div class="detail-wrapper">
-            <img :src="data.flags.svg" :alt="data.flags.alt">
+            <img :src="detailedCountry?.flags.svg" :alt="detailedCountry?.flags.alt">
+
             <table class="table-wrapper">
-                <tr v-if="data.capital.length > 0">
+                <tr v-if="detailedCountry?.capital.length > 0">
                     <th class="key">Capital</th>
                     <th class="value">:
-                        <p v-for="item in data.capital" class="item-frame">
+                        <p v-for="item in detailedCountry?.capital" class="item-frame">
                             {{ item }}
                         </p>
                     </th>
                 </tr>
                 <tr>
                     <th class="key">Populations</th>
-                    <th class="value">: {{ data.population.toLocaleString() }}</th>
+                    <th class="value">: {{ detailedCountry?.population.toLocaleString() }}</th>
                 </tr>
                 <tr>
                     <th class="key">Language</th>
                     <th class="value">:
-                        <p v-for="item in data.languages" class="item-frame">
+                        <p v-for="item in detailedCountry?.languages" class="item-frame">
                             {{ item }}
                         </p>
                     </th>
@@ -41,7 +58,7 @@ const API_KEY = ref(import.meta.env.VITE_API_KEY);
                 <tr>
                     <th class="key">Currencies</th>
                     <th class="value">:
-                        <p v-for="item in data.currencies" class="currencies">
+                        <p v-for="item in detailedCountry?.currencies" class="currencies">
                             {{ item.name }} -- {{ item.symbol }}
                         </p>
                     </th>
@@ -49,31 +66,32 @@ const API_KEY = ref(import.meta.env.VITE_API_KEY);
                 </tr>
                 <tr>
                     <th class="key">Region</th>
-                    <th class="value">: {{ data.region }}</th>
+                    <th class="value">: {{ detailedCountry?.region }}</th>
 
                 </tr>
                 <tr>
                     <th class="key">Subregion</th>
 
-                    <th class="value">: {{ data.subregion }}</th>
+                    <th class="value">: {{ detailedCountry?.subregion }}</th>
                 </tr>
                 <tr>
                     <th class="key">Top Level Domain</th>
-                    <th class="value">: {{ data.tld[0] }}</th>
+                    <th class="value">: {{ detailedCountry?.tld[0] }}</th>
                 </tr>
-                <tr v-if="data.borders.length > 0">
+                <tr v-if="detailedCountry?.borders.length > 0">
                     <th>Borders</th>
                     <th class="value">:
-                        <p v-for="item in data.borders" class="item-frame">
+                        <p v-for="item in detailedCountry?.borders" class="item-frame">
                             {{ item }}
                         </p>
                     </th>
                 </tr>
             </table>
+
         </div>
         <div class="map-wrapper">
             <iframe loading="lazy" height="450" allowfullscreen referrerpolicy="no-referrer-when-downgrade" :src="`https://www.google.com/maps/embed/v1/place?key=${API_KEY}
-    &q=${data.name.common}`">
+    &q=${detailedCountry?.name.common}`">
             </iframe>
         </div>
     </div>
@@ -117,6 +135,8 @@ h1 {
 }
 
 .wrapper {
+    margin: auto;
+    max-width: 70vw;
     width: 100%;
 }
 
@@ -164,17 +184,17 @@ h1 {
 }
 
 @media screen and (max-width: 790px) {
-    .detail-wrapper{
+    .detail-wrapper {
         flex-direction: column;
     }
 
-    .table-wrapper{
+    .table-wrapper {
         margin: auto;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .detail-wrapper img{
+    .detail-wrapper img {
         width: 100%;
     }
 }

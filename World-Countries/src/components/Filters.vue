@@ -4,7 +4,7 @@ const emit = defineEmits(["filterRegions", "search"]);
 const prop = defineProps(['region']);
 
 let selected = ref('All');
-let regions = ref(["All", "Europe", "Asia", "America", "Africa", "Oceania"]);
+let regions = ref(["All", "Europe", "Asia", "Americas", "Africa", "Oceania"]);
 
 let search = ref('');
 

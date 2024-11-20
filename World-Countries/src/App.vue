@@ -1,216 +1,158 @@
 <script setup lang="ts">
-import Header from "./components/Header.vue";
-import Filters from "./components/Filters.vue";
-import Details from "./components/Details.vue";
+import { ref, onMounted } from 'vue';
+import router from './router/route';
+let themes = localStorage.getItem('world-design-themes');
+let root_doc = document.documentElement;
 
-import Masonry from "masonry-layout";
-import imagesLoaded from "imagesloaded";
+const title = "World Countries";
 
-import { ref, onUpdated } from "vue";
+let darkedmode = ref(false);
+let allCountries = ref([]);
+let totalCountries = ref(0);
+let loading = ref(false);
 
-let countries = ref();
-let searchedCountries = ref();
-let grid = ref();
-let isClicked = ref(false);
-let detailCountry = ref();
-let isFarFromTop = ref(false);
-let filteredRegion = ref();
+let latestPosLoaded = ref(5);
 
+type countryObj = {
+  id: number,
+  name: { common: string, official: string, nativeName: any },
+  capital: string[],
+  flags: { png: string, svg: string, alt: string },
+  languages: {},
+  maps: {},
+  currencies: {},
+  subregion?: {},
+  borders: string[],
+  tld: string[],
+  population: number,
+  region: string
+}
 
-const getCountries = async (param = 'all') => {
-  let data = await fetch(`https://restcountries.com/v3.1/${param}?fields=name,capital,flags,population,region,languages,currencies,borders,subregion,tld,maps`);
-  countries.value = await data.json();
-  searchCountry('');
-};
+if (themes) {
+  root_doc.classList.add(themes);
+  darkedmode.value = !darkedmode.value
+}
 
-window.addEventListener('scroll', () => {
-  if (window.scrollY >= 1050) {
-    isFarFromTop.value = true;
+let toggle = () => {
+  darkedmode.value = !darkedmode.value;
+
+  if (darkedmode.value) {
+    localStorage.setItem('world-design-themes', 'dark-mode');
+    root_doc.classList.add("dark-mode");
   } else {
-    isFarFromTop.value = false;
+    localStorage.removeItem('world-design-themes');
+    root_doc.classList.remove("dark-mode");
   }
-});
+}
 
-getCountries();
-onUpdated(() => {
-  if (!isClicked.value) {
-    let masonry: any = new Masonry(grid.value, {
-      itemSelector: ".card",
-      fitWidth: true,
-      gutter: 20
+// get all countries 
+const getAllCountries = () => {
+  let id = 1;
+  let data = fetch(`https://restcountries.com/v3.1/all?fields=name,capital,flags,population,region,languages,currencies,borders,subregion,tld,maps`)
+
+  data.then((val) => {
+    return val.json();
+  }).then((countries) => {
+    allCountries.value = countries.map((country: countryObj) => {
+      return {
+        'id': id++,
+        'name': country.name,
+        'capital': country.capital,
+        'flags': country.flags,
+        'population': country.population,
+        'region': country.region,
+        'languages': country.languages,
+        'maps': country.maps,
+        'currencies': country.currencies,
+        'subregion': country.subregion,
+        'borders': country.borders,
+        'tld': country.tld,
+      }
     });
 
-    imagesLoaded(grid.value).on("progress", () => {
-      masonry.layout();
-    })
-  }
+    totalCountries.value = countries.length;
+    loading.value = false;
+  })
+};
+
+const goToDetail = (cid: number, lastPos: number) => {
+  latestPosLoaded.value = lastPos;
+  router.push(`detail/${cid}`);
+}
+
+onMounted(() => {
+  loading.value = true;
+  getAllCountries();
 });
-
-
-const checkResult = (val: string) => {
-
-  if (val != "All") {
-    filteredRegion.value = val;
-    getCountries('region/' + val);
-  } else {
-    filteredRegion.value = '';
-    getCountries();
-  }
-}
-
-const searchCountry = (val: string) => {
-  if (val) {
-    searchedCountries.value = countries.value.filter((country: any, key: number) => {
-      if (country.name.common.toLowerCase().indexOf(val) > -1) {
-        return countries.value[key];
-      }
-    })
-  } else {
-    searchedCountries.value = countries.value;
-  }
-}
-
-const hidepage = (val: number) => {
-  console.log("check page ", val);
-  isClicked.value = !isClicked.value;
-  detailCountry = searchedCountries.value[val];
-}
-
-const home = () => {
-  isClicked.value = !isClicked.value;
-  searchCountry('');
-}
 
 </script>
 
 <template>
-  <Header msg="World Countries" id="header" />
-  <div v-if="!isClicked">
-    <Filters @filter-regions="checkResult" @search="searchCountry" :region="filteredRegion" />
-    <section class="container content">
-      <div class="card-wrapper">
-        <div ref="grid" class="grid">
-          <template v-for="(country, key) in searchedCountries">
-            <div class="card" @click="hidepage(key)">
-              <img :src="country.flags.png" :alt="country.flags.alt" />
-              <div class="info-wrapper">
-                <h1>{{ country.name.common }}</h1>
-                <ul>
-                  <li v-if="country.capital.length > 0"><span>Capital:</span> {{ country.capital.join(', ') }}</li>
-                  <li>
-                    <span>Population:</span>
-                    {{ country.population.toLocaleString() }}
-                  </li>
-                  <li><span>Region:</span> {{ country.region }}</li>
-                </ul>
-              </div>
-            </div>
-          </template>
+  <div>
+    <nav>
+      <div class="container">
+        <h1 class="brand">{{ title }}</h1>
+        <div class="toggle-wrapper" @click="toggle">
+          <span class="toggle" :class="{ 'dark-mode': darkedmode }"></span>
         </div>
       </div>
-    </section>
-    <a class="back-top" href="#header" v-if="isFarFromTop">
-      <i class='bx bx-up-arrow-alt bx-sm'></i>
-    </a>
+    </nav>
+    <main>
+      <router-view v-slot="{ Component }">
+        <component :is="Component" :totalCountries="totalCountries" :allCountries="allCountries"
+          :latestPosLoaded="latestPosLoaded" @goToDetail="goToDetail" :loading="loading" />
+      </router-view>
+    </main>
+    <footer class="footer">
+      <p>Develop by <a href="http://hanifna.rf.gd" target="_blank">HanifNA</a> from <a href="http://frontendmentor.com"
+          target="_blank">Frontend Mentor</a></p>
+      <p>API from <a href="http://restcountries.com" target="_blank">Rest Countries</a></p>
+    </footer>
   </div>
-  <div v-else class="container">
-    <Details :data="detailCountry" @back="home" />
-  </div>
-
-  <footer class="footer">
-    <p>Develop by <a href="http://hanifna.rf.gd" target="_blank">HanifNA</a> from <a href="http://frontendmentor.com"
-        target="_blank">Frontend Mentor</a></p>
-    <p>API from <a href="http://restcountries.com" target="_blank">Rest Countries</a></p>
-  </footer>
 </template>
 
 <style scoped>
-.content {
-  margin-top: 3rem;
+.brand {
+  font-family: var(--title-font);
+  font-size: clamp(1rem, 6vw, 2rem);
 }
 
-.hide {
-  display: hidden;
-}
-
-.capital {
-  display: inline;
-  margin-left: 5px;
-}
-
-.grid {
-  margin: auto;
-}
-
-.card-wrapper {
+nav {
+  padding: 1rem 0;
   width: 100%;
-}
-
-.card {
-  cursor: pointer;
-  position: absolute;
-  border: 0.1px solid gray;
-  margin-bottom: 1rem;
-  width: calc(20rem + 2px);
   background-color: var(--secondary-bg);
-  border-bottom: 5px solid;
-  border-right: 5px solid;
-  border-color: black;
-}
-
-.card:hover {
-  transform: translate(3px, 3px);
-  border-bottom: .1px solid;
-  border-right: .1px solid;
-  border-color: black;
-}
-
-
-.card ul li {
-  list-style: none;
-  margin: 5px 0;
-}
-
-.card img {
-  width: 100%;
-  border-bottom: .1px solid gray;
-}
-
-.info-wrapper {
-  padding: 20px;
-}
-
-.info-wrapper span {
-  font-weight: bold;
-
-}
-
-.info-wrapper h1 {
-  font-size: 1.3rem;
-  padding-bottom: 1rem;
-}
-
-.back-top {
-  cursor: pointer;
-  position: fixed;
-  bottom: 2rem;
-  right: 1.5rem;
-  padding: 1.3rem 1.2rem .7rem;
-  border: .5px solid var(--tertiery-bg);
-  background-color: var(--secondary-bg);
+  border-bottom: 1px solid var(--tertiery-bg);
   border-bottom: 5px solid black;
-  border-right: 5px solid black;
 }
 
-.back-top:hover {
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
+
+.toggle-wrapper {
+  cursor: pointer;
+  height: 25px;
+  width: 50px;
+  border-radius: 20px;
+  background-color: var(--text);
+  position: relative;
+  background-image: url('./assets/sun.svg'), url('./assets/moon.svg');
+  background-position: 28px, 3px;
+  background-repeat: no-repeat;
+
 }
 
-.back-top .bx {
-  color: var(--text);
+.toggle {
+  transition: all .5s cubic-bezier(0.79, 0.14, 0.15, 0.86);
+  top: 3px;
+  left: 3px;
+  position: absolute;
+  background-color: var(--secondary-bg);
+  border-radius: 50%;
+  width: 19px;
+  height: 19px;
 }
 
+.dark-mode {
+  left: 28px;
+}
 
 .footer {
   margin: 5rem;
