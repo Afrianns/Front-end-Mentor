@@ -100,7 +100,7 @@ const filterByRegions = (val: string) => {
     perCountries.value = [];
     let filteredCountries: countryObj[] = [];
     if (val != 'All') {
-        filteredCountries = props.allCountries.filter((country: countryObj, key: number) => (country.region == val))
+        filteredCountries = props.allCountries.filter((country: countryObj) => (country.region == val))
     } else {
         filteredCountries = props.allCountries;
     }
@@ -118,7 +118,7 @@ const searchCountry = (val: string) => {
 
     if (val) {
         startPos.value = 0;
-        let filtered = allFilteredCountries.value.filter((country: any, key: number) => {
+        let filtered = allFilteredCountries.value.filter((country: any) => {
             if (country.name.common.toLowerCase().indexOf(val) > -1) {
                 return country;
             }
@@ -145,7 +145,7 @@ const goDetail = (id: number) => emit('goToDetail', id, endPos.value);
         <section class="container content">
             <div class="card-wrapper">
                 <div ref="grid" class="grid">
-                    <template v-for="(country, key) in perCountries">
+                    <template v-for="country in perCountries">
                         <div class="card" @click="goDetail(country.id)">
                             <img :src="country.flags.png" :alt="country.flags.alt" />
                             <div class="info-wrapper">

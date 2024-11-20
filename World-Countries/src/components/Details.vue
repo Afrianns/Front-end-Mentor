@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue';
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 const prop = defineProps(['allCountries', 'totalCountries', 'loading']);
 const API_KEY = ref(import.meta.env.VITE_GMAP_API_KEY);
 
@@ -8,7 +8,6 @@ const API_KEY = ref(import.meta.env.VITE_GMAP_API_KEY);
 let detailedCountry = ref();
 
 let route = useRoute();
-let router = useRouter();
 
 onMounted(() => {
     if (!prop.loading) {
