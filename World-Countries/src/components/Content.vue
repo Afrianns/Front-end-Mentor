@@ -141,7 +141,6 @@ const goDetail = (id: number) => emit('goToDetail', id, endPos.value);
 <template>
     <div>
         <Filters @filter-regions="filterByRegions" @search="searchCountry" :region="filteredRegion" />
-        {{ totalCountries }} --- {{ startPos }} - {{ endPos }}
         <section class="container content">
             <div class="card-wrapper">
                 <div ref="grid" class="grid">

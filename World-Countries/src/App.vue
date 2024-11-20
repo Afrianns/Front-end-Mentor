@@ -89,7 +89,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <nav>
+    <nav id="header">
       <div class="container">
         <h1 class="brand">{{ title }}</h1>
         <div class="toggle-wrapper" @click="toggle">
