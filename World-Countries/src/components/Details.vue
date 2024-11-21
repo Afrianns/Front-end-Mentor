@@ -2,7 +2,7 @@
 import { ref, onMounted, watch } from 'vue';
 import { useRoute } from "vue-router";
 const prop = defineProps(['allCountries', 'totalCountries', 'loading']);
-const API_KEY = ref(import.meta.env.VITE_GMAP_API_KEY);
+const API_KEY = import.meta.env.VITE_GMAP_API_KEY;
 
 
 let detailedCountry = ref();
