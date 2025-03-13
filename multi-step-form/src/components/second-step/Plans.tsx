@@ -17,7 +17,7 @@ export default function Plans({next, previous}: propsType) {
     previous()
   }
   return (
-    <>
+    <div className="content-pos-wrapper">
       <div>
         <h1 className="title">Choose Plans</h1>
         <p className="subtitle">
@@ -58,6 +58,6 @@ export default function Plans({next, previous}: propsType) {
         <p onClick={funcPrevious}>Go Back</p>
         <button className="btn-style" onClick={funcNext}>Next Step</button>
       </div>
-    </>
+    </div>
   );
 }

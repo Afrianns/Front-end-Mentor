@@ -13,7 +13,7 @@ export default function Addons({ next, previous }: propsType) {
     previous();
   };
   return (
-    <>
+    <div className="content-pos-wrapper">
       <div>
         <h1 className="title">Pick Add-ons</h1>
         <p className="subtitle">Add-ons help enhance your gaming experince</p>
@@ -56,6 +56,6 @@ export default function Addons({ next, previous }: propsType) {
           Next Step
         </button>
       </div>
-    </>
+    </div>
   );
 }

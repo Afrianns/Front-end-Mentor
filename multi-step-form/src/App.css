@@ -51,7 +51,6 @@
 /* container */
 .card-wrapper {
   width: fit-content;
-  height: fit-content;
   display: grid;
   grid-template-columns: 1fr 2fr;
   background-color: var(--White);
@@ -61,15 +60,18 @@
 }
 
 /* right container */
-.content-wrapper {
-  width: 70%;
+.contents-wrapper {
+  width: 24rem;
   margin: 0 auto;
   padding: 2rem;
   text-align: left;
+}
+
+.content-pos-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  justify-items: center;
+  height: 100%;
 }
 
 /* left container */

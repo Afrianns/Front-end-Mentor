@@ -10,7 +10,7 @@ export default function Profile({ next }: propsType) {
   };
 
   return (
-    <>
+    <div className="content-pos-wrapper">
       <div>
         <h1 className="title">Profile Info</h1>
         <p className="subtitle">
@@ -32,9 +32,11 @@ export default function Profile({ next }: propsType) {
           />
         </form>
       </div>
-       <div className="bottom-nav-style">
-        <button className="btn-style" onClick={funcNext}>Next Step</button>
+      <div className="bottom-nav-style">
+        <button className="btn-style" onClick={funcNext}>
+          Next Step
+        </button>
       </div>
-    </>
+    </div>
   );
 }

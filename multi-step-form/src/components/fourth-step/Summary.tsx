@@ -1,16 +1,15 @@
 import "./style/style.css";
 
 interface propsType {
-  previous: () => void
+  previous: () => void;
 }
 
-export default function Summary({previous}: propsType) {
-
+export default function Summary({ previous }: propsType) {
   const funcPrevious = () => {
-    previous()
-  }
+    previous();
+  };
   return (
-    <>
+    <div className="content-pos-wrapper">
       <div>
         <h1 className="title">Finishing-up</h1>
         <p className="subtitle">Double-check everything before confirming</p>
@@ -43,6 +42,6 @@ export default function Summary({previous}: propsType) {
         <p onClick={funcPrevious}>Go Back</p>
         <button className="btn-style">Next Step</button>
       </div>
-    </>
+    </div>
   );
 }
