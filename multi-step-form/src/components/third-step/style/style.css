@@ -1,0 +1,38 @@
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  row-gap: .7rem;
+}
+
+.addons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid var(--Light-gray);
+  padding: 0.7rem 1.2rem;
+  border-radius: 10px;
+}
+
+.addons-wrapper:hover {
+    border-color: var(--Purplish-blue);
+    background-color: var(--Light-blue);
+    cursor: pointer;
+}
+
+.addons-wrapper input {
+  transform: scale(1.3);
+}
+
+.addons-detail {
+  display: flex;
+  gap: 1rem;
+}
+
+.addons-detail-info {
+  line-height: 2px;
+}
+
+.addons-wrapper span {
+  color: var(--Purplish-blue);
+}

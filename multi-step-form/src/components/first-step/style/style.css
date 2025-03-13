@@ -1,0 +1,17 @@
+/* form style */
+.form-style {
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.form-style input {
+  padding: 15px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid var(--Cool-gray);
+  font-weight: 500;
+  background-color: var(--Alabaster);
+}
