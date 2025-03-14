@@ -1,13 +1,38 @@
 import "./style/style.css";
+import { planPaymentOptions } from "../../../utils/InitialData";
+import { addonsCheckedType } from "../../../types/Type";
+
+import { useState } from "react";
 
 interface propsType {
   next: () => void;
   previous: () => void;
+  planTier: string;
+  addonsChecked: addonsCheckedType;
+  setAddonsChecked: (a: addonsCheckedType) => void;
 }
 
-export default function Addons({ next, previous }: propsType) {
+export default function Addons({
+  next,
+  previous,
+  planTier,
+  addonsChecked,
+  setAddonsChecked,
+}: propsType) {
+  const [addonsTier, _] = useState(planPaymentOptions[planTier].addons);
+
   const funcNext = () => next();
   const funcPrevious = () => previous();
+
+  const clickSelectAddons = (
+    evt: React.FormEvent<HTMLInputElement>,
+    type: string
+  ) => {
+    setAddonsChecked({
+      ...addonsChecked,
+      [type]: (evt.target as HTMLFormElement).checked,
+    });
+  };
 
   return (
     <div className="content-pos-wrapper">
@@ -16,30 +41,66 @@ export default function Addons({ next, previous }: propsType) {
         <p className="subtitle">Add-ons help enhance your gaming experince</p>
       </div>
       <form className="form-wrapper">
-        <label className="addons-wrapper" htmlFor="online-service">
+        <label
+          className={
+            addonsChecked["type_one"]
+              ? "addons-wrapper addons-wrapper-selected"
+              : "addons-wrapper "
+          }
+          htmlFor="online-service"
+        >
+          {addonsChecked["type_one"]}
           <div className="addons-detail">
-            <input type="checkbox" name="online-service" id="online-service" />
+            <input
+              onClick={(evt) => clickSelectAddons (evt, "type_one")}
+              type="checkbox"
+              name="online-service"
+              checked={addonsChecked["type_one"]}
+              id="online-service"
+            />
             <div className="addons-detail-info">
               <h3>Online service</h3>
               <p className="subtitle">Access to multiplayer games</p>
             </div>
           </div>
-          <span>+$1/mo</span>
+          <span>+${addonsTier.type_one}</span>
         </label>
-        <label className="addons-wrapper" htmlFor="large-storage">
+        <label
+          className={
+            addonsChecked["type_two"]
+              ? "addons-wrapper addons-wrapper-selected"
+              : "addons-wrapper "
+          }
+          htmlFor="large-storage"
+        >
           <div className="addons-detail">
-            <input type="checkbox" name="large-storage" id="large-storage" />
+            <input
+              onClick={(evt) => clickSelectAddons(evt, "type_two")}
+              type="checkbox"
+              name="large-storage"
+              checked={addonsChecked["type_two"]}
+              id="large-storage"
+            />
             <div className="addons-detail-info">
               <h3>Large Storage</h3>
               <p className="subtitle">Extra 1TB of cloud save</p>
             </div>
           </div>
-          <span>+$2/mo</span>
+          <span>+${addonsTier.type_two}</span>
         </label>
-        <label className="addons-wrapper" htmlFor="customizable-profile">
+        <label
+          className={
+            addonsChecked["type_three"]
+              ? "addons-wrapper addons-wrapper-selected"
+              : "addons-wrapper "
+          }
+          htmlFor="customizable-profile"
+        >
           <div className="addons-detail">
             <input
+              onClick={(evt) => clickSelectAddons(evt, "type_three")}
               type="checkbox"
+              checked={addonsChecked["type_three"]}
               name="customizable-profile"
               id="customizable-profile"
             />
@@ -48,7 +109,7 @@ export default function Addons({ next, previous }: propsType) {
               <p className="subtitle">Custom theme on your profile</p>
             </div>
           </div>
-          <span>+$2/mo</span>
+          <span>+${addonsTier.type_three}</span>
         </label>
       </form>
       <div className="bottom-nav-style">

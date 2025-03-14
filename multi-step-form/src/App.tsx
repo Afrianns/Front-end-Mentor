@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import Sidebar from "./components/Sidebar";
-import { activePlanType, planType } from "../types/Type";
+import { activePlanType, planType, addonsCheckedType } from "../types/Type";
 
 // steps components
 import Profile from "./components/first-step/Profile";
@@ -17,25 +17,40 @@ type ProfileType = {
 
 const initialProfileData = { name: "", email: "", phone: "" };
 const initialChoosePlan = { option: "", choosePlan: activePlanType.none };
+const initialAddonsChecked = {
+  type_one: false,
+  type_two: false,
+  type_three: false,
+};
 
 function App() {
+  let component;
+
   const [currentStep, setCurrentStep] = useState(1);
   const [plan, setPlan] = useState<planType>(initialChoosePlan);
 
   const [data, setData] = useState<ProfileType>(initialProfileData);
   const [profile, setProfile] = useState<ProfileType>(initialProfileData);
 
-  const [toggle, setToggle] = useState("monthly");
+  const [planTier, setPlanTier] = useState("monthly");
   const [activePlan, setActivePlan] = useState<activePlanType>(
     activePlanType.none
   );
 
-  const nextStep = () => setCurrentStep(currentStep + 1);
-  const prevStep = () => setCurrentStep(currentStep - 1);
+  const [addonsChecked, setAddonsChecked] =
+    useState<addonsCheckedType>(initialAddonsChecked);
 
   const showProfileData = () => setData(profile);
 
-  let component;
+  const nextStep = () => setCurrentStep(currentStep + 1);
+  const prevStep = () => setCurrentStep(currentStep - 1);
+
+  const step = {
+    next: nextStep,
+    previous: prevStep,
+  };
+
+  console.log(addonsChecked);
 
   const steps = [
     {
@@ -53,19 +68,25 @@ function App() {
       id: 2,
       component: (
         <Plans
-          next={nextStep}
-          previous={prevStep}
+          {...step}
           setPlan={setPlan}
           activePlan={activePlan}
           setActivePlan={setActivePlan}
-          toggle={toggle}
-          setToggle={setToggle}
+          planTier={planTier}
+          setPlanTier={setPlanTier}
         />
       ),
     },
     {
       id: 3,
-      component: <Addons next={nextStep} previous={prevStep} />,
+      component: (
+        <Addons
+          {...step}
+          planTier={planTier}
+          addonsChecked={addonsChecked}
+          setAddonsChecked={setAddonsChecked}
+        />
+      ),
     },
     { id: 4, component: <Summary previous={prevStep} /> },
   ];
@@ -89,6 +110,14 @@ function App() {
         <div>
           <p>{plan.option}</p>
           <p>{plan.choosePlan}</p>
+        </div>
+      )}
+
+      {addonsChecked && (
+        <div>
+          <p>type 1: {addonsChecked["type_one"]}</p>
+          <p>type 2: {addonsChecked["type_two"]}</p>
+          <p>type 3: {addonsChecked["type_three"]}</p>
         </div>
       )}
       <div className="card-wrapper">

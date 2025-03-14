@@ -5,43 +5,10 @@ import plansArcade from "../../assets/images/icon-arcade.svg";
 import plansAdvanced from "../../assets/images/icon-advanced.svg";
 import plansPro from "../../assets/images/icon-pro.svg";
 
-import { activePlanType } from "../../../types/Type";
-import {
-  propsType,
-  planPaymentOptionsType,
-  planPaymentType,
-} from "./types/Types";
+import { activePlanType, planPaymentType } from "../../../types/Type";
+import { planPaymentOptions } from "../../../utils/InitialData";
 
-const planPaymentOptions: planPaymentOptionsType = {
-  monthly: {
-    arcade: {
-      price: 9,
-      msg: "",
-    },
-    advanced: {
-      price: 12,
-      msg: "",
-    },
-    pro: {
-      price: 15,
-      msg: "",
-    },
-  },
-  yearly: {
-    arcade: {
-      price: 90,
-      msg: "2 months free",
-    },
-    advanced: {
-      price: 120,
-      msg: "2 months free",
-    },
-    pro: {
-      price: 150,
-      msg: "2 months free",
-    },
-  },
-};
+import { propsType } from "./types/Types";
 
 export default function Plans({
   next,
@@ -49,11 +16,11 @@ export default function Plans({
   setPlan,
   activePlan,
   setActivePlan,
-  toggle,
-  setToggle,
+  planTier,
+  setPlanTier,
 }: propsType) {
   const [planPayment, setPlanPayment] = useState<planPaymentType>(
-    planPaymentOptions[toggle]
+    planPaymentOptions[planTier].plans
   );
 
   const updatePlanOptions = useRef(false);
@@ -61,20 +28,22 @@ export default function Plans({
   const funcPrevious = () => previous();
   const funcNext = () => {
     setPlan({
-      option: toggle,
+      option: planTier,
       choosePlan: activePlan,
     });
     next();
   };
-  
+
   if (updatePlanOptions.current) {
-    setPlanPayment({ ...planPaymentOptions[toggle] });
+    setPlanPayment({ ...planPaymentOptions[planTier].plans });
     updatePlanOptions.current = false;
   }
-  
+
   const clickPlanBilingType = () => {
     updatePlanOptions.current = true;
-    setToggle((toggle: string) => (toggle == "monthly" ? "yearly" : "monthly"));
+    setPlanTier((planTier: string) =>
+      planTier == "monthly" ? "yearly" : "monthly"
+    );
   };
 
   const changeActivePlan = (type: activePlanType) => {
@@ -100,7 +69,7 @@ export default function Plans({
             <img src={plansArcade} alt="plan type arcade" />
             <div className="plan-detail-style">
               <h4 className="plan-title">Arcade</h4>
-              <p>${planPayment.arcade.price}/mo</p>
+              <p>${planPayment.arcade.price}</p>
             </div>
             <span className="payment-msg-style">{planPayment.arcade.msg}</span>
           </section>
@@ -115,7 +84,7 @@ export default function Plans({
             <img src={plansAdvanced} alt="plan type Advanced" />
             <div className="plan-detail-style">
               <h4 className="plan-title">Advanced</h4>
-              <p>${planPayment.advanced.price}/mo</p>
+              <p>${planPayment.advanced.price}</p>
             </div>
             <span className="payment-msg-style">
               {planPayment.advanced.msg}
@@ -132,24 +101,26 @@ export default function Plans({
             <img src={plansPro} alt="plan type Pro" />
             <div className="plan-detail-style">
               <h4 className="plan-title">Pro</h4>
-              <p>${planPayment.pro.price}/mo</p>
+              <p>${planPayment.pro.price}</p>
             </div>
             <span className="payment-msg-style">{planPayment.pro.msg}</span>
           </section>
         </div>
         <div className="options-style">
-          <p className={toggle == "monthly" ? "type-plan-style" : ""}>
+          <p className={planTier == "monthly" ? "type-plan-style" : ""}>
             Monthly
           </p>
-          <p className="toggle-style" onClick={clickPlanBilingType}>
+          <p className="plan-tier-style" onClick={clickPlanBilingType}>
             <span
               className="handle-style"
               style={
-                toggle == "monthly" ? { left: ".2rem" } : { left: "1.4rem" }
+                planTier == "monthly" ? { left: ".2rem" } : { left: "1.4rem" }
               }
             ></span>
           </p>
-          <p className={toggle == "yearly" ? "type-plan-style" : ""}>Yearly</p>
+          <p className={planTier == "yearly" ? "type-plan-style" : ""}>
+            Yearly
+          </p>
         </div>
       </div>
       <div className="bottom-nav-style">

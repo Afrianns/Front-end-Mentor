@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  row-gap: .7rem;
+  row-gap: 0.7rem;
 }
 
 .addons-wrapper {
@@ -15,13 +15,18 @@
 }
 
 .addons-wrapper:hover {
-    border-color: var(--Purplish-blue);
-    background-color: var(--Light-blue);
-    cursor: pointer;
+  border-color: var(--Purplish-blue);
+  background-color: var(--Light-blue);
+  cursor: pointer;
 }
 
 .addons-wrapper input {
   transform: scale(1.3);
+}
+
+.addons-wrapper-selected {
+  border-color: var(--Purplish-blue);
+  background-color: var(--Light-blue);
 }
 
 .addons-detail {
