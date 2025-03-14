@@ -5,9 +5,8 @@ interface propsType {
 }
 
 export default function Summary({ previous }: propsType) {
-  const funcPrevious = () => {
-    previous();
-  };
+  const funcPrevious = () => previous();
+
   return (
     <div className="content-pos-wrapper">
       <div>
@@ -40,7 +39,7 @@ export default function Summary({ previous }: propsType) {
       </div>
       <div className="bottom-nav-style">
         <p onClick={funcPrevious}>Go Back</p>
-        <button className="btn-style">Next Step</button>
+        <button className="btn-style">Submit</button>
       </div>
     </div>
   );

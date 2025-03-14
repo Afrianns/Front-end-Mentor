@@ -46,6 +46,7 @@ export default function Profile({
     let name = evt.target as unknown as HTMLInputElement;
     setProfile((profile: ProfileType) => ({ ...profile, name: name.value }));
   };
+
   const funcEmail = (evt: React.FormEvent<HTMLInputElement>) => {
     let email = evt.target as unknown as HTMLInputElement;
     setProfile((profile: ProfileType) => ({
