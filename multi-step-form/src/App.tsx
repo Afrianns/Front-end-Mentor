@@ -1,6 +1,8 @@
 import "./App.css";
 import { useState } from "react";
 import Sidebar from "./components/Sidebar";
+import Topbar from "./components/Topbar";
+
 import {
   activePlanType,
   planType,
@@ -41,9 +43,17 @@ function App() {
 
   const showProfileData = () => setData(profile);
 
-  const nextStep = () => setCurrentStep(currentStep + 1);
-  const prevStep = () => setCurrentStep(currentStep - 1);
+  const nextStep = () => {
+    if (currentStep == 2) {
+      setPlan({
+        option: planTier,
+        choosePlan: activePlan,
+      });
+    }
+    setCurrentStep(currentStep + 1);
+  };
 
+  const prevStep = () => setCurrentStep(currentStep - 1);
   const jumpPrevStep = () => setCurrentStep(currentStep - 2);
 
   const step = {
@@ -90,7 +100,12 @@ function App() {
     {
       id: 4,
       component: (
-        <Summary previous={prevStep} jumpStep={jumpPrevStep} plan={plan} addons={addonsChecked} />
+        <Summary
+          previous={prevStep}
+          jumpStep={jumpPrevStep}
+          plan={plan}
+          addons={addonsChecked}
+        />
       ),
     },
   ];
@@ -107,9 +122,22 @@ function App() {
 
   return (
     <>
+      <Topbar currentStep={currentStep} />
       <div className="card-wrapper">
         <Sidebar currentStep={currentStep} />
-        <div className="contents-wrapper">{component}</div>
+        <div style={{ padding: "2rem" }}>
+          <div className="contents-wrapper">{component}</div>
+        </div>
+      </div>
+      <div className="mobile-bottom-nav-style">
+        {currentStep != 1 && <p onClick={prevStep}>Go Back</p>}
+        {currentStep == 4 ? (
+          <button className="btn-style">Confirm</button>
+        ) : (
+          <button className="btn-style" onClick={nextStep}>
+            Next Step
+          </button>
+        )}
       </div>
     </>
   );

@@ -100,7 +100,7 @@ export default function Profile({
           />
         </div>
       </div>
-      <div className="bottom-nav-style">
+      <div className="desktop-bottom-nav-style">
         <button className="btn-style" onClick={funcNext}>
           Next Step
         </button>

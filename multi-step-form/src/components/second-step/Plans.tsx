@@ -27,10 +27,6 @@ export default function Plans({
 
   const funcPrevious = () => previous();
   const funcNext = () => {
-    setPlan({
-      option: planTier,
-      choosePlan: activePlan,
-    });
     next();
   };
 
@@ -136,7 +132,7 @@ export default function Plans({
           </p>
         </div>
       </div>
-      <div className="bottom-nav-style">
+      <div className="desktop-bottom-nav-style">
         <p onClick={funcPrevious}>Go Back</p>
         <button className="btn-style" onClick={funcNext}>
           Next Step

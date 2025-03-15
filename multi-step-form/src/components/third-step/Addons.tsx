@@ -122,7 +122,7 @@ export default function Addons({
           </span>
         </label>
       </form>
-      <div className="bottom-nav-style">
+      <div className="desktop-bottom-nav-style">
         <p onClick={funcPrevious}>Go Back</p>
         <button className="btn-style" onClick={funcNext}>
           Next Step

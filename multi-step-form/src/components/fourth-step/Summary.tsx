@@ -73,12 +73,12 @@ export default function Summary({
         <div className="total-price-style">
           <p>Total (per {plan.option == "monthly" ? "month" : "year"})</p>
           <p>
-            {funcCalcSum()}
+            ${funcCalcSum()}
             {subType}
           </p>
         </div>
       </div>
-      <div className="bottom-nav-style">
+      <div className="desktop-bottom-nav-style">
         <p onClick={funcPrevious}>Go Back</p>
         <button className="btn-style">Submit</button>
       </div>

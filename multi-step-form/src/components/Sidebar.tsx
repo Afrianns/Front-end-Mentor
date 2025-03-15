@@ -2,9 +2,9 @@ import sidebar from "../assets/images/bg-sidebar-desktop.svg";
 
 export default function Sidebar({ currentStep }: React.ComponentState) {
   return (
-    <div className="nav-wrapper">
+    <div className="desktop-nav-wrapper">
       <img src={sidebar} alt="" />
-      <ul className="list-menu">
+      <ul className="desktop-list-menu">
         <li>
           <span className={currentStep == 1 ? "active" : ""}>1</span>
           <div className="nav-info">
