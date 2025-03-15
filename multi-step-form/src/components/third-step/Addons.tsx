@@ -19,9 +19,11 @@ export default function Addons({
   addonsChecked,
   setAddonsChecked,
 }: propsType) {
-  const [addonsTier, _] = useState(planPaymentOptions[planTier].addons);
+  const [addonsTier, _] = useState(planPaymentOptions[planTier]);
 
-  const funcNext = () => next();
+  const funcNext = () => {
+    next();
+  };
   const funcPrevious = () => previous();
 
   const clickSelectAddons = (
@@ -49,10 +51,9 @@ export default function Addons({
           }
           htmlFor="online-service"
         >
-          {addonsChecked["type_one"]}
           <div className="addons-detail">
             <input
-              onClick={(evt) => clickSelectAddons (evt, "type_one")}
+              onChange={(evt) => clickSelectAddons(evt, "type_one")}
               type="checkbox"
               name="online-service"
               checked={addonsChecked["type_one"]}
@@ -63,7 +64,10 @@ export default function Addons({
               <p className="subtitle">Access to multiplayer games</p>
             </div>
           </div>
-          <span>+${addonsTier.type_one}</span>
+          <span>
+            +${addonsTier.addons["type_one"].price}
+            {addonsTier.subsriptionType}
+          </span>
         </label>
         <label
           className={
@@ -75,7 +79,7 @@ export default function Addons({
         >
           <div className="addons-detail">
             <input
-              onClick={(evt) => clickSelectAddons(evt, "type_two")}
+              onChange={(evt) => clickSelectAddons(evt, "type_two")}
               type="checkbox"
               name="large-storage"
               checked={addonsChecked["type_two"]}
@@ -86,7 +90,10 @@ export default function Addons({
               <p className="subtitle">Extra 1TB of cloud save</p>
             </div>
           </div>
-          <span>+${addonsTier.type_two}</span>
+          <span>
+            +${addonsTier.addons["type_two"].price}
+            {addonsTier.subsriptionType}
+          </span>
         </label>
         <label
           className={
@@ -98,7 +105,7 @@ export default function Addons({
         >
           <div className="addons-detail">
             <input
-              onClick={(evt) => clickSelectAddons(evt, "type_three")}
+              onChange={(evt) => clickSelectAddons(evt, "type_three")}
               type="checkbox"
               checked={addonsChecked["type_three"]}
               name="customizable-profile"
@@ -109,7 +116,10 @@ export default function Addons({
               <p className="subtitle">Custom theme on your profile</p>
             </div>
           </div>
-          <span>+${addonsTier.type_three}</span>
+          <span>
+            +${addonsTier.addons["type_three"].price}
+            {addonsTier.subsriptionType}
+          </span>
         </label>
       </form>
       <div className="bottom-nav-style">

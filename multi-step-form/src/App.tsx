@@ -1,7 +1,12 @@
 import "./App.css";
 import { useState } from "react";
 import Sidebar from "./components/Sidebar";
-import { activePlanType, planType, addonsCheckedType } from "../types/Type";
+import {
+  activePlanType,
+  planType,
+  addonsCheckedType,
+  ProfileType,
+} from "../types/Type";
 
 // steps components
 import Profile from "./components/first-step/Profile";
@@ -9,22 +14,16 @@ import Plans from "./components/second-step/Plans";
 import Addons from "./components/third-step/Addons";
 import Summary from "./components/fourth-step/Summary";
 
-type ProfileType = {
-  name: string;
-  email: string;
-  phone: string;
-};
-
 const initialProfileData = { name: "", email: "", phone: "" };
 const initialChoosePlan = { option: "", choosePlan: activePlanType.none };
-const initialAddonsChecked = {
+const initalAddonsChecked = {
   type_one: false,
   type_two: false,
   type_three: false,
 };
-
 function App() {
   let component;
+  let addonsSelected = [];
 
   const [currentStep, setCurrentStep] = useState(1);
   const [plan, setPlan] = useState<planType>(initialChoosePlan);
@@ -38,19 +37,19 @@ function App() {
   );
 
   const [addonsChecked, setAddonsChecked] =
-    useState<addonsCheckedType>(initialAddonsChecked);
+    useState<addonsCheckedType>(initalAddonsChecked);
 
   const showProfileData = () => setData(profile);
 
   const nextStep = () => setCurrentStep(currentStep + 1);
   const prevStep = () => setCurrentStep(currentStep - 1);
 
+  const jumpPrevStep = () => setCurrentStep(currentStep - 2);
+
   const step = {
     next: nextStep,
     previous: prevStep,
   };
-
-  console.log(addonsChecked);
 
   const steps = [
     {
@@ -88,7 +87,12 @@ function App() {
         />
       ),
     },
-    { id: 4, component: <Summary previous={prevStep} /> },
+    {
+      id: 4,
+      component: (
+        <Summary previous={prevStep} jumpStep={jumpPrevStep} plan={plan} addons={addonsChecked} />
+      ),
+    },
   ];
 
   steps.forEach((step) => {
@@ -97,29 +101,12 @@ function App() {
     }
   });
 
+  for (const key in addonsChecked) {
+    addonsSelected.push(addonsChecked[key]);
+  }
+
   return (
     <>
-      {data && (
-        <div>
-          <p>{data.name}</p>
-          <p>{data.email}</p>
-          <p>{data.phone}</p>
-        </div>
-      )}
-      {plan.choosePlan != 0 && (
-        <div>
-          <p>{plan.option}</p>
-          <p>{plan.choosePlan}</p>
-        </div>
-      )}
-
-      {addonsChecked && (
-        <div>
-          <p>type 1: {addonsChecked["type_one"]}</p>
-          <p>type 2: {addonsChecked["type_two"]}</p>
-          <p>type 3: {addonsChecked["type_three"]}</p>
-        </div>
-      )}
       <div className="card-wrapper">
         <Sidebar currentStep={currentStep} />
         <div className="contents-wrapper">{component}</div>

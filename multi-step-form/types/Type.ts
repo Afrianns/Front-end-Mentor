@@ -1,36 +1,48 @@
 enum activePlanType {
   none,
-  arcade = "arcade",
-  advanced = "advanced",
-  pro = "pro",
+  arcade = "Arcade",
+  advanced = "Advanced",
+  pro = "Pro",
 }
+
+type ProfileType = {
+  name: string;
+  email: string;
+  phone: string;
+};
+
 type planType = {
   option: string;
   choosePlan: activePlanType;
 };
 
 type paymentTierType = {
-  price: string;
+  price: number;
   msg: string;
 };
 
 type addonsType = {
-  [a: string]: string;
+  [a: string]: {
+    name: string;
+    price: number;
+  };
 };
 
 type addonsCheckedType = {
- [a: string]: boolean 
-}
+  [a: string]: boolean;
+};
 
 type offerType = {
   addons: addonsType;
-  plans:  planPaymentType;
+  plans: planPaymentType;
+  subsriptionType: string;
 };
 
 type planPaymentType = {
-  arcade: paymentTierType;
-  advanced: paymentTierType;
-  pro: paymentTierType;
+  [activePlanType.none]: paymentTierType;
+  [activePlanType.arcade]: paymentTierType;
+  [activePlanType.advanced]: paymentTierType;
+  [activePlanType.pro]: paymentTierType;
 };
 
 type planPaymentOptionsType = {
@@ -42,5 +54,7 @@ export {
   type planType,
   type planPaymentOptionsType,
   type planPaymentType,
-  type addonsCheckedType
+  type addonsCheckedType,
+  type ProfileType,
+  type addonsType,
 };

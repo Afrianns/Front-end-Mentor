@@ -1,46 +1,74 @@
-import { planPaymentOptionsType } from "../types/Type";
+import { activePlanType, planPaymentOptionsType } from "../types/Type";
 
 export const planPaymentOptions: planPaymentOptionsType = {
   monthly: {
     addons: {
-      type_one: "1/mo",
-      type_two: "2/mo",
-      type_three: "2/mo",
+      type_one: {
+        name: "Online service",
+        price: 1,
+      },
+      type_two: {
+        name: "Large storage",
+        price: 2,
+      },
+      type_three: {
+        name: "Customizable profile",
+        price: 2,
+      },
     },
     plans: {
-      arcade: {
-        price: "9/mo",
+      [activePlanType.none]: {
+        price: 0,
         msg: "",
       },
-      advanced: {
-        price: "12/mo",
+      [activePlanType.arcade]: {
+        price: 9,
         msg: "",
       },
-      pro: {
-        price: "15/mo",
+      [activePlanType.advanced]: {
+        price: 12,
+        msg: "",
+      },
+      [activePlanType.pro]: {
+        price: 15,
         msg: "",
       },
     },
+    subsriptionType: "/mo",
   },
   yearly: {
     addons: {
-      type_one: "10/yr",
-      type_two: "20/yr",
-      type_three: "20/yr",
+      type_one: {
+        name: "Online service",
+        price: 10,
+      },
+      type_two: {
+        name: "Large storage",
+        price: 20,
+      },
+      type_three: {
+        name: "Customizable profile",
+        price: 20,
+      },
     },
     plans: {
-      arcade: {
-        price: "90/yr",
+      [activePlanType.none]: {
+        price: 0,
+        msg: "",
+      },
+      [activePlanType.arcade]: {
+        price: 90,
         msg: "2 months free",
       },
-      advanced: {
-        price: "120/yr",
+      [activePlanType.advanced]: {
+        price: 120,
         msg: "2 months free",
       },
-      pro: {
-        price: "150/yr",
+      [activePlanType.pro]: {
+        price: 150,
         msg: "2 months free",
       },
     },
+    subsriptionType: "/yr",
   },
 };
