@@ -15,6 +15,7 @@ import Profile from "./components/first-step/Profile";
 import Plans from "./components/second-step/Plans";
 import Addons from "./components/third-step/Addons";
 import Summary from "./components/fourth-step/Summary";
+import Button from "./components/Button";
 
 const initialProfileData = { name: "", email: "", phone: "" };
 const initialChoosePlan = { option: "", choosePlan: activePlanType.none };
@@ -30,7 +31,7 @@ function App() {
   const [currentStep, setCurrentStep] = useState(1);
   const [plan, setPlan] = useState<planType>(initialChoosePlan);
 
-  const [data, setData] = useState<ProfileType>(initialProfileData);
+  const [_, setProfileData] = useState<ProfileType>(initialProfileData);
   const [profile, setProfile] = useState<ProfileType>(initialProfileData);
 
   const [planTier, setPlanTier] = useState("monthly");
@@ -41,7 +42,7 @@ function App() {
   const [addonsChecked, setAddonsChecked] =
     useState<addonsCheckedType>(initalAddonsChecked);
 
-  const showProfileData = () => setData(profile);
+  const showProfileData = () => setProfileData(profile);
 
   const nextStep = () => {
     if (currentStep == 2) {
@@ -59,6 +60,7 @@ function App() {
   const step = {
     next: nextStep,
     previous: prevStep,
+    currentStep: currentStep,
   };
 
   const steps = [
@@ -66,7 +68,7 @@ function App() {
       id: 1,
       component: (
         <Profile
-          next={nextStep}
+          {...step}
           profile={profile}
           setProfile={setProfile}
           showProfileData={showProfileData}
@@ -78,7 +80,6 @@ function App() {
       component: (
         <Plans
           {...step}
-          setPlan={setPlan}
           activePlan={activePlan}
           setActivePlan={setActivePlan}
           planTier={planTier}
@@ -101,7 +102,7 @@ function App() {
       id: 4,
       component: (
         <Summary
-          previous={prevStep}
+          {...step}
           jumpStep={jumpPrevStep}
           plan={plan}
           addons={addonsChecked}
@@ -130,14 +131,11 @@ function App() {
         </div>
       </div>
       <div className="mobile-bottom-nav-style">
-        {currentStep != 1 && <p onClick={prevStep}>Go Back</p>}
-        {currentStep == 4 ? (
-          <button className="btn-style">Confirm</button>
-        ) : (
-          <button className="btn-style" onClick={nextStep}>
-            Next Step
-          </button>
-        )}
+        <Button
+          prevStep={prevStep}
+          nextStep={nextStep}
+          currentStep={currentStep}
+        />
       </div>
     </>
   );

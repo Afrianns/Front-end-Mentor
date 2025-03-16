@@ -1,10 +1,7 @@
+import Button from "../Button";
 import "./style/style.css";
 
-type ProfileType = {
-  name: string;
-  email: string;
-  phone: string;
-};
+import { ProfileType, buttonParamType } from ".../../../types/Type";
 
 interface propsType {
   next: () => void;
@@ -18,29 +15,13 @@ export default function Profile({
   profile,
   setProfile,
   showProfileData,
-}: propsType) {
+  previous,
+  currentStep,
+}: propsType & buttonParamType) {
   const funcNext = () => {
     showProfileData();
     next();
   };
-
-  // const funcChange = (evt: React.divEvent<HTMLFormElement>) => {
-  //   evt.preventDefault();
-  //   let name = evt.target[
-  //     "name" as keyof typeof evt.target
-  //   ] as unknown as HTMLInputElement;
-  //   let email = evt.target[
-  //     "email" as keyof typeof evt.target
-  //   ] as unknown as HTMLInputElement;
-  //   let phone = evt.target[
-  //     "phone" as keyof typeof evt.target
-  //   ] as unknown as HTMLInputElement;
-
-  //   setProfile((profile: ProfileType[]) => [
-  //     ...profile,
-  //     { name: name.value, email: email.value, phone: phone.value },
-  //   ]);
-  // };
 
   const funcName = (evt: React.FormEvent<HTMLInputElement>) => {
     let name = evt.target as unknown as HTMLInputElement;
@@ -101,9 +82,11 @@ export default function Profile({
         </div>
       </div>
       <div className="desktop-bottom-nav-style">
-        <button className="btn-style" onClick={funcNext}>
-          Next Step
-        </button>
+        <Button
+          prevStep={previous}
+          nextStep={funcNext}
+          currentStep={currentStep}
+        />
       </div>
     </div>
   );

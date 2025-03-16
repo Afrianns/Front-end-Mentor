@@ -1,0 +1,143 @@
+<section
+            onClick={() => changeActivePlan(activePlanType.arcade)}
+            className={
+              activePlan == activePlanType.arcade
+                ? "plan-type-style plan-type-style-active"
+                : "plan-type-style"
+            }
+          >
+            <img src={plansArcade} alt="plan type arcade" />
+            <div className="plan-detail-style">
+              <h4 className="plan-title">Arcade</h4>
+              <p>
+                ${planPayment[activePlanType.arcade].price}
+                {subType}
+              </p>
+            </div>
+            <span className="payment-msg-style">
+              {planPayment[activePlanType.arcade].msg}
+            </span>
+          </section>
+          <section
+            onClick={() => changeActivePlan(activePlanType.advanced)}
+            className={
+              activePlan == activePlanType.advanced
+                ? "plan-type-style plan-type-style-active"
+                : "plan-type-style"
+            }
+          >
+            <img src={plansAdvanced} alt="plan type Advanced" />
+            <div className="plan-detail-style">
+              <h4 className="plan-title">Advanced</h4>
+              <p>
+                ${planPayment[activePlanType.advanced].price}
+                {subType}
+              </p>
+            </div>
+            <span className="payment-msg-style">
+              {planPayment[activePlanType.advanced].msg}
+            </span>
+          </section>
+          <section
+            onClick={() => changeActivePlan(activePlanType.pro)}
+            className={
+              activePlan == activePlanType.pro
+                ? "plan-type-style plan-type-style-active"
+                : "plan-type-style"
+            }
+          >
+            <img src={plansPro} alt="plan type Pro" />
+            <div className="plan-detail-style">
+              <h4 className="plan-title">Pro</h4>
+              <p>
+                ${planPayment[activePlanType.pro].price}
+                {subType}
+              </p>
+            </div>
+            <span className="payment-msg-style">
+              {planPayment[activePlanType.pro].msg}
+            </span>
+          </section>
+
+
+
+ADDONS
+
+<label
+          className={
+            addonsChecked["type_one"]
+              ? "addons-wrapper addons-wrapper-selected"
+              : "addons-wrapper "
+          }
+          htmlFor="online-service"
+        >
+          <div className="addons-detail">
+            <input
+              onChange={(evt) => clickSelectAddons(evt, "type_one")}
+              type="checkbox"
+              name="online-service"
+              checked={addonsChecked["type_one"]}
+              id="online-service"
+            />
+            <div className="addons-detail-info">
+              <h3>Online service</h3>
+              <p className="subtitle">Access to multiplayer games</p>
+            </div>
+          </div>
+          <span>
+            +${addonsTier.addons["type_one"].price}
+            {addonsTier.subsriptionType}
+          </span>
+        </label>
+        <label
+          className={
+            addonsChecked["type_two"]
+              ? "addons-wrapper addons-wrapper-selected"
+              : "addons-wrapper "
+          }
+          htmlFor="large-storage"
+        >
+          <div className="addons-detail">
+            <input
+              onChange={(evt) => clickSelectAddons(evt, "type_two")}
+              type="checkbox"
+              name="large-storage"
+              checked={addonsChecked["type_two"]}
+              id="large-storage"
+            />
+            <div className="addons-detail-info">
+              <h3>Large Storage</h3>
+              <p className="subtitle">Extra 1TB of cloud save</p>
+            </div>
+          </div>
+          <span>
+            +${addonsTier.addons["type_two"].price}
+            {addonsTier.subsriptionType}
+          </span>
+        </label>
+        <label
+          className={
+            addonsChecked["type_three"]
+              ? "addons-wrapper addons-wrapper-selected"
+              : "addons-wrapper "
+          }
+          htmlFor="customizable-profile"
+        >
+          <div className="addons-detail">
+            <input
+              onChange={(evt) => clickSelectAddons(evt, "type_three")}
+              type="checkbox"
+              checked={addonsChecked["type_three"]}
+              name="customizable-profile"
+              id="customizable-profile"
+            />
+            <div className="addons-detail-info">
+              <h3>Customizable Profile</h3>
+              <p className="subtitle">Custom theme on your profile</p>
+            </div>
+          </div>
+          <span>
+            +${addonsTier.addons["type_three"].price}
+            {addonsTier.subsriptionType}
+          </span>
+        </label>

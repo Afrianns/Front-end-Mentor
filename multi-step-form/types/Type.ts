@@ -4,6 +4,12 @@ enum activePlanType {
   advanced = "Advanced",
   pro = "Pro",
 }
+// button type
+interface buttonParamType {
+  currentStep: number;
+  previous: () => void;
+  next: () => void;
+}
 
 type ProfileType = {
   name: string;
@@ -57,4 +63,6 @@ export {
   type addonsCheckedType,
   type ProfileType,
   type addonsType,
+  type buttonParamType,
+  type offerType,
 };

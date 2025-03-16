@@ -5,30 +5,60 @@ import plansArcade from "../../assets/images/icon-arcade.svg";
 import plansAdvanced from "../../assets/images/icon-advanced.svg";
 import plansPro from "../../assets/images/icon-pro.svg";
 
-import { activePlanType, planPaymentType } from "../../../types/Type";
+import {
+  activePlanType,
+  buttonParamType,
+  planPaymentType,
+} from "../../../types/Type";
 import { planPaymentOptions } from "../../../utils/InitialData";
 
-import { propsType } from "./types/Types";
+import Button from "../Button";
+import Plan from "./Plan";
+
+interface propsType {
+  next: () => void;
+  previous: () => void;
+  activePlan: activePlanType;
+  setActivePlan: (n: activePlanType) => void;
+  planTier: string;
+  setPlanTier: (n: (b: string) => string) => void;
+}
+
+const planOptions = [
+  {
+    id: 1,
+    name: "Arcade",
+    imgIcon: plansArcade,
+    planType: activePlanType.arcade,
+  },
+  {
+    id: 2,
+    name: "Advanced",
+    imgIcon: plansAdvanced,
+    planType: activePlanType.advanced,
+  },
+  {
+    id: 3,
+    name: "Pro",
+    imgIcon: plansPro,
+    planType: activePlanType.pro,
+  },
+];
 
 export default function Plans({
   next,
   previous,
-  setPlan,
   activePlan,
   setActivePlan,
   planTier,
   setPlanTier,
-}: propsType) {
+  currentStep,
+}: propsType & buttonParamType) {
+  const subType = planPaymentOptions[planTier].subsriptionType;
+  const updatePlanOptions = useRef(false);
   const [planPayment, setPlanPayment] = useState<planPaymentType>(
     planPaymentOptions[planTier].plans
   );
-  const subType = planPaymentOptions[planTier].subsriptionType;
-  const updatePlanOptions = useRef(false);
-
-  const funcPrevious = () => previous();
-  const funcNext = () => {
-    next();
-  };
 
   if (updatePlanOptions.current) {
     setPlanPayment({ ...planPaymentOptions[planTier].plans });
@@ -42,9 +72,7 @@ export default function Plans({
     );
   };
 
-  const changeActivePlan = (type: activePlanType) => {
-    setActivePlan(type);
-  };
+  const changeActivePlan = (type: activePlanType) => setActivePlan(type);
 
   return (
     <div className="content-pos-wrapper">
@@ -54,66 +82,16 @@ export default function Plans({
           You have the options of monthly or yearly billing.
         </p>
         <div className="plans-type-wrapper">
-          <section
-            onClick={() => changeActivePlan(activePlanType.arcade)}
-            className={
-              activePlan == activePlanType.arcade
-                ? "plan-type-style plan-type-style-active"
-                : "plan-type-style"
-            }
-          >
-            <img src={plansArcade} alt="plan type arcade" />
-            <div className="plan-detail-style">
-              <h4 className="plan-title">Arcade</h4>
-              <p>
-                ${planPayment[activePlanType.arcade].price}
-                {subType}
-              </p>
-            </div>
-            <span className="payment-msg-style">
-              {planPayment[activePlanType.arcade].msg}
-            </span>
-          </section>
-          <section
-            onClick={() => changeActivePlan(activePlanType.advanced)}
-            className={
-              activePlan == activePlanType.advanced
-                ? "plan-type-style plan-type-style-active"
-                : "plan-type-style"
-            }
-          >
-            <img src={plansAdvanced} alt="plan type Advanced" />
-            <div className="plan-detail-style">
-              <h4 className="plan-title">Advanced</h4>
-              <p>
-                ${planPayment[activePlanType.advanced].price}
-                {subType}
-              </p>
-            </div>
-            <span className="payment-msg-style">
-              {planPayment[activePlanType.advanced].msg}
-            </span>
-          </section>
-          <section
-            onClick={() => changeActivePlan(activePlanType.pro)}
-            className={
-              activePlan == activePlanType.pro
-                ? "plan-type-style plan-type-style-active"
-                : "plan-type-style"
-            }
-          >
-            <img src={plansPro} alt="plan type Pro" />
-            <div className="plan-detail-style">
-              <h4 className="plan-title">Pro</h4>
-              <p>
-                ${planPayment[activePlanType.pro].price}
-                {subType}
-              </p>
-            </div>
-            <span className="payment-msg-style">
-              {planPayment[activePlanType.pro].msg}
-            </span>
-          </section>
+          {planOptions.map((plan) => (
+            <Plan
+              key={plan.id}
+              {...plan}
+              changeActivePlan={changeActivePlan}
+              subType={subType}
+              planPayment={planPayment}
+              activePlan={activePlan}
+            />
+          ))}
         </div>
         <div className="options-style">
           <p className={planTier == "monthly" ? "type-plan-style" : ""}>
@@ -133,10 +111,7 @@ export default function Plans({
         </div>
       </div>
       <div className="desktop-bottom-nav-style">
-        <p onClick={funcPrevious}>Go Back</p>
-        <button className="btn-style" onClick={funcNext}>
-          Next Step
-        </button>
+        <Button prevStep={previous} nextStep={next} currentStep={currentStep} />
       </div>
     </div>
   );

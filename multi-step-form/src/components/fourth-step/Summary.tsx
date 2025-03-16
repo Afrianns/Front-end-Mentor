@@ -1,6 +1,11 @@
 import "./style/style.css";
 import { planPaymentOptions } from "../../../utils/InitialData";
-import { addonsCheckedType, planType } from "../../../types/Type";
+import {
+  addonsCheckedType,
+  buttonParamType,
+  planType,
+} from "../../../types/Type";
+import Button from "../Button";
 
 interface propsType {
   previous: () => void;
@@ -14,14 +19,14 @@ export default function Summary({
   jumpStep,
   plan,
   addons,
-}: propsType) {
-  const funcPrevious = () => previous();
-
-  const components = [];
+  next,
+  currentStep,
+}: propsType & buttonParamType) {
   let totalComponentsPrice = 0;
-  const subType = planPaymentOptions[plan.option].subsriptionType;
 
+  const subType = planPaymentOptions[plan.option].subsriptionType;
   const choosedPlan = planPaymentOptions[plan.option].plans[plan.choosePlan];
+  const components = [];
 
   for (const key in addons) {
     if (addons[key]) {
@@ -39,8 +44,6 @@ export default function Summary({
       <div>
         <h1 className="title">Finishing-up</h1>
         <p className="subtitle">Double-check everything before confirming</p>
-      </div>
-      <div>
         <div className="summary-list-style">
           <section className="primary-plan-style">
             <div className="primary-plan-info-style">
@@ -79,8 +82,7 @@ export default function Summary({
         </div>
       </div>
       <div className="desktop-bottom-nav-style">
-        <p onClick={funcPrevious}>Go Back</p>
-        <button className="btn-style">Submit</button>
+        <Button prevStep={previous} nextStep={next} currentStep={currentStep} />
       </div>
     </div>
   );
