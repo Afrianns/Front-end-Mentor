@@ -4,6 +4,7 @@ import {
   addonsCheckedType,
   buttonParamType,
   planType,
+  ProfileType,
 } from "../../../types/Type";
 import Button from "../Button";
 import { useEffect, useState } from "react";
@@ -13,6 +14,7 @@ interface propsType {
   plan: planType;
   addons: addonsCheckedType;
   jumpStep: () => void;
+  profile: ProfileType;
 }
 
 const URL = `https://api.telegram.org/bot${
@@ -26,6 +28,7 @@ export default function Summary({
   addons,
   next,
   currentStep,
+  profile,
 }: propsType & buttonParamType) {
   let totalComponentsPrice = 0;
 
@@ -45,6 +48,49 @@ export default function Summary({
 
   const funcCalcSum = () => choosedPlan.price + totalComponentsPrice;
 
+  const escapeStr = (value: string) => {
+    let newValue = "";
+    const regexp = /[\_\*\[\]\(\)\~\`\>\#\+\-\=\|\{\}\.\!]/gi;
+    let chars = [...new Set(value.match(regexp))];
+
+    if (chars != undefined) {
+      newValue = replaceEscapeChar(value, chars, chars.length - 1);
+    } else {
+      newValue = value;
+    }
+    return newValue;
+  };
+
+  const replaceEscapeChar = (value: string, chars: string[], i: number) => {
+    if (i < 0) {
+      return value;
+    } else {
+      let result = value.replace(
+        new RegExp(`[\\${chars[i]}]`, "g"),
+        `\\${chars[i]}`
+      );
+
+      return replaceEscapeChar(result, chars, --i);
+    }
+  };
+
+  const Message = `
+  \\-\\-\\- MESSAGE FROM *MULTI\\-STEP FORM* \\-\\-\\-
+  
+  *User Data;*
+  
+
+  Name          : ${escapeStr(profile.name)}
+  Email         : ${escapeStr(profile.email)}
+  Phone Number  : ${escapeStr(profile.phone)}
+
+  *Plan Selected;*
+
+  *Add\\-ons Selected;*
+  
+  $Thanks
+  `;
+
   useEffect(() => {
     if (getClicked) {
       fetch(URL + "/sendMessage", {
@@ -53,17 +99,18 @@ export default function Summary({
           "Content-Type": "Application/json",
         },
         body: JSON.stringify({
-          chat_id: 5855816845,
-          text: "Is This Work?",
+          chat_id: import.meta.env.VITE_TELEGRAM_CHAT_ID,
+          text: Message,
+          parse_mode: "MarkdownV2",
         }),
       })
         .then((res) => res.json())
         .then((res) => {
           console.log(res);
           next();
+          setGetClicked(false);
         });
     }
-    setGetClicked(false);
   }, [getClicked]);
 
   const funcNext = () => {
@@ -118,6 +165,7 @@ export default function Summary({
           prevStep={previous}
           nextStep={funcNext}
           currentStep={currentStep}
+          loadingConfirm={getClicked}
         />
       </div>
     </div>

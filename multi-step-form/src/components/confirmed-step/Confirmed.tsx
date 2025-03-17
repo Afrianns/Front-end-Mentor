@@ -8,7 +8,7 @@ export default function Confirmed() {
       <h1 className="title">Thank You!</h1>
       <p className="subtitle">
         Thanks for confirming your subscription! We hope you have fun using our
-        platform. If you ever need support, please feel free to email us at{" "}
+        platform. If you find bugs, please feel free to email us at{" "}
         <a href="mailto:hanifnafrian12@gmail.com">hanifnafrian12@gmail.com.</a>
       </p>
     </div>

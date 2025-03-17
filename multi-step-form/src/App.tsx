@@ -147,6 +147,7 @@ function App() {
           jumpStep={jumpPrevStep}
           plan={plan}
           addons={addonsChecked}
+          profile={profile}
         />
       ),
     },
