@@ -1,0 +1,17 @@
+.confirmed-style {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
+.confirmed-style a {
+  color: var(--Cool-gray);
+  font-weight: 500;
+}
+
+.confirmed-style img {
+  width: 25%;
+}

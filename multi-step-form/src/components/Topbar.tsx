@@ -15,7 +15,11 @@ export default function Sidebar({ currentStep }: React.ComponentState) {
           <span className={currentStep == 3 ? "active" : ""}>3</span>
         </li>
         <li>
-          <span className={currentStep == 4 ? "active" : ""}>4</span>
+          <span
+            className={currentStep == 4 || currentStep == 5 ? "active" : ""}
+          >
+            4
+          </span>
         </li>
       </ul>
     </div>

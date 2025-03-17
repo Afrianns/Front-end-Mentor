@@ -5,16 +5,19 @@ interface propsType {
 }
 
 export default function Button({ currentStep, prevStep, nextStep }: propsType) {
+  let btnName = "";
+
+  if (currentStep == 4) {
+    btnName = "Confirm";
+  } else {
+    btnName = "Next Step";
+  }
   return (
     <>
       {currentStep != 1 && <p onClick={prevStep}>Go Back</p>}
-      {currentStep == 4 ? (
-        <button className="btn-style">Confirm</button>
-      ) : (
-        <button className="btn-style" onClick={nextStep}>
-          Next Step
-        </button>
-      )}
+      <button className="btn-style" onClick={nextStep}>
+        {btnName}
+      </button>
     </>
   );
 }

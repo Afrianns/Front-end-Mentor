@@ -18,6 +18,7 @@ import Plans from "./components/second-step/Plans";
 import Addons from "./components/third-step/Addons";
 import Summary from "./components/fourth-step/Summary";
 import Button from "./components/Button";
+import Confirmed from "./components/confirmed-step/Confirmed";
 
 const initialProfileData = { name: "", email: "", phone: "" };
 const initialChoosePlan = { option: "", choosePlan: activePlanType.none };
@@ -148,6 +149,10 @@ function App() {
           addons={addonsChecked}
         />
       ),
+    },
+    {
+      id: 5,
+      component: <Confirmed />,
     },
   ];
 

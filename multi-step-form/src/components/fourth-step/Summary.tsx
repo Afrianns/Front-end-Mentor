@@ -6,6 +6,7 @@ import {
   planType,
 } from "../../../types/Type";
 import Button from "../Button";
+import { useEffect, useState } from "react";
 
 interface propsType {
   previous: () => void;
@@ -13,6 +14,10 @@ interface propsType {
   addons: addonsCheckedType;
   jumpStep: () => void;
 }
+
+const URL = `https://api.telegram.org/bot${
+  import.meta.env.VITE_TELEGRAM_API_TOKEN
+}`;
 
 export default function Summary({
   previous,
@@ -28,6 +33,8 @@ export default function Summary({
   const choosedPlan = planPaymentOptions[plan.option].plans[plan.choosePlan];
   const components = [];
 
+  const [getClicked, setGetClicked] = useState(false);
+
   for (const key in addons) {
     if (addons[key]) {
       let data = planPaymentOptions[plan.option].addons[key];
@@ -37,6 +44,31 @@ export default function Summary({
   }
 
   const funcCalcSum = () => choosedPlan.price + totalComponentsPrice;
+
+  useEffect(() => {
+    if (getClicked) {
+      fetch(URL + "/sendMessage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "Application/json",
+        },
+        body: JSON.stringify({
+          chat_id: 5855816845,
+          text: "Is This Work?",
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          next();
+        });
+    }
+    setGetClicked(false);
+  }, [getClicked]);
+
+  const funcNext = () => {
+    if (currentStep == 4) setGetClicked(true);
+  };
 
   const funcChangePlan = () => jumpStep();
   return (
@@ -82,7 +114,11 @@ export default function Summary({
         </div>
       </div>
       <div className="desktop-bottom-nav-style">
-        <Button prevStep={previous} nextStep={next} currentStep={currentStep} />
+        <Button
+          prevStep={previous}
+          nextStep={funcNext}
+          currentStep={currentStep}
+        />
       </div>
     </div>
   );
