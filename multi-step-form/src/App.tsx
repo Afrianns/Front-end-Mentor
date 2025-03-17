@@ -1,7 +1,9 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
+
+import InputErrorReducer from "../utils/InputErrorReducer";
 
 import {
   activePlanType,
@@ -19,11 +21,21 @@ import Button from "./components/Button";
 
 const initialProfileData = { name: "", email: "", phone: "" };
 const initialChoosePlan = { option: "", choosePlan: activePlanType.none };
+
 const initalAddonsChecked = {
   type_one: false,
   type_two: false,
   type_three: false,
 };
+
+let initialErrorInput = {
+  name: { isError: false },
+  email: { isError: false },
+  phone: { isError: false },
+};
+
+const inputsList = ["name", "email", "phone"];
+
 function App() {
   let component;
   let addonsSelected = [];
@@ -31,7 +43,6 @@ function App() {
   const [currentStep, setCurrentStep] = useState(1);
   const [plan, setPlan] = useState<planType>(initialChoosePlan);
 
-  const [_, setProfileData] = useState<ProfileType>(initialProfileData);
   const [profile, setProfile] = useState<ProfileType>(initialProfileData);
 
   const [planTier, setPlanTier] = useState("monthly");
@@ -39,10 +50,15 @@ function App() {
     activePlanType.none
   );
 
+  const [isSelected, setIsSelected] = useState(false);
+
+  const [errorInput, dispatch] = useReducer(
+    InputErrorReducer,
+    initialErrorInput
+  );
+
   const [addonsChecked, setAddonsChecked] =
     useState<addonsCheckedType>(initalAddonsChecked);
-
-  const showProfileData = () => setProfileData(profile);
 
   const nextStep = () => {
     if (currentStep == 2) {
@@ -51,6 +67,29 @@ function App() {
         choosePlan: activePlan,
       });
     }
+
+    if (currentStep == 1) {
+      // check if error then show error messages
+      inputsList.forEach((inputOption: string) => {
+        dispatch({
+          type: inputOption.toUpperCase(),
+          isError: !profile?.[inputOption],
+        });
+      });
+
+      // if profile data filled, go next section
+      if (!profile?.name || !profile?.email || !profile?.phone) {
+        console.log("hello");
+        return;
+      }
+    } else if (currentStep == 2) {
+      // prevent user to continue if plan isn't selected
+      const isSelected = activePlan == activePlanType.none;
+
+      setIsSelected(isSelected);
+      if (isSelected) return;
+    }
+
     setCurrentStep(currentStep + 1);
   };
 
@@ -71,7 +110,7 @@ function App() {
           {...step}
           profile={profile}
           setProfile={setProfile}
-          showProfileData={showProfileData}
+          errorInput={errorInput}
         />
       ),
     },
@@ -83,6 +122,7 @@ function App() {
           activePlan={activePlan}
           setActivePlan={setActivePlan}
           planTier={planTier}
+          isSelected={isSelected}
           setPlanTier={setPlanTier}
         />
       ),
@@ -126,7 +166,7 @@ function App() {
       <Topbar currentStep={currentStep} />
       <div className="card-wrapper">
         <Sidebar currentStep={currentStep} />
-        <div style={{ padding: "2rem" }}>
+        <div className="wrapper-gap">
           <div className="contents-wrapper">{component}</div>
         </div>
       </div>

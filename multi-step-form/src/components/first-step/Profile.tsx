@@ -1,48 +1,64 @@
 import Button from "../Button";
 import "./style/style.css";
 
-import { ProfileType, buttonParamType } from ".../../../types/Type";
+import { ProfileType, buttonParamType, stateType } from ".../../../types/Type";
+import React, { Fragment } from "react";
 
 interface propsType {
   next: () => void;
   profile: ProfileType | null;
   setProfile: (params: (profile: ProfileType) => ProfileType) => void;
-  showProfileData: () => void;
+  errorInput: stateType;
 }
+
+type evtType = React.FormEvent<HTMLInputElement>;
 
 export default function Profile({
   next,
   profile,
   setProfile,
-  showProfileData,
   previous,
+  errorInput,
   currentStep,
 }: propsType & buttonParamType) {
   const funcNext = () => {
-    showProfileData();
     next();
   };
 
-  const funcName = (evt: React.FormEvent<HTMLInputElement>) => {
-    let name = evt.target as unknown as HTMLInputElement;
-    setProfile((profile: ProfileType) => ({ ...profile, name: name.value }));
-  };
-
-  const funcEmail = (evt: React.FormEvent<HTMLInputElement>) => {
-    let email = evt.target as unknown as HTMLInputElement;
+  const funcSetProfileData = (evt: evtType, name: string) => {
+    const input = evt.target as unknown as HTMLInputElement;
     setProfile((profile: ProfileType) => ({
       ...profile,
-      email: email.value,
+      [name]: input.value,
     }));
   };
 
-  const funcPhone = (evt: React.FormEvent<HTMLInputElement>) => {
-    let phone = evt.target as unknown as HTMLInputElement;
-    setProfile((profile: ProfileType) => ({
-      ...profile,
-      phone: phone.value,
-    }));
-  };
+  const inputList = [
+    {
+      id: 1,
+      name: "Name",
+      inputKey: "name",
+      saveValueFunc: (evt: evtType) => funcSetProfileData(evt, "name"),
+      placeholder: "e.g. andreas",
+      inputType: "text",
+    },
+    {
+      id: 2,
+      name: "Email",
+      inputKey: "email",
+      saveValueFunc: (evt: evtType) => funcSetProfileData(evt, "email"),
+      placeholder: "e.g. andreas@email.com",
+      inputType: "email",
+    },
+    {
+      id: 3,
+      name: "Phone Number",
+      inputKey: "phone",
+      saveValueFunc: (evt: evtType) => funcSetProfileData(evt, "phone"),
+      placeholder: "e.g. +62895325396604",
+      inputType: "text",
+    },
+  ];
 
   return (
     <div className="content-pos-wrapper">
@@ -53,32 +69,32 @@ export default function Profile({
         </p>
 
         <div className="form-style">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            name="name"
-            onChange={funcName}
-            value={profile?.name}
-            placeholder="type your name"
-          />
-
-          <label htmlFor="email">Email Address</label>
-          <input
-            type="email"
-            name="email"
-            onChange={funcEmail}
-            value={profile?.email}
-            placeholder="type your email"
-          />
-
-          <label htmlFor="phone">Phone Number</label>
-          <input
-            type="text"
-            name="phone"
-            placeholder="type your phone number"
-            onChange={funcPhone}
-            value={profile?.phone}
-          />
+          {inputList.map((data) => {
+            return (
+              <Fragment key={data.id}>
+                <div className="input-info-style">
+                  <label htmlFor={data.inputKey}>{data.name}</label>
+                  <span
+                    className={
+                      errorInput[data.inputKey].isError ? "error-info-name" : ""
+                    }
+                  >
+                    {data.name} is required
+                  </span>
+                </div>
+                <input
+                  type={data.inputType}
+                  name={data.inputKey}
+                  className={
+                    errorInput[data.inputKey].isError ? "error-input-style" : ""
+                  }
+                  onChange={data.saveValueFunc}
+                  value={profile?.[data.inputKey]}
+                  placeholder={data.placeholder}
+                />
+              </Fragment>
+            );
+          })}
         </div>
       </div>
       <div className="desktop-bottom-nav-style">

@@ -5,6 +5,8 @@ import plansArcade from "../../assets/images/icon-arcade.svg";
 import plansAdvanced from "../../assets/images/icon-advanced.svg";
 import plansPro from "../../assets/images/icon-pro.svg";
 
+import Exclamation from "./../../assets/images/exclamation-mark.svg";
+
 import {
   activePlanType,
   buttonParamType,
@@ -22,6 +24,7 @@ interface propsType {
   setActivePlan: (n: activePlanType) => void;
   planTier: string;
   setPlanTier: (n: (b: string) => string) => void;
+  isSelected: boolean;
 }
 
 const planOptions = [
@@ -53,6 +56,7 @@ export default function Plans({
   planTier,
   setPlanTier,
   currentStep,
+  isSelected,
 }: propsType & buttonParamType) {
   const subType = planPaymentOptions[planTier].subsriptionType;
   const updatePlanOptions = useRef(false);
@@ -108,6 +112,10 @@ export default function Plans({
           <p className={planTier == "yearly" ? "type-plan-style" : ""}>
             Yearly
           </p>
+        </div>
+        <div className={isSelected ? "warn-info-plan-style" : "hide-style"}>
+          <img src={Exclamation} alt="" />
+          <p>Choose plan first to continue</p>
         </div>
       </div>
       <div className="desktop-bottom-nav-style">

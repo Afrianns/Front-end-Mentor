@@ -35,9 +35,14 @@
 }
 
 .addons-detail-info {
-  line-height: 2px;
+  padding: 0.8em;
+}
+.addons-detail-info > * {
+  margin: 0;
 }
 
 .addons-wrapper span {
   color: var(--Purplish-blue);
 }
+
+

@@ -1,4 +1,4 @@
-enum activePlanType {
+export enum activePlanType {
   none,
   arcade = "Arcade",
   advanced = "Advanced",
@@ -12,9 +12,7 @@ interface buttonParamType {
 }
 
 type ProfileType = {
-  name: string;
-  email: string;
-  phone: string;
+  [a: string]: string;
 };
 
 type planType = {
@@ -55,14 +53,28 @@ type planPaymentOptionsType = {
   [a: string]: offerType;
 };
 
-export {
-  activePlanType,
-  type planType,
-  type planPaymentOptionsType,
-  type planPaymentType,
-  type addonsCheckedType,
-  type ProfileType,
-  type addonsType,
-  type buttonParamType,
-  type offerType,
+// reducer types
+type stateInsideType = {
+  [a: string]: boolean;
+};
+interface stateType {
+  [a: string]: stateInsideType;
+}
+
+type actionType = {
+  type: string;
+  isError: boolean;
+};
+
+export type {
+  planType,
+  planPaymentOptionsType,
+  planPaymentType,
+  addonsCheckedType,
+  ProfileType,
+  addonsType,
+  buttonParamType,
+  offerType,
+  stateType,
+  actionType,
 };

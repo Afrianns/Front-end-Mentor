@@ -36,8 +36,8 @@ export default function Plan({
             ${planPayment[planType].price}
             {subType}
           </p>
+          <span className="payment-msg-style">{planPayment[planType].msg}</span>
         </div>
-        <span className="payment-msg-style">{planPayment[planType].msg}</span>
       </section>
     </>
   );

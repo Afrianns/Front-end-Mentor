@@ -4,6 +4,10 @@
   text-align: center;
 }
 
+.wrapper-gap {
+  padding: 2rem;
+}
+
 /* font main style */
 .title {
   font-weight: 700;
@@ -154,7 +158,7 @@
   padding: 0;
   position: absolute;
   list-style: none;
-  top: 25%;
+  top: 5rem;
   left: 0;
   right: 0;
   gap: 2rem;
@@ -190,5 +194,17 @@
     margin: auto;
     width: 26rem;
     height: 100%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .contents-wrapper {
+    margin: 0;
+  }
+  .mobile-list-menu span {
+    padding: 1rem 1.2rem;
+  }
+  .wrapper-gap {
+    padding: 0;
   }
 }
