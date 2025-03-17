@@ -1,5 +1,3 @@
-import { useRef, useState } from "react";
-
 interface propsType {
   currentStep: number;
   prevStep: () => void;
