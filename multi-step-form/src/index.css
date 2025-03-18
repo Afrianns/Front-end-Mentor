@@ -1,8 +1,4 @@
 :root {
-  @import url("./assets/fonts/Ubuntu-Bold.ttf");
-  @import url("./assets/fonts/Ubuntu-Medium.ttf");
-  @import url("./assets/fonts/Ubuntu-Regular.ttf");
-
   /* Primary */
   --Marine-blue: hsl(213, 96%, 18%);
   --Purplish-blue: hsl(243, 100%, 62%);
@@ -17,9 +13,12 @@
   --Alabaster: hsl(231, 100%, 99%);
   --White: hsl(0, 0%, 100%);
 
-  font-family: "ubuntu", sans-serif;
   color: var(--Marine-blue);
   background-color: var(--Magnolia);
+}
+
+* {
+  font-family: "ubuntu", sans-serif;
 }
 
 body {
