@@ -21,6 +21,11 @@ const URL = `https://api.telegram.org/bot${
   import.meta.env.VITE_TELEGRAM_API_TOKEN
 }`;
 
+type componentType = {
+  name: string;
+  price: number;
+};
+
 export default function Summary({
   previous,
   jumpStep,
@@ -34,7 +39,7 @@ export default function Summary({
 
   const subType = planPaymentOptions[plan.option].subsriptionType;
   const choosedPlan = planPaymentOptions[plan.option].plans[plan.choosePlan];
-  const components = [];
+  const components: componentType[] = [];
 
   const [getClicked, setGetClicked] = useState(false);
 
@@ -48,6 +53,7 @@ export default function Summary({
 
   const funcCalcSum = () => choosedPlan.price + totalComponentsPrice;
 
+  // Escape string character form input to telegram API parse
   const escapeStr = (value: string) => {
     let newValue = "";
     const regexp = /[\_\*\[\]\(\)\~\`\>\#\+\-\=\|\{\}\.\!]/gi;
@@ -74,23 +80,57 @@ export default function Summary({
     }
   };
 
-  const Message = `
-  \\-\\-\\- MESSAGE FROM *MULTI\\-STEP FORM* \\-\\-\\-
-  
-  *User Data;*
-  
+  // render multiple choosed Addons to Message
+  const renderAddons = () => {
+    let strs = "";
+    components.forEach((component) => {
+      strs += `${component.name}     : *$${component.price}${subType}*\n  `;
+    });
 
+    return strs;
+  };
+
+  // string literal Message for Telegram
+  const Message = `
+  ${escapeStr("-----------")}*MESSAGE FROM MULTI\\-STEP FORM*${escapeStr(
+    "-----------"
+  )}
+  
+  ${escapeStr("-------------------------------")}*User Data*${escapeStr(
+    "--------------------------------"
+  )}
   Name          : ${escapeStr(profile.name)}
   Email         : ${escapeStr(profile.email)}
   Phone Number  : ${escapeStr(profile.phone)}
 
-  *Plan Selected;*
+  ${escapeStr("+-------------------------")}*Plan Selected*${escapeStr(
+    "----------------------------+"
+  )}
+  ${plan.choosePlan} \\(${plan.option}\\)     : *$${
+    choosedPlan.price
+  }${subType}*
 
-  *Add\\-ons Selected;*
+
+  ${escapeStr("+----------------------")}*Add\\-ons Selected*${escapeStr(
+    "------------------------+"
+  )}
+  ${renderAddons()}
+
+  ${escapeStr(
+    "+---------------------------------------------------------------------------+"
+  )}
+  *Total Price*         : *$${
+    choosedPlan.price + totalComponentsPrice
+  }${subType}*
   
+  *P\\.S*: ${escapeStr(
+    profile.name
+  ).toLowerCase()} need to _pay_ every *${plan.option.replace("ly", "")}*\\.
+
   $Thanks
   `;
 
+  // send post request to Telegram API
   useEffect(() => {
     if (getClicked) {
       fetch(URL + "/sendMessage", {
@@ -114,6 +154,7 @@ export default function Summary({
   }, [getClicked]);
 
   const funcNext = () => {
+    // check if already on summary section to call post request
     if (currentStep == 4) setGetClicked(true);
   };
 
@@ -135,7 +176,7 @@ export default function Summary({
             </div>
             <p>
               ${choosedPlan.price}
-              {planPaymentOptions[plan.option].subsriptionType}
+              {subType}
             </p>
           </section>
           <hr />
