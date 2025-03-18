@@ -43,7 +43,7 @@
   left: 0;
   right: 0;
   background-color: var(--White);
-  padding: 2rem;
+  padding: 1rem;
   box-shadow: 1px 1px 10px var(--Light-gray);
 }
 
