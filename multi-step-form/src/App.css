@@ -1,5 +1,6 @@
 #root {
   max-width: 1280px;
+  height: 100%;
   margin: 0 auto;
   text-align: center;
 }
@@ -42,7 +43,7 @@
   left: 0;
   right: 0;
   background-color: var(--White);
-  padding: 1rem 2rem;
+  padding: 2rem;
   box-shadow: 1px 1px 10px var(--Light-gray);
 }
 
@@ -102,7 +103,7 @@
 .desktop-list-menu {
   list-style: none;
   position: absolute;
-  top: 1rem;
+  top: 2rem;
 }
 
 .desktop-list-menu li {

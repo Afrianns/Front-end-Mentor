@@ -4,6 +4,14 @@ export enum activePlanType {
   advanced = "Advanced",
   pro = "Pro",
 }
+
+export enum sendStatusEnum {
+  none,
+  sending,
+  success,
+  failed,
+}
+
 // button type
 interface buttonParamType {
   currentStep: number;
@@ -66,6 +74,16 @@ type actionType = {
   isError: boolean;
 };
 
+type componentType = {
+  name: string;
+  price: number;
+};
+
+type choosedPlanType = {
+  msg: string;
+  price: number;
+};
+
 export type {
   planType,
   planPaymentOptionsType,
@@ -77,4 +95,6 @@ export type {
   offerType,
   stateType,
   actionType,
+  componentType,
+  choosedPlanType,
 };

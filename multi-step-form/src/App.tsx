@@ -3,6 +3,7 @@ import { useState, useReducer } from "react";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
 
+
 import InputErrorReducer from "../utils/InputErrorReducer";
 
 import {
@@ -10,6 +11,7 @@ import {
   planType,
   addonsCheckedType,
   ProfileType,
+  sendStatusEnum,
 } from "../types/Type";
 
 // steps components
@@ -38,6 +40,7 @@ let initialErrorInput = {
 const inputsList = ["name", "email", "phone"];
 
 function App() {
+  // initial Variable / useState variable
   let component;
   let addonsSelected = [];
 
@@ -51,6 +54,9 @@ function App() {
     activePlanType.none
   );
 
+  const [sendStatus, setSendStatus] = useState<sendStatusEnum>(
+    sendStatusEnum.none
+  );
   const [isSelected, setIsSelected] = useState(false);
 
   const [errorInput, dispatch] = useReducer(
@@ -61,14 +67,12 @@ function App() {
   const [addonsChecked, setAddonsChecked] =
     useState<addonsCheckedType>(initalAddonsChecked);
 
-  const nextStep = () => {
-    if (currentStep == 2) {
-      setPlan({
-        option: planTier,
-        choosePlan: activePlan,
-      });
-    }
+  // jump to next step
+  const prevStep = () => setCurrentStep(currentStep - 1);
+  const jumpPrevStep = () => setCurrentStep(currentStep - 2);
 
+  // step function
+  const nextStep = () => {
     if (currentStep == 1) {
       // check if error then show error messages
       inputsList.forEach((inputOption: string) => {
@@ -84,18 +88,22 @@ function App() {
         return;
       }
     } else if (currentStep == 2) {
+      setPlan({
+        option: planTier,
+        choosePlan: activePlan,
+      });
+
       // prevent user to continue if plan isn't selected
       const isSelected = activePlan == activePlanType.none;
 
       setIsSelected(isSelected);
       if (isSelected) return;
+    } else if (currentStep == 4) {
+      // set status to sending so summary getData will be trigger
+      return setSendStatus(sendStatusEnum.sending);
     }
-
     setCurrentStep(currentStep + 1);
   };
-
-  const prevStep = () => setCurrentStep(currentStep - 1);
-  const jumpPrevStep = () => setCurrentStep(currentStep - 2);
 
   const step = {
     next: nextStep,
@@ -103,6 +111,9 @@ function App() {
     currentStep: currentStep,
   };
 
+  if (sendStatus === sendStatusEnum.success && currentStep == 4) {
+    setCurrentStep(currentStep + 1);
+  }
   const steps = [
     {
       id: 1,
@@ -146,8 +157,10 @@ function App() {
           {...step}
           jumpStep={jumpPrevStep}
           plan={plan}
-          addons={addonsChecked}
           profile={profile}
+          addons={addonsChecked}
+          sendStatus={sendStatus}
+          setSendStatus={setSendStatus}
         />
       ),
     },
@@ -176,13 +189,16 @@ function App() {
           <div className="contents-wrapper">{component}</div>
         </div>
       </div>
-      <div className="mobile-bottom-nav-style">
-        <Button
-          prevStep={prevStep}
-          nextStep={nextStep}
-          currentStep={currentStep}
-        />
-      </div>
+      {currentStep != 5 && (
+        <div className="mobile-bottom-nav-style">
+          <Button
+            prevStep={prevStep}
+            nextStep={nextStep}
+            currentStep={currentStep}
+            loadingConfirm={sendStatus}
+          />
+        </div>
+      )}
     </>
   );
 }
