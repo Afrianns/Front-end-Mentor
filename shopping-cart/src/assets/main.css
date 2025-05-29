@@ -1,0 +1,134 @@
+@import './base.css';
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+}
+
+header {
+  line-height: 1.5;
+}
+
+footer {
+  text-align: center;
+  margin-top: auto;
+}
+
+/* Incre + Decre style icon */
+.border-icon {
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 50px;
+  padding: 0.2rem;
+  fill: #fff;
+  display: flex;
+}
+
+.border-icon svg {
+  width: 0.6rem;
+}
+
+.border-icon:hover {
+  background-color: #fff;
+}
+
+.border-icon:hover svg path {
+  fill: var(--Red);
+}
+
+/* product on cart */
+.product-on-cart-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--Rose-100);
+}
+
+.product-on-cart {
+  padding: 0.75rem 0;
+  border-radius: 10px;
+}
+
+.product-on-cart h4 {
+  color: var(--Rose-900);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.product-cart {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.product-cart > * {
+  margin: 0.5rem 0;
+  color: var(--Rose-500);
+}
+
+.product-cart .quantity {
+  color: var(--Red);
+  font-weight: 600;
+}
+
+.total-price {
+  font-weight: 700;
+}
+
+.product-on-cart > * {
+  margin: 0;
+}
+
+/* All Total Price */
+.all-total-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.all-total-price h3 {
+  font-size: 1.5rem;
+}
+
+/* button style  */
+
+.order-btn {
+  outline: none;
+  background-color: var(--Red);
+  color: #fff;
+  width: 100%;
+  border: 0;
+  padding: 0.85rem 0.7rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.order-btn:hover {
+  background-color: hsl(14, 84%, 39%);
+}
+
+/* footer credit style */
+.attribution {
+  position: sticky;
+  bottom: 0;
+  color: rgb(52, 52, 52);
+  font-size: 0.75rem;
+}
+
+.attribution a {
+  color: rgb(203, 66, 32);
+}
+
+.gap {
+  margin: 0 0.7rem;
+}
+
+@media screen and (max-width: 500px) {
+  #app {
+    padding: 1rem;
+  }
+}
