@@ -31,7 +31,7 @@ defineProps<{ productOnCart: productOnCartType[], counts: { [id: string]: number
                     <h3>{{ totalPrices }}</h3>
                 </div>
                 <div class="carbon-neutral">
-                    <img src="./assets/images/icon-carbon-neutral.svg" alt="">
+                    <img src="../assets/images/icon-carbon-neutral.svg" alt="">
                     <p>This is <strong>carbon-neutral</strong> delivery</p>
                 </div>
                 <button class="order-btn" @click="$emit('showPopup')">Confirm Order</button>
