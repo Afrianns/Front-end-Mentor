@@ -5,3 +5,7 @@ export type productOnCartType = {
   category: string
   price: number
 }
+
+export type imagesType = {
+  [a: string]: string
+}

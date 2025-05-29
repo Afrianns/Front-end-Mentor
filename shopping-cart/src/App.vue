@@ -12,13 +12,18 @@ import PopupConfirmation from "./components/PopupConfirmation.vue";
 
 import { reactive, ref, watch } from 'vue';
 
-import type { productOnCartType } from "./types/types";
+import type { productOnCartType, imagesType } from "./types/types";
 
 const productOnCart = ref<productOnCartType[]>([]);
 const showPopup = ref(false);
 const counts = reactive<{ [a: string]: number }>({});
 
 const totalProductsPrice = ref("0");
+
+const productsImage = import.meta.glob('./assets/images/*.jpg', {
+  import: 'default',
+  eager: true
+}) as imagesType
 
 const addToCart = (id: number) => {
   products.forEach((product) => {
@@ -70,7 +75,8 @@ const closeOrder = (completed: boolean = false) => {
           <section class="product-wrapper">
             <div class="product">
               <div class="product-img-frame" :class="{ 'active-border-img': checkIfCarted(product['id']) }">
-                <img :src="product['image']['desktop']" alt="thumbnail" class="product-img">
+                <img :src="productsImage[`${product['image']['desktop']}`]" alt="thumbnail" class="product-img">
+
               </div>
 
               <div class="wrapper">
@@ -85,7 +91,7 @@ const closeOrder = (completed: boolean = false) => {
                 </template>
                 <template v-else>
                   <span class="add-cart" @click="addToCart(product['id'])">
-                    <img src="/assets/images/icon-add-to-cart.svg" width="20" height="20" alt="">
+                    <img src="./assets/images/icon-add-to-cart.svg" width="20" height="20" alt="">
                     <p class="add-cart-text">Add to Cart</p>
                   </span>
                 </template>

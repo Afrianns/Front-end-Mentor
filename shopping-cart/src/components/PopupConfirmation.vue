@@ -57,7 +57,7 @@ const popupMessageInfo = (type: SweetAlertIcon = "success", message: string = "S
         <div class="confirmed-container">
             <IconRemoveItem class="close-btn" @click="$emit('closePopup')" />
             <div class="confirmation-content">
-                <img src="/assets/images/icon-order-confirmed.svg" class="confirmed-icon" alt="icon-checklist-green">
+                <img src="./assets/images/icon-order-confirmed.svg" class="confirmed-icon" alt="icon-checklist-green">
                 <div class="title-info-wrapper">
                     <h2>Order Confirmed</h2>
                     <p>We hope you enjoy your food!</p>
