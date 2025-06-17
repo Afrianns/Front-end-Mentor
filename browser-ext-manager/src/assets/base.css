@@ -1,0 +1,63 @@
+@font-face {
+  font-family: 'Noto-Sans';
+  src:
+    url('../../assets/fonts/NotoSans-VariableFont_wdth,wght.ttf'),
+    url('../../assets/fonts/NotoSans-Italic-VariableFont_wdth,wght.ttf');
+}
+:root {
+  --medium-gray: hsl(0, 0%, 78%);
+  --background-color: linear-gradient(180deg, #ebf2fc 0%, #eef8f9 100%);
+  --low-gray: hsl(0, 0%, 93%);
+  --card-background-color: hsl(200, 60%, 99%);
+  --font-color: hsl(226, 25%, 17%);
+
+  /* Red */
+  --Red-400: hsl(3, 86%, 64%);
+  --Red-500: hsl(3, 71%, 56%);
+  --Red-700: hsl(3, 77%, 44%);
+
+  --header-color-border: var(--low-gray);
+  --toggle-color: hsl(0, 0%, 78%);
+  /* Gradient */
+  --Light-Gradient: linear-gradient(180deg, #ebf2fc 0%, #eef8f9 100%);
+  --Dark-Gradient: linear-gradient(180deg, #040918 0%, #091540 100%);
+}
+
+:root.dark {
+  /* - **Neutral 900**: `hsl(227, 75%, 14%)`
+- **Neutral 800**: `hsl(226, 25%, 17%)`
+- **Neutral 700**: `hsl(225, 23%, 24%)`
+- **Neutral 600**: `hsl(226, 11%, 37%)`
+- **Neutral 300**: `hsl(0, 0%, 78%)`
+- **Neutral 200**: `hsl(217, 61%, 90%)`
+- **Neutral 100**: `hsl(0, 0%, 93%)`
+- **Neutral 0**: `hsl(200, 60%, 99%)` */
+
+  --medium-gray: hsl(225, 23%, 24%);
+  --background-color: linear-gradient(180deg, #040918 0%, #091540 100%);
+  --low-gray: hsl(226, 11%, 37%);
+  --card-background-color: hsl(226, 25%, 17%);
+  --font-color: hsl(0, 0%, 93%);
+  --font-medium-color: hsl(217, 61%, 90%);
+
+  --header-color-border: var(--medium-gray);
+  --toggle-color: hsl(226, 11%, 37%);
+}
+html {
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Noto-sans', sans-serif;
+  background: var(--background-color) no-repeat;
+  background-size: contain;
+  color: var(--font-color);
+}
+
+.card {
+  background-color: var(--card-background-color);
+  padding: 1rem 2rem;
+  border-radius: 20px;
+  border: 1px solid var(--low-gray);
+  box-shadow: 1px 2px 20px var(--background-color);
+}

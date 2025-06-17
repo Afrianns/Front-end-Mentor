@@ -1,0 +1,19 @@
+@import './base.css';
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+}
+
+.button-default-style {
+  cursor: pointer;
+  outline: none;
+  color: var(--font-color);
+  background-color: transparent;
+  border: 1px solid var(--low-gray);
+  border-radius: 50px;
+  padding: 0.7rem 1.5rem;
+  font-weight: 700;
+}
